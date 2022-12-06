@@ -1,0 +1,75 @@
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll.config
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.pdb
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.dll
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.xml
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.dll
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.pdb
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT.DataAccess\bin\Debug\Usoft.Common.dll
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT.DataAccess\bin\Debug\Usoft.Common.pdb
+D:\Project2014\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll.config
+D:\Project2014\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll
+D:\Project2014\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.pdb
+D:\Project2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.dll
+D:\Project2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project2014\USOFT\USOFT.DataAccess\bin\Debug\Usoft.Common.dll
+D:\Project2014\USOFT\USOFT.DataAccess\bin\Debug\Usoft.Common.pdb
+D:\Project2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.xml
+D:\Project2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project2014\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.csprojResolveAssemblyReference.cache
+D:\Project2014\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.dll
+D:\Project2014\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.pdb
+D:\2014\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.csprojResolveAssemblyReference.cache
+D:\2014\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll.config
+D:\2014\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll
+D:\2014\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.pdb
+D:\2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.dll
+D:\2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\2014\USOFT\USOFT.DataAccess\bin\Debug\Usoft.Common.dll
+D:\2014\USOFT\USOFT.DataAccess\bin\Debug\Usoft.Common.pdb
+D:\2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.xml
+D:\2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\2014\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.dll
+D:\2014\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.pdb
+F:\2014\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll.config
+F:\2014\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll
+F:\2014\USOFT\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.pdb
+F:\2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.dll
+F:\2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+F:\2014\USOFT\USOFT.DataAccess\bin\Debug\GridMvc.dll
+F:\2014\USOFT\USOFT.DataAccess\bin\Debug\Usoft.Common.dll
+F:\2014\USOFT\USOFT.DataAccess\bin\Debug\Usoft.Common.pdb
+F:\2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.xml
+F:\2014\USOFT\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+F:\2014\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.csprojResolveAssemblyReference.cache
+F:\2014\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.dll
+F:\2014\USOFT\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.pdb
+D:\USOFT2014\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll.config
+D:\USOFT2014\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll
+D:\USOFT2014\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.pdb
+D:\USOFT2014\USOFT.DataAccess\bin\Debug\EntityFramework.dll
+D:\USOFT2014\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\USOFT2014\USOFT.DataAccess\bin\Debug\GridMvc.dll
+D:\USOFT2014\USOFT.DataAccess\bin\Debug\Usoft.Common.dll
+D:\USOFT2014\USOFT.DataAccess\bin\Debug\Usoft.Common.pdb
+D:\USOFT2014\USOFT.DataAccess\bin\Debug\EntityFramework.xml
+D:\USOFT2014\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\USOFT2014\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.csprojResolveAssemblyReference.cache
+D:\USOFT2014\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.dll
+D:\USOFT2014\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll.config
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Debug\USOFT.DataAccess.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Debug\GridMvc.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Debug\Usoft.Common.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Debug\Usoft.Common.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\obj\Debug\USOFT.DataAccess.pdb

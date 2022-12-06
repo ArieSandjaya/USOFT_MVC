@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GeneralModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="spGetApprovalState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piintMenuId" Type="int" Mode="In" />
+    <Parameter Name="piintState" Type="int" Mode="In" />
+    <Parameter Name="pivchUserId" Type="varchar" Mode="In" />
+    <Parameter Name="piintDataBranchId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetLookupDetailInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pivchLookupId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetLookupInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pivchLookupId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetMappingApprovalEmailCC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piintMenuId" Type="int" Mode="In" />
+    <Parameter Name="piintState" Type="int" Mode="In" />
+    <Parameter Name="pivchDepartementCode" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetMappingApprovalEmailTo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="piintMenuId" Type="int" Mode="In" />
+    <Parameter Name="piintState" Type="int" Mode="In" />
+    <Parameter Name="pivchDepartementCode" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetParamValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pivchPrmCode" Type="varchar" Mode="In" />
+    <Parameter Name="pivchPrmCondition" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetUserEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="pivchUserId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spGetUserLogon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="GeneralModelStoreContainer" />
+</Schema>

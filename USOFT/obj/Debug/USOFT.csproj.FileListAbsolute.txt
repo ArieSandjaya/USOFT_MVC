@@ -1,0 +1,282 @@
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\USOFT.dll.config
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\USOFT.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\USOFT.pdb
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\Antlr3.Runtime.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\Microsoft.Web.Infrastructure.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\Newtonsoft.Json.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.Helpers.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.Mvc.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.Optimization.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.Razor.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.WebPages.Deployment.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.WebPages.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.WebPages.Razor.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\WebGrease.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.Helpers.xml
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.Mvc.xml
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.Optimization.xml
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.Razor.xml
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.WebPages.xml
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.WebPages.Deployment.xml
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\System.Web.WebPages.Razor.xml
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\Newtonsoft.Json.xml
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\Antlr3.Runtime.pdb
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\obj\Debug\USOFT.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\obj\Debug\USOFT.pdb
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\Microsoft.AspNet.Identity.Core.dll
+c:\users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\USOFT\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\USOFT.DataAccess.dll
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\EntityFramework.dll
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\Usoft.Common.dll
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\USOFT.DataAccess.pdb
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\EntityFramework.xml
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\Usoft.Common.pdb
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\obj\Debug\USOFT.csprojResolveAssemblyReference.cache
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\EntityFramework.SqlServer.dll
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\EntityFramework.SqlServer.xml
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\Ext.Net.dll
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\Ext.Net.Utilities.dll
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\Transformer.NET.dll
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\WebActivatorEx.dll
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\Ext.Net.xml
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\Ext.Net.Utilities.xml
+C:\Users\a.sandjaya.UFINANCE\Documents\Visual Studio 2013\Projects\USOFT\USOFT\bin\Transformer.NET.xml
+D:\Project2014\USOFT\USOFT\bin\USOFT.dll.config
+D:\Project2014\USOFT\USOFT\bin\USOFT.dll
+D:\Project2014\USOFT\USOFT\bin\USOFT.pdb
+D:\Project2014\USOFT\USOFT\bin\Antlr3.Runtime.dll
+D:\Project2014\USOFT\USOFT\bin\EntityFramework.dll
+D:\Project2014\USOFT\USOFT\bin\EntityFramework.SqlServer.dll
+D:\Project2014\USOFT\USOFT\bin\Ext.Net.dll
+D:\Project2014\USOFT\USOFT\bin\Ext.Net.Utilities.dll
+D:\Project2014\USOFT\USOFT\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Project2014\USOFT\USOFT\bin\Microsoft.Web.Infrastructure.dll
+D:\Project2014\USOFT\USOFT\bin\Newtonsoft.Json.dll
+D:\Project2014\USOFT\USOFT\bin\System.Web.Helpers.dll
+D:\Project2014\USOFT\USOFT\bin\System.Web.Mvc.dll
+D:\Project2014\USOFT\USOFT\bin\System.Web.Optimization.dll
+D:\Project2014\USOFT\USOFT\bin\System.Web.Razor.dll
+D:\Project2014\USOFT\USOFT\bin\System.Web.WebPages.Deployment.dll
+D:\Project2014\USOFT\USOFT\bin\System.Web.WebPages.dll
+D:\Project2014\USOFT\USOFT\bin\System.Web.WebPages.Razor.dll
+D:\Project2014\USOFT\USOFT\bin\Transformer.NET.dll
+D:\Project2014\USOFT\USOFT\bin\USOFT.DataAccess.dll
+D:\Project2014\USOFT\USOFT\bin\WebActivatorEx.dll
+D:\Project2014\USOFT\USOFT\bin\WebGrease.dll
+D:\Project2014\USOFT\USOFT\bin\Usoft.Common.dll
+D:\Project2014\USOFT\USOFT\bin\USOFT.DataAccess.pdb
+D:\Project2014\USOFT\USOFT\bin\EntityFramework.xml
+D:\Project2014\USOFT\USOFT\bin\EntityFramework.SqlServer.xml
+D:\Project2014\USOFT\USOFT\bin\Ext.Net.xml
+D:\Project2014\USOFT\USOFT\bin\Ext.Net.Utilities.xml
+D:\Project2014\USOFT\USOFT\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Project2014\USOFT\USOFT\bin\Newtonsoft.Json.xml
+D:\Project2014\USOFT\USOFT\bin\System.Web.Helpers.xml
+D:\Project2014\USOFT\USOFT\bin\System.Web.Mvc.xml
+D:\Project2014\USOFT\USOFT\bin\System.Web.Razor.xml
+D:\Project2014\USOFT\USOFT\bin\System.Web.WebPages.xml
+D:\Project2014\USOFT\USOFT\bin\System.Web.WebPages.Deployment.xml
+D:\Project2014\USOFT\USOFT\bin\System.Web.WebPages.Razor.xml
+D:\Project2014\USOFT\USOFT\bin\System.Web.Optimization.xml
+D:\Project2014\USOFT\USOFT\bin\Transformer.NET.xml
+D:\Project2014\USOFT\USOFT\bin\Antlr3.Runtime.pdb
+D:\Project2014\USOFT\USOFT\bin\Usoft.Common.pdb
+D:\Project2014\USOFT\USOFT\obj\Debug\USOFT.csprojResolveAssemblyReference.cache
+D:\Project2014\USOFT\USOFT\obj\Debug\USOFT.dll
+D:\Project2014\USOFT\USOFT\obj\Debug\USOFT.pdb
+D:\2014\USOFT\USOFT\obj\Debug\USOFT.csprojResolveAssemblyReference.cache
+D:\2014\USOFT\USOFT\bin\USOFT.dll.config
+D:\2014\USOFT\USOFT\bin\USOFT.dll
+D:\2014\USOFT\USOFT\bin\USOFT.pdb
+D:\2014\USOFT\USOFT\bin\Antlr3.Runtime.dll
+D:\2014\USOFT\USOFT\bin\EntityFramework.dll
+D:\2014\USOFT\USOFT\bin\EntityFramework.SqlServer.dll
+D:\2014\USOFT\USOFT\bin\Ext.Net.dll
+D:\2014\USOFT\USOFT\bin\Ext.Net.Utilities.dll
+D:\2014\USOFT\USOFT\bin\Microsoft.AspNet.Identity.Core.dll
+D:\2014\USOFT\USOFT\bin\Microsoft.Web.Infrastructure.dll
+D:\2014\USOFT\USOFT\bin\Newtonsoft.Json.dll
+D:\2014\USOFT\USOFT\bin\System.Web.Helpers.dll
+D:\2014\USOFT\USOFT\bin\System.Web.Mvc.dll
+D:\2014\USOFT\USOFT\bin\System.Web.Optimization.dll
+D:\2014\USOFT\USOFT\bin\System.Web.Razor.dll
+D:\2014\USOFT\USOFT\bin\System.Web.WebPages.Deployment.dll
+D:\2014\USOFT\USOFT\bin\System.Web.WebPages.dll
+D:\2014\USOFT\USOFT\bin\System.Web.WebPages.Razor.dll
+D:\2014\USOFT\USOFT\bin\Transformer.NET.dll
+D:\2014\USOFT\USOFT\bin\USOFT.DataAccess.dll
+D:\2014\USOFT\USOFT\bin\WebActivatorEx.dll
+D:\2014\USOFT\USOFT\bin\WebGrease.dll
+D:\2014\USOFT\USOFT\bin\Usoft.Common.dll
+D:\2014\USOFT\USOFT\bin\USOFT.DataAccess.pdb
+D:\2014\USOFT\USOFT\bin\EntityFramework.xml
+D:\2014\USOFT\USOFT\bin\EntityFramework.SqlServer.xml
+D:\2014\USOFT\USOFT\bin\Ext.Net.xml
+D:\2014\USOFT\USOFT\bin\Ext.Net.Utilities.xml
+D:\2014\USOFT\USOFT\bin\Microsoft.AspNet.Identity.Core.xml
+D:\2014\USOFT\USOFT\bin\Newtonsoft.Json.xml
+D:\2014\USOFT\USOFT\bin\System.Web.Helpers.xml
+D:\2014\USOFT\USOFT\bin\System.Web.Mvc.xml
+D:\2014\USOFT\USOFT\bin\System.Web.Razor.xml
+D:\2014\USOFT\USOFT\bin\System.Web.WebPages.xml
+D:\2014\USOFT\USOFT\bin\System.Web.WebPages.Deployment.xml
+D:\2014\USOFT\USOFT\bin\System.Web.WebPages.Razor.xml
+D:\2014\USOFT\USOFT\bin\System.Web.Optimization.xml
+D:\2014\USOFT\USOFT\bin\Transformer.NET.xml
+D:\2014\USOFT\USOFT\bin\Antlr3.Runtime.pdb
+D:\2014\USOFT\USOFT\bin\Usoft.Common.pdb
+D:\2014\USOFT\USOFT\obj\Debug\USOFT.dll
+D:\2014\USOFT\USOFT\obj\Debug\USOFT.pdb
+F:\2014\USOFT\USOFT\obj\Debug\USOFT.csprojResolveAssemblyReference.cache
+F:\2014\USOFT\USOFT\bin\USOFT.dll.config
+F:\2014\USOFT\USOFT\bin\USOFT.dll
+F:\2014\USOFT\USOFT\bin\USOFT.pdb
+F:\2014\USOFT\USOFT\bin\Antlr3.Runtime.dll
+F:\2014\USOFT\USOFT\bin\EntityFramework.dll
+F:\2014\USOFT\USOFT\bin\EntityFramework.SqlServer.dll
+F:\2014\USOFT\USOFT\bin\Ext.Net.dll
+F:\2014\USOFT\USOFT\bin\Ext.Net.Utilities.dll
+F:\2014\USOFT\USOFT\bin\GridMvc.dll
+F:\2014\USOFT\USOFT\bin\Microsoft.AspNet.Identity.Core.dll
+F:\2014\USOFT\USOFT\bin\Microsoft.Web.Infrastructure.dll
+F:\2014\USOFT\USOFT\bin\Newtonsoft.Json.dll
+F:\2014\USOFT\USOFT\bin\Newtonsoft.JsonResult.dll
+F:\2014\USOFT\USOFT\bin\PagedList.dll
+F:\2014\USOFT\USOFT\bin\PagedList.Mvc.dll
+F:\2014\USOFT\USOFT\bin\System.Web.Helpers.dll
+F:\2014\USOFT\USOFT\bin\System.Web.Mvc.dll
+F:\2014\USOFT\USOFT\bin\System.Web.Optimization.dll
+F:\2014\USOFT\USOFT\bin\System.Web.Razor.dll
+F:\2014\USOFT\USOFT\bin\System.Web.WebPages.Deployment.dll
+F:\2014\USOFT\USOFT\bin\System.Web.WebPages.dll
+F:\2014\USOFT\USOFT\bin\System.Web.WebPages.Razor.dll
+F:\2014\USOFT\USOFT\bin\Transformer.NET.dll
+F:\2014\USOFT\USOFT\bin\Usoft.Common.dll
+F:\2014\USOFT\USOFT\bin\USOFT.DataAccess.dll
+F:\2014\USOFT\USOFT\bin\USOFT.Globaliztion.dll
+F:\2014\USOFT\USOFT\bin\WebActivatorEx.dll
+F:\2014\USOFT\USOFT\bin\WebGrease.dll
+F:\2014\USOFT\USOFT\bin\Usoft.Common.pdb
+F:\2014\USOFT\USOFT\bin\USOFT.DataAccess.pdb
+F:\2014\USOFT\USOFT\bin\USOFT.Globaliztion.pdb
+F:\2014\USOFT\USOFT\bin\EntityFramework.xml
+F:\2014\USOFT\USOFT\bin\EntityFramework.SqlServer.xml
+F:\2014\USOFT\USOFT\bin\Ext.Net.xml
+F:\2014\USOFT\USOFT\bin\Ext.Net.Utilities.xml
+F:\2014\USOFT\USOFT\bin\Microsoft.AspNet.Identity.Core.xml
+F:\2014\USOFT\USOFT\bin\Newtonsoft.Json.xml
+F:\2014\USOFT\USOFT\bin\PagedList.xml
+F:\2014\USOFT\USOFT\bin\PagedList.Mvc.xml
+F:\2014\USOFT\USOFT\bin\System.Web.Helpers.xml
+F:\2014\USOFT\USOFT\bin\System.Web.Mvc.xml
+F:\2014\USOFT\USOFT\bin\System.Web.Razor.xml
+F:\2014\USOFT\USOFT\bin\System.Web.WebPages.xml
+F:\2014\USOFT\USOFT\bin\System.Web.WebPages.Deployment.xml
+F:\2014\USOFT\USOFT\bin\System.Web.WebPages.Razor.xml
+F:\2014\USOFT\USOFT\bin\System.Web.Optimization.xml
+F:\2014\USOFT\USOFT\bin\Transformer.NET.xml
+F:\2014\USOFT\USOFT\bin\Antlr3.Runtime.pdb
+F:\2014\USOFT\USOFT\obj\Debug\USOFT.dll
+F:\2014\USOFT\USOFT\obj\Debug\USOFT.pdb
+D:\USOFT2014\USOFT\bin\USOFT.dll.config
+D:\USOFT2014\USOFT\bin\USOFT.dll
+D:\USOFT2014\USOFT\bin\USOFT.pdb
+D:\USOFT2014\USOFT\bin\Antlr3.Runtime.dll
+D:\USOFT2014\USOFT\bin\EntityFramework.dll
+D:\USOFT2014\USOFT\bin\EntityFramework.SqlServer.dll
+D:\USOFT2014\USOFT\bin\Ext.Net.dll
+D:\USOFT2014\USOFT\bin\Ext.Net.Utilities.dll
+D:\USOFT2014\USOFT\bin\GridMvc.dll
+D:\USOFT2014\USOFT\bin\Microsoft.AspNet.Identity.Core.dll
+D:\USOFT2014\USOFT\bin\Microsoft.Web.Infrastructure.dll
+D:\USOFT2014\USOFT\bin\Newtonsoft.Json.dll
+D:\USOFT2014\USOFT\bin\Newtonsoft.JsonResult.dll
+D:\USOFT2014\USOFT\bin\PagedList.dll
+D:\USOFT2014\USOFT\bin\PagedList.Mvc.dll
+D:\USOFT2014\USOFT\bin\System.Web.Helpers.dll
+D:\USOFT2014\USOFT\bin\System.Web.Mvc.dll
+D:\USOFT2014\USOFT\bin\System.Web.Optimization.dll
+D:\USOFT2014\USOFT\bin\System.Web.Razor.dll
+D:\USOFT2014\USOFT\bin\System.Web.WebPages.Deployment.dll
+D:\USOFT2014\USOFT\bin\System.Web.WebPages.dll
+D:\USOFT2014\USOFT\bin\System.Web.WebPages.Razor.dll
+D:\USOFT2014\USOFT\bin\Transformer.NET.dll
+D:\USOFT2014\USOFT\bin\Usoft.Common.dll
+D:\USOFT2014\USOFT\bin\USOFT.DataAccess.dll
+D:\USOFT2014\USOFT\bin\USOFT.Globaliztion.dll
+D:\USOFT2014\USOFT\bin\WebActivatorEx.dll
+D:\USOFT2014\USOFT\bin\WebGrease.dll
+D:\USOFT2014\USOFT\bin\Usoft.Common.pdb
+D:\USOFT2014\USOFT\bin\USOFT.DataAccess.pdb
+D:\USOFT2014\USOFT\bin\USOFT.Globaliztion.pdb
+D:\USOFT2014\USOFT\bin\EntityFramework.xml
+D:\USOFT2014\USOFT\bin\EntityFramework.SqlServer.xml
+D:\USOFT2014\USOFT\bin\Ext.Net.xml
+D:\USOFT2014\USOFT\bin\Ext.Net.Utilities.xml
+D:\USOFT2014\USOFT\bin\Microsoft.AspNet.Identity.Core.xml
+D:\USOFT2014\USOFT\bin\Newtonsoft.Json.xml
+D:\USOFT2014\USOFT\bin\PagedList.xml
+D:\USOFT2014\USOFT\bin\PagedList.Mvc.xml
+D:\USOFT2014\USOFT\bin\System.Web.Helpers.xml
+D:\USOFT2014\USOFT\bin\System.Web.Mvc.xml
+D:\USOFT2014\USOFT\bin\System.Web.Razor.xml
+D:\USOFT2014\USOFT\bin\System.Web.WebPages.xml
+D:\USOFT2014\USOFT\bin\System.Web.WebPages.Deployment.xml
+D:\USOFT2014\USOFT\bin\System.Web.WebPages.Razor.xml
+D:\USOFT2014\USOFT\bin\System.Web.Optimization.xml
+D:\USOFT2014\USOFT\bin\Transformer.NET.xml
+D:\USOFT2014\USOFT\bin\Antlr3.Runtime.pdb
+D:\USOFT2014\USOFT\obj\Debug\USOFT.csprojResolveAssemblyReference.cache
+D:\USOFT2014\USOFT\obj\Debug\USOFT.dll
+D:\USOFT2014\USOFT\obj\Debug\USOFT.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\USOFT.dll.config
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\USOFT.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\USOFT.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Antlr3.Runtime.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\EntityFramework.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\EntityFramework.SqlServer.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Ext.Net.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Ext.Net.Utilities.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\GridMvc.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Newtonsoft.Json.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Newtonsoft.JsonResult.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\PagedList.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\PagedList.Mvc.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.Helpers.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.Mvc.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.Optimization.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.Razor.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.WebPages.Deployment.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.WebPages.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.WebPages.Razor.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Transformer.NET.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Usoft.Common.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\USOFT.DataAccess.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\USOFT.Globaliztion.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\WebActivatorEx.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\WebGrease.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Usoft.Common.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\USOFT.DataAccess.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\USOFT.Globaliztion.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\EntityFramework.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\EntityFramework.SqlServer.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Ext.Net.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Ext.Net.Utilities.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Newtonsoft.Json.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\PagedList.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\PagedList.Mvc.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.Helpers.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.Mvc.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.Razor.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.WebPages.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.WebPages.Deployment.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.WebPages.Razor.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\System.Web.Optimization.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Transformer.NET.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\bin\Antlr3.Runtime.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\obj\Debug\USOFT.csprojResolveAssemblyReference.cache
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\obj\Debug\USOFT.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT\obj\Debug\USOFT.pdb

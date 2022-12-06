@@ -1,0 +1,135 @@
+﻿@model IEnumerable<USOFT.DataAccess.spDeptList_Result>
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">DEPARTEMENT</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Search
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form role="form">
+                            <div class="form-group">
+                                @Html.Label("Search By", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-4">
+                                    @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.TextBox("departementId", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <input type="Submit" value="Search" class="btn btn-default" id="buttonSearch" />
+                  @if ((ViewData["Privilege"] as List<USOFT.DataAccess.spGetUserInfo_Result>)[0].CanInsert != false)
+                  {
+
+                <input type="button" id="buttonCreate" value="Create" class="btn btn-default" onclick="window.location.href='@Url.Action("AddDepartement", "Departement", new { id = ViewBag.menuId })'" />
+                  }
+            </div>
+            <div class="panel-body">
+                <div id="divTable">
+                    <table id="grid"></table>
+                    <div id="pager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<h2 id="header-tag">Departement</h2>
+<div id="Container">
+<div id="div_common">
+
+        @Html.Label("Search By", new {@class = "label-main" })
+    </div>
+    <div id="div_common">
+        @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "combobox" })
+    
+            @Html.TextBox("SearchValue", null, new { @class = "input", @id = "departementId" })
+        
+    </div>
+    </div>
+        <p>
+            <input type="submit" value="Search" id="buttonSearch" class="buttonSub" />
+        </p>
+   <table id="grid"></table>
+    <div id="pager"></div>*@
+
+<script type="text/javascript">
+    $('#buttonSearch').click(function () {
+    $("#grid").jqGrid({
+        url: '@Url.Action("GetDeptData","Departement")',
+        datatype: 'JSON',
+        mtype: "POST",
+
+        postData: {
+
+            ParamField: function () {
+                return $("#ParamField option:selected").val();
+            },
+            SearchValue: (function () {
+                return $("#departementId").val();
+            })
+           
+        },
+        colNames: ['Departement Code', 'Departement Name', 'Code Name', 'Is Active','Action'],
+        colModel: [
+            { key: true, Name: true, name: 'DepartementCode', editable: true ,width:150},
+            { key: false, name: 'DepartementName', editable: true ,width:550},
+            { key: false, name: 'CodeName', editable: true ,width:100},
+            { key: false, name: 'IsActive', editable: true,width:50, edittype: 'select', editoptions: { value: { 'A': 'Active', 'I': 'InActive' } } },
+             {
+                 name: 'Edit', title: false,
+                 formatter: function (cellvalue, options, rowObject) {
+                     return '<a href="/Master/Departement/EditDepartement?value=' + rowObject.DepartementCode + '">' +
+                         "Edit" + "</a>";
+                 }
+             }
+        ],
+
+        pager: '#pager',
+        rowNum: 10,
+        rowList: [10, 20, 30, 40],
+        height: '80%',
+        width: '70%',
+        viewrecords: true,
+        caption: 'UserId',
+        emptyrecords: 'No records to display',
+
+        jsonReader: {
+            root: "rows",
+            page: "page",
+            total: "total",
+            records: "records",
+            repeatitems: false,
+            cell: "cell",
+            id: "id",
+            userdata: "userdata",
+        },
+
+        multiselect: false
+    })
+    $("#grid").trigger("reloadGrid", [{ page: 1 }]);
+    });
+</script>
+

@@ -1,0 +1,50 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using USOFT.DataAccess.HR;
+using USOFT.DataAccess;
+
+namespace USOFT.Models
+{
+    public class HRMainModel
+    {
+        HRModel hr = new HRModel();
+        public List<Object> GetHREmployeeList(string SearchValue,string searchBy, int? branch, string departement, string position, bool status,int? page, int pageSize)
+        {
+            return hr.getEmployeeList(SearchValue, searchBy, branch, departement, position, status, page, pageSize);
+        }
+        public List<Object> GetHRPrivilegeList(string SearchValue, string searchBy, int? branch, string departement, int? page, int pageSize)
+        {
+            return hr.GetPrivilegeList(SearchValue, searchBy, branch, departement, page, pageSize);
+        }
+        public List<Object> GetHRPendingEmployeeList(string SearchValue, string searchBy, int? branch, int? page, int pageSize)
+        {
+            return hr.GetPendingEmployeeList(SearchValue, searchBy, branch, page, pageSize);
+        }
+        public void HREmployeeInsert(string pivchNIK,string pivchEmployeeName)
+        {
+            hr.HREmployeeInsert(pivchNIK, pivchEmployeeName);
+        }
+        public List<spHREmployeeView_Result> GetEmployeeView(string pivchNIK)
+        {
+            return hr.GetEmployeeView(pivchNIK);
+        }
+        public List<spHREmployeeDetailList_Result> getJobHistory(string pivchNIK)
+        {
+            return hr.getJobHistory(pivchNIK);
+        }
+        public List<HRAccountNumberGet_Result> getAccountNumber(string pivchNIK)
+        {
+            return hr.getAccount(pivchNIK);
+        }
+        public string insertHRJobDetail(string pivchNIK, int? piintJobType, int? piintBranchId, string pivchDepartementCode, string privilegeCode, DateTime? pidtmEffectiveDateFrom, DateTime? pidtmEffectiveDateTo, int? piintBranchIdFrom, string pivchDepartementCodeFrom, string pivchPrivilegeCodeFrom)
+        {
+            return hr.insertHRJobDetail(pivchNIK,piintJobType,piintBranchId,pivchDepartementCode,privilegeCode,pidtmEffectiveDateFrom,pidtmEffectiveDateTo,piintBranchIdFrom,pivchDepartementCodeFrom,pivchPrivilegeCodeFrom);
+        }
+        public List<spHREmployeeDetailView_Result> GetEmployeeJobDetail(string pivchEmployeeJobId)
+        {
+            return hr.getEmployeeJobDetail(pivchEmployeeJobId);
+        }
+    }
+}

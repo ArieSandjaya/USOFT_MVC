@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Test";
+}
+
+
+<script type="text/javascript" src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<script src="~/Scripts/mainPageJqGrid.js"></script>
+<p id="rData"></p>
+@Html.TextBox("Name")
+<input type="button" id="ButtonID" value="clickMe" />
+<script type="text/jscript">
+    $('#ButtonID').click(function () {
+        var url = "/Main/TellMeDate";
+        var name = $('#Name').val();
+        $.get(url, { input: name }, function (data) {
+            $("#rData").html(data);
+        });
+    })
+</script>

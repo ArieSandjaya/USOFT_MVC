@@ -1,0 +1,147 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using USOFT.DataAccess.General;
+using USOFT.Models;
+using USOFT.DataAccess;
+
+namespace USOFT.Areas.HR.Controllers
+{
+    public class AccessAndUserIDRequestController : Controller
+    {
+        PopulatedDdl pop = new PopulatedDdl();
+        HRMainModel hr = new HRMainModel();
+        
+        //
+        // GET: /HR/AccessAndUserIDRequest/
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public void populatedDdl()
+        {
+            ViewBag.br = new SelectList(pop.brCombo().AsEnumerable(), "BranchId", "BranchName");
+            ViewBag.dpt = new SelectList(pop.deptCombo().AsEnumerable(), "DepartementCode", "DepartementName");
+            ViewBag.job = new SelectList(pop.hrJobType().AsEnumerable(), "JobTypeId", "JobTypeName");
+            ViewBag.stat = new SelectList(pop.AccessStatus().AsEnumerable());
+            ViewBag.process = new SelectList(pop.ProcessStatus().AsEnumerable());
+        }
+        public ActionResult AddUserRequest(string id)
+        {
+             if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                    List<spGetUserInfo_Result> userInfo = new List<spGetUserInfo_Result>();
+                    CekPriv cekpriv = new CekPriv();
+                    userInfo = cekpriv.privilege(id);
+                    ViewData["Privilege"] = userInfo;
+                    populatedDdl();
+                    ViewBag.menuId = id;
+                    ViewBag.menu = new SelectList(pop.getMenu(id, "").AsEnumerable(), "ParamField", "ParamName");
+                    return View();
+            
+            }
+            return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        public JsonResult GetAddUserRequest(string SearchValue, GetMenuResult ddl, string DatePickerReady, int? BranchId, string DepartementCode, string JobType, string status, string process, int? page,int rows,string sidx, string sord)
+        {
+          
+
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+            List<Object> obj = hr.GetUserAddRequestList(SearchValue, ddl.ParamField, BranchId, DepartementCode, DatePickerReady, JobType, status, process, page, pageSize);
+            var result = (List<spAddUserRequestList_Result>)obj[0];
+            int totalRecord = Convert.ToInt32(obj[2]);
+            var totalPages = (int)Math.Ceiling((float)totalRecord / (float)pageSize);
+            var jsonData = new
+            {
+
+                total = totalPages,
+                page,
+                records = totalRecord,
+                rows = result
+            };
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetHRCurrentJobEmployee(string SearchValue, GetMenuResult ddl, int? page, int? rows, string sidx, string sord)
+        {
+
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int? pageSize = rows;
+            List<Object> obj = hr.GetHrCurrentJobEmployee(SearchValue, ddl.ParamField, page, pageSize);
+            var result = (List<spGetHRCurrentJobEmployee>)obj[0];
+            int totalRecord = Convert.ToInt32(obj[2]);
+            var totalPages = (int)Math.Ceiling((float)totalRecord / (float)pageSize);
+            var jsonData = new
+            {
+
+                total = totalPages,
+                page,
+                records = totalRecord,
+                rows = result
+            };
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult NewAccessUserIDRequest(string value , string JobId)
+        {
+            if (value == null && JobId == null)
+            {
+                ViewBag.menuNIK = new SelectList( pop.getMenu("001","1").AsEnumerable(),"ParamField","ParamName");
+                return View();
+            }
+            else
+            {
+                List<spHREmployeeView_Result> result = new List<spHREmployeeView_Result>();
+                result = hr.GetEmployeeView(value);
+                ViewBag.menuNIK = new SelectList(pop.getMenu("001", "1").AsEnumerable(), "ParamField", "ParamName");
+                ViewBag.NIK = result[0].NIK;
+                ViewBag.Name = result[0].EmployeeName;
+                ViewBag.Branch = result[0].BranchName;
+                ViewBag.Dept = result[0].DepartementName;
+                ViewBag.post = result[0].PrivilegeName;
+                ViewBag.Job = JobId;
+                return View();
+            }
+            
+        }
+        [HttpPost]
+        public ActionResult NewAccessUserIDRequest(string value,string pivchJobId,string pivchReason)
+        {
+            string AccessID = hr.InsertUserAccessRequest(pivchJobId, pivchReason);
+            return RedirectToAction("AccessUserDetail", "AccessAndUserIDRequest", new{AccessID = AccessID });
+        }
+
+        public ActionResult AccessUserRequestDetail(string AccessID)
+        {
+            List<spHRAddUserRequestView_Result> row = new List<spHRAddUserRequestView_Result>();
+            row = hr.GetUserRequestView(AccessID);
+            ViewData["AccessData"] = row;
+            ViewBag.AppCombo = new SelectList(pop.getMsAppCombo().AsEnumerable(),"AppCode","AppName");
+            ViewBag.Loc = new SelectList(pop.getMsLocation().AsEnumerable(), "LocationCode", "LocationName");
+            return View();
+        }
+
+        public JsonResult GetHRAccessRole(string RequestID)
+        {
+            List<spHRAddUserRequestDetailList_Result> row = hr.GetUserAppRole(RequestID);
+            var result = row;
+            
+            var jsonData = new
+            {
+                rows = result
+            };
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+        public void saveAccessRole(string pivchAddRequestID,string pivchAppcode,string pivchLocationCode,int? piintAutoDBId)
+        {
+            if (pivchAppcode != "00007")
+            {
+                pivchLocationCode = null;
+            }
+            hr.AddUserRequestAccessID(pivchAddRequestID, pivchAppcode, pivchLocationCode, piintAutoDBId);
+            RedirectToAction("AccessUserRequestDetail", "AccessAndUserIDRequest", new { AccessID = pivchAddRequestID });
+        }
+	}
+}

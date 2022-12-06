@@ -1,0 +1,442 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using USOFT.DataAccess.General;
+using USOFT.DataAccess.Departement;
+using USOFT.DataAccess.Currency;
+using USOFT.DataAccess.Branch;
+using USOFT.DataAccess.Measurement;
+using USOFT.DataAccess.Upload;
+using USOFT.DataAccess.IT;
+using USOFT.Models;
+using USOFT.DataAccess;
+
+
+namespace USOFT.Areas.InformationTechnology.Controllers
+{
+    public class ActivityTaskController : Controller
+    {
+        //
+        // GET: /InformationTechnology/ActivityTask/
+        PopulatedDdl pop = new PopulatedDdl();
+        MainITModel itmod = new MainITModel();
+        ITMainModel mod = new ITMainModel();
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public string temp;
+        public void populatedITTask(string id)
+        {
+            ViewBag.br = new SelectList(pop.brCombo().AsEnumerable(), "BranchId", "BranchName");
+            ViewBag.menu = new SelectList(pop.getMenu(id, "").AsEnumerable(), "ParamField", "ParamName");
+            ViewBag.prob = new SelectList(pop.problemType().AsEnumerable(), "ProblemTypeCode", "ProblemTypeName");
+            ViewBag.item = new SelectList(pop.itemType().AsEnumerable(), "ItemTypeCode", "ItemTypeName");
+            ViewBag.us = new SelectList(pop.mapuser().AsEnumerable(), "UserId", "UserName");
+            ViewBag.priority = new SelectList(pop.priority().AsEnumerable(), "priority");
+            ViewBag.status = new SelectList(pop.status().AsEnumerable());
+        }
+        public void populatedLog(string id)
+        {
+            ViewBag.br = new SelectList(pop.brCombo().AsEnumerable(), "BranchId", "BranchName");
+            ViewBag.menu = new SelectList(pop.getMenu(id, "").AsEnumerable(), "ParamField", "ParamName");
+            ViewBag.dpt = new SelectList(pop.deptCombo().AsEnumerable(), "DepartementCode", "DepartementName");
+        }
+        public void populatedMail()
+        {
+            ViewBag.isactive = new SelectList(pop.ActiveStateToCombo().AsEnumerable());
+        }
+        public ActionResult ActivityTask(string id)
+        {
+            Usoft.Common.CommonFunction.CekSession.validate();
+            if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                List<spGetUserInfo_Result> result = new List<spGetUserInfo_Result>();
+                CekPriv cekpriv = new CekPriv();
+                result = cekpriv.privilege(id);
+                ViewData["Privilege"] = result;
+                ViewBag.menuId = id;
+                populatedITTask(id);
+                return View();
+                 }
+            else
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        public ActionResult UserLog(string id)
+        {
+            Usoft.Common.CommonFunction.CekSession.validate();
+            if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                List<spGetUserInfo_Result> result = new List<spGetUserInfo_Result>();
+                CekPriv cekpriv = new CekPriv();
+                result = cekpriv.privilege(id);
+                ViewData["Privilege"] = result;
+                ViewBag.menuId = id;
+                populatedLog(id);
+                return View();
+            }
+            else
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        public JsonResult GetITTask(string status, string priority, string TerminatedBy, string PIC, string ItemType, string ProblemType, string DatePickerReady, int? BranchId, string searchvalue, GetMenuResult ddl, string dpt, int? page, int rows, string sidx, string sord)
+        {
+
+            int prio = 0;
+            if (priority == "Low")
+            {
+                prio = 1;
+            }
+            else
+                if (priority == "Medium")
+                {
+                    prio = 2;
+                }
+                else
+                    if (priority == "High")
+                    {
+                        prio = 3;
+                    }
+            string Stats = "";
+            if (status == "Open")
+            {
+                Stats = "1";
+            }
+            else
+                if (status == "Assign")
+                {
+                    Stats = "2";
+                }
+                else
+                    if (status == "Closed")
+                    {
+                        Stats = "3";
+                    }
+                    else
+                        if (status == "Solved")
+                        {
+                            Stats = "4";
+                        }
+                        else
+                            if (status == "Done")
+                            {
+                                Stats = "5";
+                            }
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+
+            List<Object> obj = itmod.GetITTask(Stats, prio, TerminatedBy, PIC, ItemType, ProblemType, BranchId, DatePickerReady, searchvalue, ddl.ParamField, page, pageSize);
+            var result = (List<spITActivityTaskList_Results>)obj[0];
+            int totalRecord = Convert.ToInt32(obj[2]);
+            var totalPages = (int)Math.Ceiling((float)totalRecord / (float)pageSize);
+            var jsonData = new
+            {
+
+                total = totalPages,
+                page,
+                records = totalRecord,
+                rows = result
+            };
+
+
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetLog(int? Branch, string inputText, GetMenuResult ddl, string Departement, int? page, int rows, string sidx, string sord)
+        {
+
+
+
+
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+
+            List<Object> obj = itmod.getLogList(Departement, Branch, inputText, ddl.ParamField, page, pageSize);
+            var result = (List<spITLogList_Result>)obj[0];
+            int totalRecord = Convert.ToInt32(obj[2]);
+            var totalPages = (int)Math.Ceiling((float)totalRecord / (float)pageSize);
+            var jsonData = new
+            {
+
+                total = totalPages,
+                page,
+                records = totalRecord,
+                rows = result
+            };
+
+
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult addActivityTask(string id)
+        {
+             Usoft.Common.CommonFunction.CekSession.validate();
+            if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                CekPriv cekpriv = new CekPriv();
+                var result = cekpriv.privilege(id);
+
+                if (result[0].CanInsert == true)
+                {
+                    ViewBag.menuId = id;
+                     ViewBag.date = DateTime.Now.ToShortDateString();
+                     ViewBag.dpt = new SelectList(pop.deptCombo().AsEnumerable(), "DepartementCode", "DepartementName");
+                     populatedITTask(id);
+                     return View();
+                }
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+            }
+            else
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        [HttpPost]
+        public ActionResult addActivityTask(DateTime pidtmActivityDate, string pivchRequestBy, int piintBranchId, string pivchDepartementCode, int piintProblemTypeCode, string pivchItemTypeCode, string pivchDescription, string pivchPriority, string pivchInputID,string id)
+        {
+            string itemCode;
+            string deptCode;
+            if (piintBranchId != 8675)
+            {
+                deptCode = null;
+            }
+            else
+            {
+                deptCode = pivchDepartementCode;
+            }
+            if (piintProblemTypeCode != 1)
+            {
+                itemCode = null;
+            }
+            else
+            {
+                itemCode = pivchItemTypeCode;
+            }
+            string prio = "0";
+            if (pivchPriority == "Low")
+            {
+                prio = "1";
+            }
+            else
+                if (pivchPriority == "Medium")
+                {
+                    prio = "2";
+                }
+                else
+                    if (pivchPriority == "High")
+                    {
+                        prio = "3";
+                    }
+            populatedITTask(id);
+            ViewBag.dpt = new SelectList(pop.deptCombo().AsEnumerable(), "DepartementCode", "DepartementName");
+            ViewBag.date = DateTime.Now.ToShortDateString();
+            string ActivityNo = mod.insertITActivityTaskList(pidtmActivityDate, pivchRequestBy, piintBranchId, deptCode, piintProblemTypeCode, itemCode, pivchDescription, prio, Session["UserId"].ToString());
+            ViewBag.No = ActivityNo;
+            return RedirectToAction("ActivityTask", "ActivityTask", new { value = ActivityNo });
+        }
+        public ActionResult ActivityTaskDetail(string id,string value)
+        {
+
+            temp = value;
+
+            List<spITActivityTaskView_Result> result = new List<spITActivityTaskView_Result>();
+            result = mod.viewActivityTask(value);
+
+            ViewBag.No = result[0].ActivityNo;
+            ViewBag.Date = result[0].ActivityDate.ToShortDateString();
+            ViewBag.Request = result[0].RequestBy;
+            ViewBag.Branch = result[0].BranchName;
+            ViewBag.departement = result[0].DepartementName;
+            ViewBag.Problem = result[0].ProblemTypeName.ToString();
+            ViewBag.It = result[0].ItemTypeName;
+            ViewBag.Description = result[0].Description;
+            if (result[0].Status == "0")
+            {
+                ViewBag.stat = "Open";
+            }
+            else
+                if (result[0].Status == "1")
+                {
+                    ViewBag.stat = "Assign";
+
+                }
+                else
+                    if (result[0].Status == "2")
+                    {
+                        ViewBag.stat = "Solved";
+                    }
+                    else
+                        if (result[0].Status == "3")
+                        {
+                            ViewBag.stat = "Closed";
+                        }
+            if (result[0].Priority == "1")
+            {
+                ViewBag.prio = "Low";
+            }
+            else
+                if (result[0].Priority == "2")
+                {
+                    ViewBag.prio = "Medium";
+                }
+                else
+                    if (result[0].Priority == "3")
+                    {
+                        ViewBag.prio = "High";
+                    }
+
+            ViewBag.status = new SelectList(pop.status().AsEnumerable());
+            ViewBag.us = new SelectList(pop.mapuser().AsEnumerable(), "UserId", "UserName");
+            ViewBag.action = new SelectList(pop.AssignAction(result[0].Status).AsEnumerable());
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ActivityTaskDetail(string val, string pivchStatus, string pivchAssignTo, string pivchAssignDescription,string command)
+        {
+            if (command == "Edit Header")
+            {
+                return RedirectToAction("EditHeader", "ActivityTask", new { value = val });
+            }
+            string assign;
+            ViewBag.status = new SelectList(pop.status().AsEnumerable());
+            ViewBag.us = new SelectList(pop.mapuser().AsEnumerable(), "UserId", "UserName");
+            ViewBag.action = new SelectList(pop.AssignAction(pivchStatus).AsEnumerable());
+            if (pivchStatus != null)
+            {
+                string st = "0";
+                if (pivchStatus == "Assign")
+                {
+                    st = "1";
+                    itmod.insertAssign(val, st, pivchAssignTo, pivchAssignDescription);
+                }
+                if (pivchStatus == "Solved")
+                {
+                    
+                    assign = null;
+                    st = "2";
+                    itmod.insertAssign(val, st, assign, pivchAssignDescription);
+                }
+                if (pivchStatus == "Closed")
+                {
+                    assign = null;
+                    st = "3";
+                    itmod.insertAssign(val, st, assign, pivchAssignDescription);
+                }
+
+            }
+            return RedirectToAction("ActivityTaskDetail", "ActivityTask", new {value = val });
+        }
+
+        public JsonResult GetAssignList(string value, int? page, string sidx, string sord, int rows = 1)
+        {
+
+
+
+
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+
+            var result = itmod.getAssignList(value);
+
+            var jsonData = new
+            {
+
+
+                page,
+
+                rows = result
+            };
+
+
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+
+        }
+        public ActionResult ActivityTaskClosed(string value)
+        {
+            List<spITActivityTaskView_Result> result = new List<spITActivityTaskView_Result>();
+            result = mod.viewActivityTask(value);
+            ViewBag.No = result[0].ActivityNo;
+            ViewBag.Date = result[0].ActivityDate.ToShortDateString();
+            ViewBag.Request = result[0].RequestBy;
+            ViewBag.Branch = result[0].BranchName;
+            ViewBag.departement = result[0].DepartementName;
+            ViewBag.Problem = result[0].ProblemTypeName.ToString();
+            ViewBag.It = result[0].ItemTypeName;
+            ViewBag.Description = result[0].Description;
+            if (result[0].Status == "2")
+            {
+                ViewBag.stat = "Closed";
+            }
+            else
+                if (result[0].Status == "3")
+                {
+                    ViewBag.stat = "Solved";
+                }
+            if (result[0].Priority == "1")
+            {
+                ViewBag.prio = "Low";
+            }
+            else
+                if (result[0].Priority == "2")
+                {
+                    ViewBag.prio = "Medium";
+                }
+                else
+                    if (result[0].Priority == "3")
+                    {
+                        ViewBag.prio = "High";
+                    }
+            return View();
+        }
+        public ActionResult EditHeader(string value,string id)
+        {
+            populatedITTask(id);
+            ViewBag.dpt = new SelectList(pop.deptCombo().AsEnumerable(), "DepartementCode", "DepartementName");
+            List<spITActivityTaskView_Result> result = new List<spITActivityTaskView_Result>();
+            result = itmod.getTask(value);
+            ViewBag.No = value;
+            ViewBag.date = result[0].ActivityDate;
+            ViewBag.req = result[0].RequestBy;
+            ViewBag.prio = result[0].Priority;
+            ViewBag.desc = result[0].Description;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult EditHeader(string val, DateTime pidtmActivityDate, string pivchRequestBy, int piintBranchId, string pivchDepartementCode, int piintProblemTypeCode, string pivchItemTypeCode, string pivchDescription, string pivchPriority)
+        {
+            string itemCode;
+            string deptCode;
+            if (piintBranchId != 8675)
+            {
+                deptCode = null;
+            }
+            else
+            {
+                deptCode = pivchDepartementCode;
+            }
+            if (piintProblemTypeCode != 1)
+            {
+                itemCode = null;
+            }
+            else
+            {
+                itemCode = pivchItemTypeCode;
+            }
+            string prio = "0";
+            if (pivchPriority == "Low")
+            {
+                prio = "1";
+            }
+            else
+                if (pivchPriority == "Medium")
+                {
+                    prio = "2";
+                }
+                else
+                    if (pivchPriority == "High")
+                    {
+                        prio = "3";
+                    }
+            itmod.updateHeader(val, pidtmActivityDate, pivchRequestBy, piintBranchId, pivchDepartementCode, piintProblemTypeCode, itemCode, deptCode, pivchPriority);
+            return RedirectToAction("ActivityTaskDetail", "ActivityTask", new { value = val });
+        }
+	}
+}

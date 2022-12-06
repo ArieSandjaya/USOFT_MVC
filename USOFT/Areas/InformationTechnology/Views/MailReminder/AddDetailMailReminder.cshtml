@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "AddDetailMailReminder";
+   
+}
+
+@using (@Html.BeginForm(FormMethod.Post))
+{
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">ADD MAIL SCHEDULE DETAIL</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Add New Mail Schedule Detail
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <form role="form">
+                            <div class="form-group">
+                                @Html.Label("Reminder Id :", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-10">
+                                    @Html.Label(((int)ViewBag.Id).ToString(), new { @class = "col-md-2 control-label" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Subject :", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-10">
+                                    @Html.Label((String)ViewBag.Subject, new { @class = "col-md-2 control-label" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Mail To :", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBox("pivchMailTo", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Start Date :", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBox("pidtmStartDate", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("End Date :", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBox("pidtmEndDate", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Interval By :", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-10">
+                                    @Html.DropDownList("pivchIntervalBy", (IEnumerable<SelectListItem>)ViewBag.intervalBy, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group" style="display:none" id="Hour">
+                                @Html.Label("Interval Range :", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-10">
+                                    @Html.TextBox("pivchIntervalRange", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Time", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-5">
+                                    @Html.DropDownList("pivchIntervalHour", (IEnumerable<SelectListItem>)ViewBag.intervalHour, "--", new { @class = "form-control" })
+                                </div>
+                                <div class="col-lg-5">
+                                   @Html.DropDownList("pivchIntervalMinute", (IEnumerable<SelectListItem>)ViewBag.intervalMinute, "--", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Description :", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextArea("pivchDescription", null, new { @class = "form-control" })
+                                    @Html.Hidden("piintReminderId", (int)ViewBag.Id)
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <input type="Submit" value="Search" class="btn btn-default" id="buttonSearch" />
+                        <input type="button" id="buttonCreate" value="Create" class="btn btn-default" onclick="window.location.href='@Url.Action("ActivityTask", "ActivityTask", new { id = ViewBag.menuId })'" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+@*<h2>AddDetailMailReminder</h2>
+@using (@Html.BeginForm(FormMethod.Post))
+{
+<div id="container">
+    <div class="div_common" style="width:1000px">
+        @Html.Label("Reminder Id :")
+        @ViewBag.Id
+        <p>@Html.Label("Subject :")
+        @ViewBag.Subject</p>
+        @Html.Label("Mail To:")
+        @Html.TextBox("pivchMailTo", null, new {@class = "input" })
+        <p>@Html.Label("Start Date:")
+        @Html.TextBox("pidtmStartDate", null, new { @class = "input" ,@id ="datepicker"})</p>
+        @Html.Label("End Date:")
+        @Html.TextBox("pidtmEndDate", null, new { @class = "input",@id = "datepicker" })
+        <p>
+            @Html.Label("Interval By:")
+            @Html.DropDownList("pivchIntervalBy", (IEnumerable<SelectListItem>)ViewBag.intervalBy, "- Select One - ", new { @class = "combobox" })
+        </p>
+        @Html.Label("Time:")
+        @Html.DropDownList("pivchIntervalHour",(IEnumerable<SelectListItem>)ViewBag.intervalHour,"--",new {@class = "combobox", @Style="width:50px"}) : @Html.DropDownList("pivchIntervalMinute", (IEnumerable<SelectListItem>)ViewBag.intervalMinute, "--", new { @class = "combobox", @Style = "width:50px" })
+       <p>
+           @Html.Label("Description:")
+           @Html.TextArea("pivchDescription", null, new { @class = "input", @Style = "width:700px;height:100px" })
+       </p>
+
+        <p><input type="Submit" value="Proses" class="buttonSub" id="buttonSearch" /></p>
+
+        @Html.Hidden("piintReminderId",(int)ViewBag.Id)
+
+
+    </div>
+</div>
+}*@
+<script type="text/javascript">
+    $("#pivchIntervalBy").change(function () {
+        var targID = $("#pivchIntervalBy").val();
+        if (targID == "Day") {
+            $("#Hour").show();
+        }
+        else
+            if (targID == "Date") {
+                $("#Hour").show();
+            }
+            else
+                $("#Hour").hide();
+    })
+</script>

@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "EditITItemType";
+}
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">UPDATE ITEM TYPE</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Update Item Type
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Item Type Code", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @*@Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })*@
+                                        @Html.TextBox("pivchItemTypeCode", (string)ViewBag.ItemCode, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Item Type Name", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @*@Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })*@
+                                        @Html.TextBox("pivchItemTypeName", (string)ViewBag.ItemName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Active State", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("activeState", (SelectList)ViewBag.IsActive, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href('@Url.Action("Users","Users")')" />*@
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                            <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href('@Url.Action("ItemType","Master")')" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

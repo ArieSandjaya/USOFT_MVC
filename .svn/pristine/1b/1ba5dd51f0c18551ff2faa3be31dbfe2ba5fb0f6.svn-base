@@ -1,0 +1,13 @@
+﻿
+@*@using GridMvc.Html
+
+
+@Html.Grid(Model).Columns(columns =>
+        {
+            columns.Add(c => c.UserId).Titled("User Id");
+            columns.Add(c => c.UserName).Titled("User Name");
+            columns.Add(c => c.NIK).Titled("NIK");
+            columns.Add(c => c.BranchName).Titled("Branch");
+            columns.Add(c => c.IsActive).Titled("Is Active");
+
+        }).Sortable(true)*@

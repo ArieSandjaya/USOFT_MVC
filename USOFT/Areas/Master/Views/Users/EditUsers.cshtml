@@ -1,0 +1,108 @@
+﻿@model IEnumerable< USOFT.DataAccess.spUsersView_Result>
+&nbsp;
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="text-white">Edit Users</h5>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("User ID", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("UserId", (String)ViewBag.UserId, new { @class = "form-control input-sm" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("User Name", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("UserName", (String)ViewBag.UserName, new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("NIK", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("NIK", (String)ViewBag.NIK, new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("BranchName", (SelectList)ViewBag.br, "All", new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("E-Mail", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("Email", (String)ViewBag.Email, new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("E-Mail B2B", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("EmailB2B", (String)ViewBag.B2B, new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Password", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.Password("Password", null, new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Confirm Password", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.Password("pivchPass2", null, new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Active State", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("IsActive", (SelectList)ViewBag.active, "All", new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Can Change Password", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("ChangePass", (SelectList)ViewBag.canChangePass, "All", new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Can Change Email", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("changeMail", (SelectList)ViewBag.canChangeMail, "All", new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+<<<<<<< .mine
+                <button type="Submit" value="Proses" class="btn btn-default btn-sm" id="buttonSearch">
+                    <i class="glyphicon glyphicon-floppy-save"></i> Process
+                </button>
+                <button type="button" value="Back" class="btn btn-default btn-sm" id="buttonCreate" name="buttonAdd" onclick="window.location.href='@Url.Action("Users", "Users", new { id = TempData["MenuID"] })'">
+                    <i class="glyphicon glyphicon-backward"></i> Back
+                </button>
+=======
+                <input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href='@Url.Action("Users","Users")'" />
+>>>>>>> .r17
+            </div>
+        </div>
+     </div>
+    </div>
+</div>
+    </div>
+}

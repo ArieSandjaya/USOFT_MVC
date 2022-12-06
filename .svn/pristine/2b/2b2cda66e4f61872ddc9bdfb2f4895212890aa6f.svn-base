@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "ActivityTaskClosed";
+}
+
+<h2>ActivityTaskDetail</h2>
+@{
+    ViewBag.Title = "ActivityTaskDetail";
+    string value = @ViewBag.No;
+}
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<h2>ActivityTaskDetail</h2>
+@using (@Html.BeginForm(FormMethod.Post))
+{
+    <div id="divLabel">
+        <div>
+            @Html.Label("Activity No :")
+            @ViewBag.No
+        </div>
+        <div>
+            @Html.Label("Date :")
+            @ViewBag.Date
+        </div>
+        <div>
+            @Html.Label("Request By :")
+            @ViewBag.Request
+        </div>
+        <div>
+            @Html.Label("Branch :")
+
+            @ViewBag.Branch
+        </div>
+        <div>
+            @Html.Label("Departement :")
+            @ViewBag.Departement
+        </div>
+    </div>
+    <div id="divValue">
+        <div>
+            @Html.Label("Problem Type :")
+            @ViewBag.Problem
+        </div>
+        <div>
+            @Html.Label("Item Type :")
+            @ViewBag.It
+        </div>
+        @Html.Label("Description :")
+        @ViewBag.Description
+        <div>
+            @Html.Label("Priority :")
+            @ViewBag.Prio
+        </div>
+        <div>
+            @Html.Label("Status :")
+            @ViewBag.stat
+        </div>
+        <input type="Submit" value="Back" class="buttonSub" id="buttonSearch" />
+    </div>
+
+}
+<table id="grid"></table>
+<div id="pager"></div>
+
+<script type="text/javascript">
+
+    $("#grid").jqGrid({
+        url: "GetAssignList",
+        datatype: 'JSON',
+        mtype: "GET",
+        postData: {
+            value: (function () {
+                return $("#val").val();
+            }),
+        },
+
+
+        colNames: ['Date', 'Status', 'Description'],
+        colModel: [
+            { key: true, Name: true, name: 'DateAssign', editable: true, formatter: "date", formatoptions: { srcformat: "Y-m-d", newformat: "d-M-Y" }, width: 90 },
+            { key: false, Name: true, name: 'StatusActivity', editable: true, width: 300 },
+            { key: false, name: 'Description', editable: true, width: 500 },
+
+
+        ],
+
+        pager: '#pager',
+        rowNum: 10,
+        rowList: [10, 20, 30, 40],
+        height: '80%',
+        width: '70%',
+        viewrecords: true,
+        caption: 'UserId',
+        emptyrecords: 'No records to display',
+
+        jsonReader: {
+            root: "rows",
+            page: "page",
+            total: "total",
+            records: "records",
+            repeatitems: false,
+            cell: "cell",
+            id: "id",
+            userdata: "userdata",
+        },
+
+        multiselect: false
+    });
+
+
+    $("#event").change(function () {
+        var targID = $(this).val();
+        $("div.style-sub-1").hide();
+        $("div.style-sub-2").hide();
+        if (targID == "Closed") {
+
+            $('#Desc').show();
+        } else
+            if (targID == "Assign") {
+                $('#Assign').show();
+                $('#Desc').show();
+            }
+
+
+
+    })
+  
+
+</script>
+
+
+

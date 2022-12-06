@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using USOFT.DataAccess.General;
+using USOFT.DataAccess.Departement;
+using USOFT.DataAccess.Currency;
+using USOFT.DataAccess.Branch;
+using USOFT.DataAccess.Measurement;
+using USOFT.DataAccess.Upload;
+using USOFT.DataAccess.IT;
+using USOFT.Models;
+using USOFT.DataAccess;
+
+
+namespace USOFT.Areas.HR.Controllers
+{
+    public class MasterController : Controller
+    {
+        PopulatedDdl pop = new PopulatedDdl();
+        //
+        // GET: /HR/Master/
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public void populatedDdl()
+        {
+            ViewBag.menuEmployee = new SelectList(pop.getMenu("117901", "").AsEnumerable(), "ParamField", "ParamName");
+            ViewBag.br = new SelectList(pop.brCombo().AsEnumerable(), "BranchId", "BranchName");
+            ViewBag.dpt = new SelectList(pop.deptCombo().AsEnumerable(), "DepartementCode", "DepartementName");
+            ViewBag.pos = new SelectList(pop.populatedPrivilege().AsEnumerable(), "PrivilegeCode", "PrivilegeName");
+            ViewBag.stat = new SelectList(pop.hrStatus()).AsEnumerable();
+        }
+        public ActionResult Employee()
+        {
+            populatedDdl();
+            return View();
+        }
+	}
+}

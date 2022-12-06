@@ -1,0 +1,139 @@
+﻿@{
+    ViewBag.Title = "ItemType";
+}
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">IT ITEM TYPE</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Search
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form role="form">
+                            <div class="form-group">
+                                @Html.Label("Search By", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-4">
+                                    @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.TextBox("SearchValue", null, new { @class = "form-control", @id = "inputText" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <input type="Submit" value="Search" class="btn btn-default" id="buttonSearch" />
+                @if ((ViewData["Privilege"] as List<USOFT.DataAccess.spGetUserInfo_Result>)[0].CanInsert != false)
+                {
+
+                <input type="button" id="buttonCreate" value="Create" class="btn btn-default" onclick="window.location.href='@Url.Action("AddITITtemType", "Master", new {id = ViewBag.menuId })'" />
+                }
+            </div>
+            <div class="panel-body">
+                <div id="divTable">
+                    <table id="grid"></table>
+                    <div id="pager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<h2 id="header-tag">Item Type</h2>
+<div id="container">
+    <div class="div_common">
+        @Html.Label("Search By", new { @class = "label-main" })
+
+
+        @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "combobox" })
+
+        @Html.TextBox("SearchValue", null, new { @class = "input" ,@id="inputText"})
+    </div>
+</div>
+<p>
+    <input type="Submit" value="Search" class="buttonSub" id="buttonSearch" />
+</p>
+
+<table id="grid"></table>
+<div id="pager"></div>*@
+
+<script type="text/javascript">
+    $('#buttonSearch').click(function () {
+        $("#grid").jqGrid({
+            url: '@Url.Action("GetItemType","Master")',
+            datatype: 'JSON',
+            mtype: "POST",
+
+            postData: {
+
+                ParamField: (function () {
+                    return $("#ParamField option:selected").val();
+                }),
+                inputText: (function () {
+                    return $("#inputText").val();
+                })
+
+            },
+            colNames: ['ITem Type Code', 'Item Type Name', 'Is Active', 'Action'],
+            colModel: [
+                { key: true, Name: true, name: 'ItemTypeCode', editable: true },
+                { key: false, name: 'ItemTypeName', editable: true,width:500 },
+                { key: false, name: 'IsActive', editable: true, edittype: 'select', editoptions: { value: { 'A': 'Active', 'I': 'InActive' } } },
+                 {
+                     name: 'Edit', title: false,
+                     formatter: function (cellvalue, options, rowObject) {
+                         return '<a href="/InformationTechnology/Master/EditITItemType?value=' + rowObject.ItemTypeCode + '">' +
+                             "Edit" + "</a>";
+                     }
+                 }
+            ],
+
+            pager: '#pager',
+            rowNum: 10,
+            rowList: [10, 20, 30, 40],
+            height: '80%',
+            width: '70%',
+            viewrecords: true,
+            caption: 'UserId',
+            emptyrecords: 'No records to display',
+
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                cell: "cell",
+                id: "id",
+                userdata: "userdata",
+            },
+
+            multiselect: false
+        })
+
+
+
+
+
+        $("#grid").trigger("reloadGrid", [{ page: 1 }]);
+    });
+</script>

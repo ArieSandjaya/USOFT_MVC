@@ -1,0 +1,134 @@
+﻿@model USOFT.Models.User
+@{
+    Layout = "~/views/shared/_loginpartial.cshtml";
+}
+<title>New Users</title>
+&nbsp;
+@using (Html.BeginForm("AddUsers", "Users", FormMethod.Post, new { role = "form" }))
+{
+@Html.AntiForgeryToken()
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    <h5 class="text-white">New Users</h5>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form role="form">
+                            <div class="form-group">
+                                    <div class="col-lg-3">
+                                        @Html.LabelFor(m => m.pivchUserId, new { @class = "col-md-4 control-label" })
+                                    </div>
+                                    <div class="col-lg-5">
+                                        @Html.TextBoxFor(m => m.pivchUserId, new { @class = "form-control input-sm" })
+                                    </div>
+                                    <div class="col-lg-4">
+                                        @Html.ValidationMessageFor(m => m.pivchUserId, null)
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                    <div class="col-lg-3">
+                                        @Html.LabelFor(m => m.pivchUserName, new { @class = "col-md-4 control-label" })
+                                    </div>
+                                    <div class="col-lg-5">
+                                        @Html.TextBoxFor(m => m.pivchUserName, new { @class = "form-control input-sm" })
+                                    </div>
+                                    <div class="col-lg-4">
+                                        @Html.ValidationMessageFor(m => m.pivchUserName)
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.pivchNIK, new { @class = "col-md-4 control-label" })
+                                <div class="col-lg-5">
+                                    @Html.TextBoxFor(m => m.pivchNIK, new { @class = "form-control input-sm" })
+                                </div>
+                                <div class="col-lg-3">
+                                    @Html.ValidationMessageFor(m => m.pivchNIK)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.piintBranchId, new { @class = "col-md-4 control-label" })
+                                <div class="col-lg-5">
+                                    @Html.DropDownListFor(m => m.piintBranchId, (SelectList)ViewBag.br, "All", new { @class = "form-control input-sm" })
+                                </div>
+                                <div class="col-lg-3">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.pivchEmail, new { @class = "col-md-4 control-label" })
+                                <div class="col-lg-5">
+                                    @Html.TextBoxFor(m => m.pivchEmail, new { @class = "form-control input-sm" })
+                                </div>
+                                <div class="col-lg-3">
+                                    @Html.ValidationMessageFor(m => m.pivchEmail)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.pivchEmailB2B, new { @class = "col-md-4 control-label" })
+                                <div class="col-lg-5">
+                                    @Html.TextBoxFor(m => m.pivchEmailB2B, new { @class = "form-control input-sm" })
+                                </div>
+                                <div class="col-lg-3">
+                                    @Html.ValidationMessageFor(m => m.pivchEmailB2B)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.pivchPass, new { @class = "col-md-4 control-label" })
+                                <div class="col-lg-5">
+                                    @Html.TextBoxFor(m => m.pivchPass, new { @class = "form-control input-sm" })
+                                </div>
+                                <div class="col-lg-3">
+                                    @Html.ValidationMessageFor(m => m.pivchPass)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.isActive, new { @class = "col-md-4 control-label" })
+                                <div class="col-lg-5">
+                                    @Html.DropDownListFor(m => m.isActive, (SelectList)ViewBag.activ, "All", new { @class = "form-control input-sm" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.pivchCanChangePass, new { @class = "col-md-4 control-label" })
+                                <div class="col-lg-5">
+                                    @Html.DropDownListFor(m => m.pivchCanChangePass, (SelectList)ViewBag.canChangePass, "All", new { @class = "form-control input-sm" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.pivchCanSendEmail, new { @class = "col-md-4 control-label" })
+                                <div class="col-lg-5">
+                                    @Html.DropDownListFor(m => m.pivchCanSendEmail, (SelectList)ViewBag.canSendMail, "All", new { @class = "form-control input-sm" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+<<<<<<< .mine
+                        <button type="Submit" value="Proses" class="btn btn-default btn-sm" id="buttonSearch">
+                            <i class="glyphicon glyphicon-floppy-save"></i> Process
+                        </button>
+                        <button type="button" value="Back" class="btn btn-default btn-sm" id="buttonCreate" name="buttonAdd" onclick="window.location.href='@Url.Action("Users", "Users", new { id = TempData["MenuId"] })'">
+                            <i class="glyphicon glyphicon-backward"></i> Back
+                        </button>
+=======
+                        <input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                        <input type="button" id="" value="Back" name="" class="btn btn-default" onclick="window.location.href='@Url.Action("Users", "Users", new {id = "888001" })'" />
+>>>>>>> .r17
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<<<<<<< .mine
+}=======
+}
+>>>>>>> .r17

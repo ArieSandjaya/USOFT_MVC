@@ -1,0 +1,62 @@
+﻿@model USOFT.Models.Departement
+&nbsp;
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h5 class="text-white">New Departement</h5>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Departement Code", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("departementCode", null, new { @class = "form-control input-sm" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Departement Name", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("departementName", null, new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Code Name", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("CodeName", null, new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Active State", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("IsActive", (SelectList)ViewBag.active, "All", new { @class = "form-control input-sm" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button type="Submit" value="Proses" class="btn btn-default btn-sm" id="buttonSearch">
+                                <i class="glyphicon glyphicon-floppy-save"></i> Process
+                            </button>
+                            <button type="button" value="Back" class="btn btn-default btn-sm" id="buttonCreate" name="buttonAdd" onclick="window.location.href='@Url.Action("Departement", "Departement", new { id = ViewBag.menuId })'">
+                                <i class="glyphicon glyphicon-backward"></i> Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

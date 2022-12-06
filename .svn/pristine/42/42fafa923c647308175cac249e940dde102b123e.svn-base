@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Entity.Core.Objects;
+using System.Web.UI;
+using System.Web;
+
+namespace USOFT.DataAccess.HR
+{
+   
+    public class HRModel
+    {
+        Usoft.Common.CommonFunction.CommonFunction cf = new Usoft.Common.CommonFunction.CommonFunction();
+        USOFTEntities db = new USOFTEntities();
+        public List<Object> getEmployeeList(string SearchValue,string searchBy, int? branch, string departement, string position, bool status,int? page, int pageSize)
+        {
+            string WhereBy = cf.SearchText(searchBy, SearchValue);
+            if (branch > 0)
+            {
+                WhereBy += cf.SqlAndOr(WhereBy, true) + " a.BranchId = '" + branch + "'";
+            }
+
+            if (departement != "")
+            {
+                WhereBy += cf.SqlAndOr(WhereBy, true) + " a.DepartementCode = '" + departement + "'";
+            }
+
+            if (position != "")
+            {
+                WhereBy += cf.SqlAndOr(WhereBy, true) + " a.PrivilegeCode = '" + position + "'";
+            }
+
+            if (status != null)
+            {
+                WhereBy += cf.SqlAndOr(WhereBy, true) + " a.IsResign = '" + status + "'";
+            }
+            ObjectParameter pointTotalPage = new ObjectParameter("pointTotalPage", typeof(int));
+            ObjectParameter pointTotalData = new ObjectParameter("pointTotalData", typeof(int));
+
+            List<spHREmployeeList_Result> rows = db.spHREmployeeList(WhereBy, page, pageSize, pointTotalPage, pointTotalData).ToList();
+            List<Object> obj = new List<object>();
+            obj.Add(rows);
+            obj.Add(pointTotalPage.Value);
+            obj.Add(pointTotalData.Value);
+            return obj;
+
+        }
+        public List<Object> GetPrivilegeList(string SearchValue, string searchBy, int? branch, string departement, int? page, int pageSize)
+        {
+            string WhereBy = cf.SearchText(searchBy, SearchValue);
+            if (branch > 0)
+            {
+                WhereBy += cf.SqlAndOr(WhereBy, true) + " a.BranchId = '" + branch + "'";
+            }
+
+            if (departement != "")
+            {
+                WhereBy += cf.SqlAndOr(WhereBy, true) + " a.DepartementCode = '" + departement + "'";
+            }
+
+          
+            ObjectParameter pointTotalPage = new ObjectParameter("pointTotalPage", typeof(int));
+            ObjectParameter pointTotalData = new ObjectParameter("pointTotalData", typeof(int));
+
+            List<spHRPrivilegeList_Result> rows = db.spHRPrivilegeList(WhereBy, page, pageSize, pointTotalPage, pointTotalData).ToList();
+            List<Object> obj = new List<object>();
+            obj.Add(rows);
+            obj.Add(pointTotalPage.Value);
+            obj.Add(pointTotalData.Value);
+            return obj;
+
+        }
+        public List<Object> GetPendingEmployeeList(string SearchValue, string searchBy, int? branch,int? page, int pageSize)
+        {
+            string WhereBy = cf.SearchText(searchBy, SearchValue);
+            if (branch > 0)
+            {
+                WhereBy += cf.SqlAndOr(WhereBy, true) + " a.BranchId = '" + branch + "'";
+            }
+
+
+            ObjectParameter pointTotalPage = new ObjectParameter("pointTotalPage", typeof(int));
+            ObjectParameter pointTotalData = new ObjectParameter("pointTotalData", typeof(int));
+
+            List<spHRPendingEmployeeRegistList_Result> rows = db.spHRPendingEmployeeRegisterList(WhereBy, page, pageSize, pointTotalPage, pointTotalData).ToList();
+            List<Object> obj = new List<object>();
+            obj.Add(rows);
+            obj.Add(pointTotalPage.Value);
+            obj.Add(pointTotalData.Value);
+            return obj;
+
+        }
+        public void HREmployeeInsert(string pivchNIK,string pivchEmployeeName)
+        {
+            db.spHREmployeeInsert(pivchNIK, pivchEmployeeName, HttpContext.Current.Session["UserId"].ToString());
+        }
+        public List<spHREmployeeView_Result> GetEmployeeView(string pivchNIK)
+        {
+            List<spHREmployeeView_Result> result = new List<spHREmployeeView_Result>();
+            result = db.spHREmployeeView(pivchNIK).ToList();
+            return result;
+        }
+        public List<spHREmployeeDetailList_Result> getJobHistory(string pivchNIK)
+        {
+            List<spHREmployeeDetailList_Result> row = new List<spHREmployeeDetailList_Result>();
+            row = db.spHREmployeeDetailList(pivchNIK).ToList();
+            return row;
+        }
+        public List<HRAccountNumberGet_Result> getAccount(string pivchNIK)
+        {
+            List<HRAccountNumberGet_Result> row = new List<HRAccountNumberGet_Result>();
+            row = db.HRAccountNumberGet(pivchNIK).ToList();
+            return row;
+        }
+        public string insertHRJobDetail(string pivchNIK,int? piintJobType,int? piintBranchId,string pivchDepartementCode,string privilegeCode,DateTime? pidtmEffectiveDateFrom,DateTime? pidtmEffectiveDateTo,int? piintBranchIdFrom,string pivchDepartementCodeFrom,string pivchPrivilegeCodeFrom)
+        {
+            ObjectParameter EmployeeJobId = new ObjectParameter("povchJobEmployeeId", typeof(string));
+            db.spHREmployeeDetailInsert(EmployeeJobId, pivchNIK, piintJobType, piintBranchId, pivchDepartementCode, privilegeCode, pidtmEffectiveDateFrom, pidtmEffectiveDateTo, piintBranchIdFrom, pivchDepartementCodeFrom, pivchPrivilegeCodeFrom, HttpContext.Current.Session["UserId"].ToString());
+            string employejobid = (string)EmployeeJobId.Value;
+            return employejobid;
+        }
+        public List<spHREmployeeDetailView_Result> getEmployeeJobDetail(string pivchEmployeeJobId)
+        {
+            List<spHREmployeeDetailView_Result> result = new List<spHREmployeeDetailView_Result>();
+            result = db.spHREmployeeDetailView(pivchEmployeeJobId).ToList();
+            return result;
+        }
+    }
+}

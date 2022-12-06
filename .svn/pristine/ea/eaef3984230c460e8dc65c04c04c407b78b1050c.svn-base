@@ -1,0 +1,95 @@
+﻿
+@{
+    var Search = ViewData["WFSearch"] as List<USOFT.DataAccess.MsWorkFlowSearch_Result>;
+    int loop = 0;
+}
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>*@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">WORK FLOW</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+
+            Work Flow
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="panel panel-default">
+                        @for (int i = 0; i < Search.Count; i++)
+                        {
+                            
+                        
+                        <div class="panel-heading">
+                            @Search[i].WorkFlowApprovalStatus
+                                @*@item.WorkFlowApprovalStatus*@
+                                
+                             </div>
+                            <div class="panel-heading">
+                                    Request By : @Search[i].WorkFlowCreatedBy
+                                </div>
+                                <div class="panel-heading">
+                                    @Html.Hidden("workFlow" , @Search[i].WorkFlowID)
+                                 @MvcHtmlString.Create(@Search[i].WorkFlowDescription) 
+                                    
+                                    <input type="button" id="buttonCreate" value="View" class="btn btn-default" onclick="window.location.href='@Url.Action("WorkFlowCommand", "WorkFlow", new {value = Search[i].WorkFlowTableValue,WorkFlowId = Search[i].WorkFlowID,name = "View",WorkFlowType = @ViewBag.value})'" />
+                                   @{string mod = "#myModal" + @i; <a type="button" class="btn btn-default" data-toggle="modal" href=@mod>Reject</a>  } 
+                                    <input type="button" id="buttonCreate" value="Approve" class="btn btn-default" onclick="window.location.href='@Url.Action("WorkFlowCommand", "WorkFlow", new {WorkFlowType = @ViewBag.value  ,WorkFlowId = Search[i].WorkFlowID,name = "Approve"})'" />
+                      
+                                 </div>
+                                    <div class="modal" id=@mod.Remove(0,1)>
+                                       
+                            <div class="modal-header" style="background-color:#ffffff">
+                                <a class="close" data-dismiss="modal">×</a>
+                                <h3>Reject Prompt</h3>
+                            </div>
+                            <div class="modal-body" style="background-color:#ffffff">
+                                <div class="row">
+                                    <div class="col-lg-12" style="background-color:#ffffff">
+                                        @Html.Label("Reason For Rejection", new { @class = "col-md-2 control-label" })
+                                        <div class="col-lg-3">
+                                            @Html.TextBox("workflowremark", null, new { @class = "form-control" })
+                                           
+                                            <input type="button" id="btnSubmit" value="Ok" class="btn btn-default" onclick="myFunction(@Search[i].WorkFlowID)"  />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                        }
+                    
+                        <div id="dialog" style="display: none" class="col-lg-12">
+                            This is a simple popup
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                        
+<script type="text/javascript">
+    
+    function myFunction(i) {
+        $.ajax({
+            url: '@Url.Action("WorkFlowCommand","WorkFlow")',
+            type: 'POST',
+            data: { workflowremark: $('#workflowremark').val(), WorkFlowId: i, name: "Reject" },
+            success: function (result) {
+
+            },
+            error: function () {
+                alert(@loop)
+            }
+        });
+
+    }
+    </script>
+
+

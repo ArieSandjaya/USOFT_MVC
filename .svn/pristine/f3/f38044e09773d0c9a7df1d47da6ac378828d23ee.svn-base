@@ -1,0 +1,234 @@
+﻿
+@{
+    var Row = ViewData["AccessData"] as List<USOFT.DataAccess.spHRAddUserRequestView_Result>;
+    ViewBag.Title = "AccessUserRequestDetail";
+    string reqID = Row.FirstOrDefault().AddRequestId;
+}
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+@using (@Html.BeginForm(FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">USER REQUEST DETAIL</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Detail Access & User ID Request
+                </div>
+                <div class="panel-body">
+                    <div class="row" style="margin-bottom:20px">
+                        <div class="col-lg-5">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Form Number :", new { @class = "col-md-5 control-label" })
+
+                                    @Html.Label(@Row.FirstOrDefault().AddRequestId, new { @class = "col-md-5 control-label" })
+                                    @Html.Hidden("RequestID",@Row.FirstOrDefault().AddRequestId)
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Request Date :", new { @class = "col-md-5 control-label" })
+
+                                    @Html.Label(@Row.FirstOrDefault().AddRequestDate.ToShortDateString(), new { @class = "col-md-5 control-label" })
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Reason :", new { @class = "col-md-5 control-label" })
+                                    @if (@Row.FirstOrDefault().Reason != "")
+                                    {
+                                        @Html.Label(@Row.FirstOrDefault().Reason, new { @class = "col-md-5 control-label" })
+                                    }
+                                    else
+                                    { 
+                                   @Html.Label("-", new { @class = "col-md-5 control-label" })
+                                    }
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Document Status :", new { @class = "col-md-5 control-label" })
+
+                                    @Html.Label(@Row.FirstOrDefault().Status, new { @class = "col-md-5 control-label" })
+
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Process Status :", new { @class = "col-md-5 control-label" })
+                                    @if (@Row.FirstOrDefault().ProcessStatus != "")
+                                    {
+                                        @Html.Label(@Row.FirstOrDefault().ProcessStatus, new { @class = "col-md-5 control-label" })
+                                    }
+
+                                    @Html.Label("-", new { @class = "col-md-5 control-label" })
+
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                @Html.Label("NIK :", new { @class = "col-md-5 control-label" })
+
+                                @Html.Label(@Row.FirstOrDefault().NIK, new { @class = "col-md-5 control-label" })
+
+
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Employee Name :", new { @class = "col-md-5 control-label" })
+
+                                @Html.Label(@Row.FirstOrDefault().EmployeeName, new { @class = "col-md-5 control-label" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Branch :", new { @class = "col-md-5 control-label" })
+
+                                @Html.Label(@Row.FirstOrDefault().BranchName, new { @class = "col-md-5 control-label" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Departement :", new { @class = "col-md-5 control-label" })
+                                @if (@Row.FirstOrDefault().DepartementName != null)
+                                    {
+                                    @Html.Label(@Row.FirstOrDefault().DepartementName, new { @class = "col-md-5 control-label" })
+                                    }
+                                else { 
+                                @Html.Label("-", new { @class = "col-md-5 control-label" })
+                                }
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Position :", new { @class = "col-md-5 control-label" })
+
+                                @Html.Label(@Row.FirstOrDefault().PrivilegeName, new { @class = "col-md-5 control-label" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Start/End Date :", new { @class = "col-md-5 control-label" })
+
+                                @Html.Label(@Row.FirstOrDefault().EffectiveDateFrom.ToShortDateString(), new { @class = "col-md-5 control-label" })
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <input type="Submit" value="Print" class="btn btn-default" id="buttonSubmit" name="command" />
+                                        <input type="button" value="Back" class="btn btn-default" id="buttonBack" onclick="window.location.href='@Url.Action("AddUserRequest", "AccessAndUserIDRequest", new {  })'" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Access And User ID Role
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin-bottom:20px">
+                                <div class="col-lg-5">
+                                </div>
+                            </div>
+                            <div id="divTable">
+                                <table id="grid"></table>
+                            </div>
+
+                                @if (@Row.FirstOrDefault().Status == "DRAFT")
+	                            {
+		                          
+                                <div class="panel panel-default" style="margin-top:10px">
+                                    <div class="panel-heading">
+                                        <input type="button" value="+" class="btn btn-default" id="buttonAddRole"/>
+                                        <div id="dropDownRole" style="display:none;margin-top:10px" >
+                                            @Html.DropDownList("pivchAppCode", (SelectList)ViewBag.AppCombo, "All", new { @class = "form-control" })
+                                           
+                                            <div id="Location" style="display:none;margin-top:10px">
+                                                @Html.DropDownList("pivchLocationCode", (SelectList)ViewBag.Loc, "All", new { @class = "form-control" })
+                                            </div>
+                                            <input type="button" value="Save" class="btn btn-default" id="buttonAddRole" style="margin-top:10px" onclick="window.location.href='@Url.Action("saveAccessRole", "AccessAndUserIDRequest", new { reqID =  reqID,appCode = })'" />
+                                        </div>
+                                        
+                                        </div> 
+                                </div>
+                           
+	                            }
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+                            $(window).bind('resize', function () {
+                                jQuery("#grid").setGridWidth($('#divTable').width(), true);
+                            }).trigger('resize');
+
+                            
+                                $("#grid").jqGrid({
+                                    url: '@Url.Action("GetHRAccessRole", "AccessAndUserIDRequest")',
+                                    datatype: "JSON",
+                                    mtype: "GET",
+                                    postData: {
+
+                                        RequestID: (function () {
+                                            return $("#RequestID").val();
+                                        }),
+                                    },
+                                    colNames: ['Access For', 'Location', 'Access & User ID'],
+                                    colModel: [
+                                        { key: true, Name: true, name: 'AppName', editable: true },
+                                        { key: false, name: 'LocationName', editable: true },
+                                        { key: false, name: 'AccessId', editable: true,width:400}
+                                    ],
+
+                                    rowNum: 10,
+                                    height: '80%',
+                                    width: '50%',
+
+                                    caption: 'App and Role ID',
+                                    jsonReader: {
+                                        root: "rows",
+                                        page: "page",
+                                        total: "total",
+                                        records: "records",
+                                        repeatitems: false,
+                                        cell: "cell",
+                                        id: "id",
+                                        userdata: "userdata",
+                                    },
+
+                                    multiselect: false,
+                                });
+                            
+    $("#buttonAddRole").click(function () {
+        $("#dropDownRole").show();
+    });
+        $("#pivchAppCode").change(function(){
+            var ddlVal = $(this).val();
+            if (ddlVal == "00007") {
+                $("#Location").show();
+            }
+            else
+            {
+                $("#Location").hide();
+            }
+            $("#grid").trigger("reloadGrid", [{ page: 1 }]);
+    });
+                        
+</script>

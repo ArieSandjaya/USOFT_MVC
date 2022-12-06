@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "EditMailReminder";
+}
+
+<h2>EditMailReminder</h2>
+@using (@Html.BeginForm(FormMethod.Post))
+{
+    <div id="Container">
+        <div class="div_common">
+            @Html.Label("Activity No :")
+            @ViewBag.Id
+            @Html.Label("Subject :", new { @class = "label-main" })
+            @Html.TextBox("pivchSubject", (string)ViewBag.Subject, new { @class = "input", @Style = "width:300px" })
+            @Html.Label("Body :", new { @class = "label-main" })
+            @Html.TextArea("pivchBody", (string)ViewBag.Body, new { @class = "input", @Style = "width:700px;height:200px" })
+            @Html.Label("Description :", new { @class = "label-main" })
+            @Html.TextArea("pivchDescription", (string)ViewBag.desc, new { @class = "input", @Style = "width:700px;height:100px" })
+            @Html.Label("ActiveState :", new { @class = "label-main" })
+            @Html.DropDownList("IsActive", (IEnumerable<SelectListItem>)ViewBag.isactive, "All", new { @class = "combobox" })
+            @Html.Hidden("Val",(int)ViewBag.Id)
+            <p><input type="Submit" value="Proses" class="buttonSub" id="buttonSearch" /></p>
+        </div>
+    </div>
+}

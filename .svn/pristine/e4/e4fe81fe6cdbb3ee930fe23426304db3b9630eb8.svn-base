@@ -1,0 +1,900 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B9AC1254-229E-4E1F-AC0F-5AC0D2AF9CA3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>USOFT.DataAccess</RootNamespace>
+    <AssemblyName>USOFT.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GridMvc">
+      <HintPath>..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ACC_GetTaxReport_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADMINFEE_GET_CONTRACT_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ADMINFEE_GET_FINANCING_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="b2b_sendMail_Aswata_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Branch\BranchModel.cs" />
+    <Compile Include="CashRewardApRecipients_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardGetDealer_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardGetDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardGetPricing_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardGetUndefinedDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardGetUndefined_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardPaymentGetCount_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardPaymentGetHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardPaymentReport_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardPaymentUndefinedGetHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardRequestRecipients_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardToBTMU_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardUndefinedApRecipients_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashRewardUnidentifiedPaymentReport_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Currency\CurrencyModel.cs" />
+    <Compile Include="Departement\DeptMeodel.cs" />
+    <Compile Include="EG_GetList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningAnswerGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningAnswerView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningBroadcastDetailGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningBroadcastGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningBroadcastUserTestGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningDetailGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningMasterGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningMasterView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningReportDt_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningReportHd_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningResultGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningTestDetailGetAnswer_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningTypeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningUserResultGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ElearningUserTestGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Email.cs" />
+    <Compile Include="EntertainmentSetEdit_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ENTERTAINMENT_GET_DEALER_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ENTERTAINMENT_GET_DEPT_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ENTERTAINMENT_GIFT_EDIT_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ENTERTAINMENT_GIFT_HISTORY_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ENTERTAINMENT_GIFT_INSERT_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ENTERTAINMENT_GIFT_VIEW_SHOW_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ENTERTAINMENT_SEARCH_DEALER_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ENTERTAINMENT_SEARCH_DEPT_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EPCWorkflowStatus_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpensePaymentSearch_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fnGetSortBranch_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="General\CekPriv.cs" />
+    <Compile Include="General\comfunc.cs" />
+    <Compile Include="General\db.cs" />
+    <Compile Include="General\PopulatedDdl.cs" />
+    <Compile Include="Get.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetBranchToCombo.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetDepartmentToCombo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetITItemTypeToCombo.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetITProblemTypeToCombo.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMappingUserToCombo.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMenuResult.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetPrevilegeToCombo.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getPrevList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GROUPWORKFLOW_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HIGH_RISK_COUNTRY_GET_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRAccountNumberByIdGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HRAccountNumberGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HR\HRModel.cs" />
+    <Compile Include="InsurancePWDetailGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InsurancePWHeaderGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InsurancePWTaxInvoiceTransGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IT\ITMainModel.cs" />
+    <Compile Include="IT_itemTypeToCombo.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JournalTransactionGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MailHistoryGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MappingApproval\MappingModel.cs" />
+    <Compile Include="Measurement\MeasurementModel.cs" />
+    <Compile Include="MsCompanyBankAccountGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MsGetPriviledge_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MsSearchPriviledge_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MsWorkFlowChecker_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MsWorkFlowGetViewPage_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="msWorkFlowGroup_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MsWorkFlowHistoryGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MsWorkFlowSearch_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MsWorkFlowShowPath_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MsWorkFlowSourceGetList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NominativeCounterPartyAttGetList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NominativeCounterPartyReport_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NominativeGetHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NominativeOurAttendeeReport_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NomintiveOurAttGetList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentConvertDetailGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentConvertGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentConvertHeaderGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentConvertToBTMU1_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentConvertToBTMU_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentConvertViewGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentCOPPPhGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentCOPPPNGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentDetailCOPGetList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentEPRReport_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentFakturCOPGetList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentFakturGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentFakturWHCOPGetList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentFakturWHGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentGetDetailCOP_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentGetDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentGetHeaderUpload_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentGetHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentLookUp_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentStatus_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentWHFakturCOPGetList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpexPaymentWhFakturGet_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Parameter\ParameterModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportGetOpexPayment_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportGetPWNominative_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REPORT_LISTS_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spAddUserRequestList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spB2BSendMail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spBranchDomainView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spBranchList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spBranchView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spCurrencyList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spCurrencyView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spDepartementView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spDeptList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAItemAdjustmentDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAItemAdjustmentView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAItemBarcodeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAItemCategoryView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAItemGroupView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAItemRequestDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAItemRequestView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAItemTypeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAItemView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAPurchaseApprovalLog_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAPurchaseOrderView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAPurchaseReceivedBarcodeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAPurchaseReceivedDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAPurchaseReceivedView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAPurchaseRequestDeliveryBarcodeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAPurchaseRequestDeliveryDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAPurchaseRequestDeliveryView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAPurchaseRequestDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGAPurchaseRequestView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGASupplierView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAllMsUser_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetApprovalState_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetAssignList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetBranch_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetHRCurrentJobEmployee.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetHRJobType_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetHRMsApplicationToCombo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetHRMsAutoloanDBToCombo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetHRMsLocationToCombo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetHRPrivilegeToCombo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetHRPrivilege_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetITConditionToCombo.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetITItemByBranchTypeToCombo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetITItemTransByBranchTypeToCombo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetITSupplierToCombo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetJobTypeToCombo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetLookupDetailInfo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetLookupInfo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetMappingApprovalEmailCC_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetMappingApprovalEmailTo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetMenuUsers_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetParamValueByGroup_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetParamValue_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetSbpAll_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetSbp_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetTaxSetting_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserEmail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserId_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserInfo_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spGetUserLogon_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHRAccessIdAppForRequestList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHRAddUserRequestDetailList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHRAddUserRequestDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHRAddUserRequestView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHRDeleteUserRequestList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHRDeleteUserRequestView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHREmployeeDetailList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHREmployeeDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHREmployeeList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHREmployeeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHRJobTypeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHRPendingEmployeeRegistList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHRPrivilegeList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spHRPrivilegeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITActivityTaskList_Results.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITActivityTaskView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITConditionList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITConditionView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITItemInDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITItemInView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITItemList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITItemOutView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITItemReceive_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITItemTransDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITItemTransView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITItemTypeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITItemType_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITItemView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITLogList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITMailReminderFileDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITMailReminderFileDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITMailReminderList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITMailReminderScheduleDetailView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITMailReminderView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITMailSchedulerList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITProblemTypeList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITProblemTypeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spITSupplierList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spMappingApprovalBranchList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spMappingApprovalEmailList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spMappingApprovalList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spMappingApprovalView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spMeasurementList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spMeasurementView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spParameterList_List.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spParameterView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spPrivilegeMenuList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spPrivilegeView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemAdjustDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemAdjustHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemRequestDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemRequestHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemStockAssetDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemStockAssetHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemStockNonAssetDetail2Dwi_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemStockNonAssetDetail2_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemStockNonAssetDetail4_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemStockNonAssetDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemStockNonAssetHeader2_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemStockNonAssetHeader3_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemStockNonAssetHeader4_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAItemStockNonAssetHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAPurchaseOrderDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAPurchaseOrderHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAPurchaseReceivedDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAPurchaseReceivedHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAPurchaseRequestDetail_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAPurchaseRequestHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spRptGAVehicleTripMonthlyHeader_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spScheduleTaskView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spSupplierView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spUploadList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spUploadView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spUsersList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spUsersView_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeroristListHistory_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TERORIST_SEARCH_OLD_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TERORIS_INSERT_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TERORIS_SEARCH_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Upload\UploadModel.cs" />
+    <Compile Include="Users\PrivilageModel.cs" />
+    <Compile Include="Users\UserInsert.cs" />
+    <Compile Include="Users\UserLogOn.cs" />
+    <Compile Include="Users\UserUpdate.cs" />
+    <Compile Include="UsoftDb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsoftDb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsoftDb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsoftDb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UsoftDb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkFlowGetSource_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkflowParameterGetList_Result.cs">
+      <DependentUpon>UsoftDb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WorkFlow\WorkFlowModels.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Grid.mvc.readme" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="UsoftDb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>UsoftDb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Scripts\jquery-1.9.0.min.map" />
+    <None Include="UsoftDb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UsoftDb.edmx</DependentUpon>
+      <LastGenOutput>UsoftDb.Context.cs</LastGenOutput>
+    </None>
+    <None Include="UsoftDb.edmx.diagram">
+      <DependentUpon>UsoftDb.edmx</DependentUpon>
+    </None>
+    <None Include="UsoftDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>UsoftDb.edmx</DependentUpon>
+      <LastGenOutput>UsoftDb.cs</LastGenOutput>
+    </None>
+    <None Include="Views\Shared\_Grid.cshtml" />
+    <None Include="Views\Shared\_GridPager.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Usoft.Common\USOFT.Common.csproj">
+      <Project>{246e0e79-e6c0-469a-8308-0fad3e885fdd}</Project>
+      <Name>USOFT.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Gridmvc.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\gridmvc.js" />
+    <Content Include="Scripts\gridmvc.lang.ru.js" />
+    <Content Include="Scripts\gridmvc.min.js" />
+    <Content Include="Scripts\jquery-1.9.0.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.0.js" />
+    <Content Include="Scripts\jquery-1.9.0.min.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

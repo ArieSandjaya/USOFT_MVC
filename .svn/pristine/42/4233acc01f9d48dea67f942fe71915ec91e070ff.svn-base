@@ -1,0 +1,23 @@
+﻿.div_common {  
+    display: inherit;
+    width :300px;
+    padding : 0px;
+    margin : 0px;
+
+    position:relative;
+} 
+
+.pIn{
+    width :inherit;
+    padding: 0px;
+    margin :0px;
+    font-family :'Segoe UI';
+    font-synthesis :none;
+
+}
+
+.buttonSub{
+    margin : 10px;
+    padding : 3px;
+    margin-left : 0px;
+}

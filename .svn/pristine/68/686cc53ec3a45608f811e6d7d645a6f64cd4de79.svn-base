@@ -1,0 +1,177 @@
+﻿@model IEnumerable< USOFT.DataAccess.spUsersView_Result>
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">ADD USERS</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add New Users
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("User ID", new { @class = "col-md-4 control-label" })
+
+                                    <div class="col-lg-5">
+                                        @*@Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })*@
+                                        @Html.TextBox("UserId", (String)ViewBag.UserId, new { @class = "form-control" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("User Name", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("UserName", (String)ViewBag.UserName, new { @class = "form-control" })
+                                        @* @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("NIK", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("NIK", (String)ViewBag.NIK, new { @class = "form-control" })
+                                        @*@Html.DropDownList("DepartementCode", (SelectList)ViewBag.dpt, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("BranchName", (SelectList)ViewBag.br, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("E-Mail", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("Email", (String)ViewBag.Email, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("E-Mail B2B", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("EmailB2B", (String)ViewBag.B2B, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Password", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.Password("Password", null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Confirm Password", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.Password("pivchPass2", null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Active State", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("IsActive", (SelectList)ViewBag.active, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Can Change Password", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("ChangePass", (SelectList)ViewBag.canChangePass, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Can Change Email", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("changeMail", (SelectList)ViewBag.canChangeMail, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href('@Url.Action("Users","Users")')" />
+            </div>
+        </div>
+     </div>
+    </div>
+</div>
+    </div>
+    @*<div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">*@
+
+    @*</div>
+                </div>
+            </div>
+        </div>*@
+}
+@*@using (@Html.BeginForm(FormMethod.Post))
+{
+    <div id="container">
+    <div class="div_common">
+        @Html.Label("User Id", new { @class = "label-main" })
+        @Html.TextBox("UserId", (String)ViewBag.UserId, new { @class = "input", @id = "inputText", @readonly = "readonly" })
+    </div>
+    <div class ="div_common">
+        @Html.Label("User Name", new { @class = "label-main" })
+        @Html.TextBox("UserName", (String)ViewBag.UserName, new { @class = "input", @id = "inputText" })
+    </div>
+    <div class="div_common">
+        @Html.Label("NIK", new { @class = "label-main" })
+        @Html.TextBox("NIK", (String)ViewBag.NIK, new { @class = "input", @id = "inputText" })
+    </div>
+
+
+    <div class="div_common">
+        @Html.Label("Branch Name", new { @class = "label-main" })
+        @Html.DropDownList("BranchName", (SelectList)ViewBag.br, new { @class = "combobox" })
+    </div>
+    <div class="div_common">
+        @Html.Label("Email", new { @class = "label-main" })
+        @Html.TextBox("Email", (String)ViewBag.Email, new { @class = "input", @id = "inputText" })
+    </div>
+    <div class="div_common">
+        @Html.Label("Email B2B", new { @class = "label-main" })
+        @Html.TextBox("EmailB2B", (String)ViewBag.B2B, new { @class = "input", @id = "inputText" })
+    </div>
+    <div class="div_common">
+        @Html.Label("Password", new { @class = "label-main" })
+        @Html.TextBox("Password", null, new { @class = "input", @id = "inputText" })
+    </div>
+    <div class="div_common">
+        @Html.Label("Confirm Password", new { @class = "label-main" })
+        @Html.TextBox("Password2", null, new { @class = "input", @id = "inputText" })
+    </div>
+    <div class="div_common">
+        @Html.Label("Is Active", new { @class = "label-main" })
+        @Html.DropDownList("IsActive", (SelectList)ViewBag.active, new { @class = "combobox" })
+    </div>
+    <div class="div_common">
+        @Html.Label("Can Change Password", new { @class = "label-main" })
+        @Html.DropDownList("changePass", (SelectList)ViewBag.canChangePass, new { @class = "combobox" })
+    </div>
+    <div class="div_common">
+        @Html.Label("Can Change E-Mail", new { @class = "label-main" })
+        @Html.DropDownList("changeMail", (SelectList)ViewBag.canChangeMail, new { @class = "combobox" })
+    </div>
+
+    <p>
+        <input type="submit" value="Edit" id="buttonSearch" class="buttonSub" />
+    </p>
+        </div>
+            }*@

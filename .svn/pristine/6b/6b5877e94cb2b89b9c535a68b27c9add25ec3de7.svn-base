@@ -1,0 +1,233 @@
+﻿@{
+    ViewBag.Title = "ActivityTask";
+}
+
+
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Activity Task</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Search
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <form role="form">
+                            <div class="form-group">
+                                @Html.Label("Search By", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-4">
+                                    @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.TextBox("SearchValue", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Date", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBox("DatePickerReady", null, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Branch", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Problem Type", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("ProblemType", (SelectList)ViewBag.prob, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Item Type", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("ItemType", (SelectList)ViewBag.item, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("PIC", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("PIC", (SelectList)ViewBag.us, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Terminated By", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("TerminatedBy", (SelectList)ViewBag.us, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Priority", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Priority", (SelectList)ViewBag.priority, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Status", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Status", (SelectList)ViewBag.status, "All", new { @class = "form-control" })
+                                    @Html.Hidden("menuNo",(string)ViewBag.menuId)
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <input type="Submit" value="Search" class="btn btn-default" id="buttonSearch" />
+                @if ((ViewData["Privilege"] as List<USOFT.DataAccess.spGetUserInfo_Result>)[0].CanInsert != false)
+                {
+                <input type="button" id="buttonCreate" value="Create" class="btn btn-default" onclick="window.location.href='@Url.Action("AddActivityTask", "ActivityTask", new {id = ViewBag.menuId })'" />
+                }
+            </div>
+            <div class="panel-body">
+                <div id="divTable">
+                    <table id="grid"></table>
+                    <div id="pager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<h2 id="header-tag">ActivityTask</h2>
+
+@Html.Label("Search By", new { @class = "label-main" })
+
+<div id="container">
+    <div class="div_common">
+        @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "combobox" })
+        @Html.TextBox("SearchValue", null, new { @class = "input" })
+        @Html.Label("Date", new { @class = "label-main" })
+        @Html.TextBox("datepicker", null, new { @class = "input" })
+        @Html.Label("Branch", new { @class = "label-main" })
+        @Html.DropDownList("BranchId", (IEnumerable<SelectListItem>)ViewBag.br, "All", new { @class = "combobox" })
+        @Html.Label("ProblemType", new { @class = "label-main" })
+        @Html.DropDownList("ProblemType", (IEnumerable<SelectListItem>)ViewBag.prob, "All", new { @class = "combobox" })
+        @Html.Label("Item Type", new { @class = "label-main" })
+        @Html.DropDownList("ItemType", (IEnumerable<SelectListItem>)ViewBag.item, "All", new { @class = "combobox" })
+        @Html.Label("PIC", new { @class = "label-main" })
+        @Html.DropDownList("PIC", (IEnumerable<SelectListItem>)ViewBag.us, "All", new { @class = "combobox" })
+        @Html.Label("Terminated By", new { @class = "label-main" })
+        @Html.DropDownList("TerminatedBy", (IEnumerable<SelectListItem>)ViewBag.us, "All", new { @class = "combobox" })
+        @Html.Label("Priority", new { @class = "label-main" })
+        @Html.DropDownList("Priority", (IEnumerable<SelectListItem>)ViewBag.priority, "All", new { @class = "combobox" })
+        @Html.Label("Status", new { @class = "label-main" })
+        @Html.DropDownList("Status", (IEnumerable<SelectListItem>)ViewBag.status, "All", new { @class = "combobox" })
+    </div>
+</div>
+<p><input type="Submit" value="Search" class="buttonSub" id="buttonSearch" /></p>
+<table id="grid"></table>
+<div id="pager"></div>*@
+
+<script>
+    $('#buttonSearch').click(function () {
+        $("#grid").jqGrid({
+            url: '@Url.Action("GetITTask","ActivityTask")',
+            datatype: "JSON",
+            mtype: "POST",
+
+            postData: {
+
+                ParamField: (function () {
+                    return $("#ParamField option:selected").val();
+                }),
+                SearchValue: (function () {
+                    return $("#SearchValue").val();
+                }),
+                DatePickerReady: (function () {
+                    return $("#DatePickerReady").val();
+                }),
+                BranchId: (function () {
+                    return $("#BranchId option:selected").val();
+                }),
+                ProblemType: (function () {
+                    return $("#ProblemType option:selected").val();
+                }),
+                ItemType: (function () {
+                    return $("#ItemType option:selected").val();
+                }),
+                PIC: (function () {
+                    return $("#PIC option:selected").val();
+                }),
+                TerminatedBy: (function () {
+                    return $("#TerminatedBy option:selected").val();
+                }),
+                Priority: (function () {
+                    return $("#Priority option:selected").val();
+                }),
+                Status: (function () {
+                    return $("#Status option:selected").val();
+                })
+            },
+            colNames: ['No', 'Date', 'User', 'Branch Name', 'Problem Type', 'Type', 'Priority', 'Status', 'PIC', 'Terminated By', 'Action'],
+            colModel: [
+                { key: true, Name: true, name: 'ActivityNo', editable: true, width: 100 },
+                { key: false, name: 'ActivityDate', editable: true, formatter: "date", formatoptions: { srcformat: "Y-m-d", newformat: "d-M-Y" }, width: 90 },
+                { key: false, name: 'RequestBy', editable: true, width: 100 },
+                { key: false, name: 'BranchName', editable: true, width: 110 },
+                { key: false, name: 'ProblemTypeName', editable: true, width: 150 },
+                { key: false, name: 'Type', editable: true, width: 40 },
+                { key: false, name: 'Priority', editable: true, width: 50 },
+                { key: false, name: 'Status', editable: true, width: 60 },
+                { key: false, name: 'PIC', editable: true,width:100},
+                { key: false, name: 'TerminatedBy', editable: true,width:100 },
+                {
+                    name: 'Detail', title: false,width:100,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return '<a href="/InformationTechnology/ActivityTask/ActivityTaskDetail?value=' + rowObject.ActivityNo + menuNo +'">' +
+                        "Detail" + "</a>";
+                    }
+                }
+
+            ],
+
+            pager: '#pager',
+            rowNum: 10,
+            rowList: [10, 20, 30, 40],
+            height: '80%',
+            width: '50%',
+
+            caption: 'Activity List',
+            emptyrecords: 'No records to display',
+
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                cell: "cell",
+                id: "id",
+                userdata: "userdata",
+            },
+
+            multiselect: false,
+        });
+        $("#grid").trigger("reloadGrid", [{ page: 1 }]);
+
+    });
+</script>

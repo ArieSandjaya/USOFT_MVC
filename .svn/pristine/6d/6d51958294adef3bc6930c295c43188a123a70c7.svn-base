@@ -1,0 +1,60 @@
+﻿@model  IEnumerable<USOFT.DataAccess.spGetMenuUsers_Result>
+@{
+    USOFT.DataAccess.spGetMenuUsers_Result result = new USOFT.DataAccess.spGetMenuUsers_Result();
+}
+@foreach (var items in Model)
+{
+    <li>
+        @{int i = 1;}
+        @if (@items.MenuId == @items.MenuParent)
+        {
+            i++;
+            <a href="#"><i class="fa fa-files-o fa-fw"></i>@items.MenuName<span class="fa arrow"></span></a>
+        }
+        @TreeDetail(items,i)
+
+    </li>
+}
+@helper TreeDetail(USOFT.DataAccess.spGetMenuUsers_Result item,int i)
+{
+    if(i == 2)
+    {
+        foreach (var itemDetail in @item.getMenuChild)
+        {
+            <ul class="nav nav-second-level">
+                <li>
+                    @if (@itemDetail.getMenuChild.Count > 0)
+                    {
+                        i++;
+                       <a href="#">@itemDetail.MenuName<span class="fa arrow"></span></a>
+                    }
+                    else
+                    {            
+                        <a href="@Url.Action(@itemDetail.url, @itemDetail.controller, new { @id = @itemDetail.MenuId })">@itemDetail.MenuName</a>
+                    }
+                    @TreeDetail(itemDetail,i)
+                </li>
+            </ul>
+        }
+    }
+    else
+    {
+        foreach (var itemDetail in @item.getMenuChild)
+        {
+            <ul class="nav nav-third-level">
+                <li>
+                    @if (@itemDetail.getMenuChild.Count > 0)
+                    {
+                        i++;
+                       <a href="#">@itemDetail.MenuName<span class="fa arrow"></span></a>
+                    }
+                    else
+                    {            
+                        <a href="@Url.Action(@itemDetail.url, @itemDetail.controller, new { @id = @itemDetail.MenuId })">@itemDetail.MenuName</a>
+                    }
+                    @TreeDetail(itemDetail,i)
+                </li>
+            </ul>
+        } 
+    }
+}

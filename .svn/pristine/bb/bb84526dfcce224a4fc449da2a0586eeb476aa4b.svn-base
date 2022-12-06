@@ -1,0 +1,250 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeDetail";
+    string dept = "";
+    string branch = "";
+    string status = "";
+}
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<link href="~/Content/tabs.css" rel="stylesheet" />
+@using (@Html.BeginForm(FormMethod.Post))
+{
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Employee Detail</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Employee Detail
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Hidden("menuId", (String)ViewBag.menuId)
+                                    @Html.Label("NIK :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.NIK, new { @class = "col-md-2 control-label" })
+                                        @Html.Hidden("NIK", (string)@ViewBag.NIK)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Employee Name :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.Name, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                @if (ViewBag.branch != null)
+                                {
+                                    branch = (String)@ViewBag.branch;
+                                }
+                                else
+                                {
+                                    branch = "-";
+                                }
+                                <div class="form-group">
+                                    @Html.Label("Branch :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label(branch, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                @if (ViewBag.dpt != null)
+                                {
+                                    dept = (String)@ViewBag.dpt;
+                                }
+                                else
+                                {
+                                    dept = "-";
+                                }
+
+                                <div class="form-group" id="Dept">
+                                    @Html.Label("Departement :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label(dept, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @if (ViewBag.stat == true)
+                                    {
+                                        status = "active";
+                                    }
+                                    else
+                                    {
+                                        status = "false";
+                                    }
+                                    @Html.Label("Status :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label(status, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+               <div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <input type="Submit" value="Edit Header" class="btn btn-default" id="buttonSearch" name="command" />
+                            <input type="button" value="Back" class="btn btn-default" id="buttonBack" onclick="window.location.href='@Url.Action("Employee", "Master", new { id = @ViewBag.menuId })'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul id="tabs">
+                                <li><a id="tab1">Job History</a></li>
+                                <li><a id="tab2">Account Number</a></li>
+                            </ul>
+                            <div class="panel panel-default">
+                                <div id="tab1C" class="contain">
+                                    <div class="panel-body">
+                                        <table id="grid"></table>
+                                        <div id="pager"></div>
+                                        <div>
+                                            <input type="button" value="Add Job" class="btn btn-default" id="buttonBack" onclick="window.location.href='@Url.Action("AddJobDetail", "Master", new {value=@ViewBag.NIK, id = @ViewBag.menuId })'" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab2C" class="contain">
+                                    <div class="panel-body">
+                                        <table id="grid2"></table>
+                                        <div id="pager2"></div>
+                                        <div>
+                                            <input type="button" value="Add Account" class="btn btn-default" id="buttonBack" onclick="window.location.href='@Url.Action("AddAccount", "Master", new { nik = @ViewBag.NIK, id = @ViewBag.menuId })'" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#tabs li a:not(:first)').addClass('inactive');
+        $('.contain').hide();
+        $('.contain:first').show();
+
+        $('#tabs li a').click(function () {
+            var t = $(this).attr('id');
+            if ($(this).hasClass('inactive')) { //this is the start of our condition 
+                $('#tabs li a').addClass('inactive');
+                $(this).removeClass('inactive');
+
+                $('.contain').hide();
+                $('#' + t + 'C').fadeIn('slow');
+            }
+        });
+
+    });
+    $("#grid").jqGrid({
+        url: '@Url.Action("GetJobHistory","Master")',
+        datatype: 'JSON',
+        mtype: "GET",
+        postData:{
+            NIK: (function () {
+                return $("#NIK").val();
+            }),
+        },
+
+       
+        colNames: ['Job Type', 'Branch', 'Departement','Position','Start','End','Job Status','id','action'],
+        colModel: [
+            { key: true, Name: true, name: 'JobTypeName', editable: true },
+            { key: false, Name: true,name: 'BranchName', editable: true, width: 80 },
+            { key: false, name: 'DepartementName', editable: true, width: 80 },
+            { key: false, name: 'PrivilegeName', editable: true, width: 300 },
+            { key: false, name: 'EffectiveDateFrom', editable: true, formatter: "date", formatoptions: { srcformat: "Y-m-d", newformat: "d-M-Y" }, width: 90 },
+            { key: false, name: 'EffectiveDateTo', editable: true, formatter: "date", formatoptions: { srcformat: "Y-m-d", newformat: "d-M-Y" }, width: 90 },
+            { key: false, name: 'JobStatus', editable: true, width: 50 },
+            { key: false, name: 'JobEmployeeId', hidden: true },
+            {
+
+                formatter: function (cellvalue, options, rowObject) {
+                    var x = '@Html.ActionLink("Detail", "EmployeeJobDetailDraft", "Master", new { value = "myId",id = @ViewBag.menuId }, new { @style = "color:Red;font-weight:bold;" })';
+                    return x.replace("myId", rowObject.JobEmployeeId)
+
+                }
+            }
+        ],
+
+        rowNum: 10,
+        height: '80%',
+        width: '70%',
+        viewrecords: true,
+
+
+        jsonReader: {
+            root: "rows",
+            page: "page",
+            total: "total",
+            records: "records",
+            repeatitems: false,
+            cell: "cell",
+            id: "id",
+            userdata: "userdata",
+        },
+
+        multiselect: false
+    });
+    $("#grid2").jqGrid({
+        url: '@Url.Action("GetAccountNumber","Master")',
+        datatype: 'JSON',
+        mtype: "GET",
+        postData: {
+            NIK: (function () {
+                return $("#NIK").val();
+            }),
+        },
+
+
+        colNames: ['Bank Type', 'Bank Name', 'Acc Name', 'Acc Number', 'Approval', 'Status'],
+        colModel: [
+            { key: true, Name: true, name: 'BankFinCode', editable: true },
+            { key: false, Name: true, name: 'BankName', editable: true, width: 250 },
+            { key: false, name: 'AccountName', editable: true, width: 150 },
+            { key: false, name: 'AccountNumber', editable: true, width: 100 },
+            { key: false, name: 'ApprovalStatus', editable: true, width: 100 },
+            { key: false, name: 'isActive', editable: true, width: 100 },
+
+
+        ],
+
+        rowNum: 10,
+        height: '80%',
+        width: '70%',
+        viewrecords: true,
+
+
+        jsonReader: {
+            root: "rows",
+            page: "page",
+            total: "total",
+            records: "records",
+            repeatitems: false,
+            cell: "cell",
+            id: "id",
+            userdata: "userdata",
+        },
+
+        multiselect: false
+    });
+</script>

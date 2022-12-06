@@ -1,0 +1,133 @@
+﻿@model IEnumerable<USOFT.DataAccess.getPrevList_Result> 
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+&nbsp;
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h5 class ="text-white">Privilege</h5>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form role="form">
+                            <div class="form-group">
+                                @Html.Label("Search By", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-4">
+                                    @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control input-sm" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.TextBox("prevId", null, new { @class = "form-control input-sm" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Departement", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("DepartementCode", (SelectList)ViewBag.dpt, "All", new { @class = "form-control input-sm" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <button type="Submit" value="Search" class="btn btn-default btn-sm" id="buttonSearch">
+                    <i class="glyphicon glyphicon-search"></i> Search
+                </button>
+                @if ((ViewData["Privilege"] as List<USOFT.DataAccess.spGetUserInfo_Result>)[0].CanInsert != false)
+                    {
+                        <button type="Submit" value="Create" class="btn btn-default btn-sm" id="buttonCreate" onclick="window.location.href='@Url.Action("AddPrivilege", "Privilege", new { id = ViewBag.menuId })'">
+                            <i class="glyphicon glyphicon-plus"></i> Create
+                        </button>
+                    }
+            </div>
+            <div class="panel-body">
+                <div id="divTable">
+                    <table id="grid"></table>
+                    <div id="pager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#buttonSearch').click(function () {
+        $("#grid").jqGrid({
+            url:'@Url.Action("GetPrevData","Privilege")',
+            datatype: 'JSON',
+            mtype: "POST",
+
+            postData: {
+
+                ParamField: function () {
+                    return $("#ParamField option:selected").val();
+                },
+                SearchValue: function () {
+                    return $("#prevId").val();
+                },
+                DepartementCode: function () {
+                    return $("#DepartementCode option:selected").val();
+                }
+
+            },
+            colNames: ['Privilege Code', 'Privilege Name', 'PrivilegeShortName','DepartementCode', 'Is Active','Action'],
+            colModel: [
+                { key: true, Name: true, name: 'PrivilegeCode', editable: true },
+                { key: false, name: 'PrivilegeName', editable: true ,width:350},
+                { key: false, name: 'PrivilegeShortName', editable: true },
+                { key: false, name: 'DepartementName', editable: true },
+                { key: false, name: 'IsActive', editable: true,width:50, edittype: 'select', editoptions: { value: { 'A': 'Active', 'I': 'InActive' } } },
+                    {
+                        name: 'Edit', title: false,
+                        formatter: function (cellvalue, options, rowObject) {
+                            return '<a href="/Master/Privilege/EditPrivilege?value=' + rowObject.PrivilegeCode + '">' +
+                                "Edit" + "</a>";
+                        }
+                    }
+            ],
+
+       
+            rowNum: 10,
+            rowList: [10, 20, 30, 40],
+            height: '80%',
+            width: '70%',
+            viewrecords: true,
+            emptyrecords: 'No records to display',
+
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                cell: "cell",
+                id: "id",
+                userdata: "userdata",
+            },
+
+            multiselect: false
+        }).navButtonAdd('#pager',
+        {
+            caption: "Edit",
+            buttonicon: "ui-icon-newwin",
+            onClickButton: function () {
+                // here is where I need a little help!
+            },
+            //position: "first",
+            title: "Edit Property",
+            cursor: "pointer"
+        });
+        $("#grid").trigger("reloadGrid", [{ page: 1 }]);
+    });
+</script>

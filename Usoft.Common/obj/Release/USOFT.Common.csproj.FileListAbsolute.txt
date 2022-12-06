@@ -1,0 +1,6 @@
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\bin\Release\Usoft.Common.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\bin\Release\Usoft.Common.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\bin\Release\GridMvc.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\obj\Release\USOFT.Common.csprojResolveAssemblyReference.cache
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\obj\Release\Usoft.Common.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\obj\Release\Usoft.Common.pdb

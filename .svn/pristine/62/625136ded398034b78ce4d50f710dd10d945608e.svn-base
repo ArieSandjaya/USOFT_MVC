@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "AddJobDetail";
+    string from;
+}
+
+@using (@Html.BeginForm(FormMethod.Post))
+{
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Employee Detail</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Employee Detail
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Hidden("menuId", (String)ViewBag.menuId)
+                                    @Html.Label("NIK :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.NIK, new { @class = "col-md-2 control-label" })
+                                        @Html.Hidden("NIK", (string)@ViewBag.NIK)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Name :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.Name, new { @class = "col-md-10 control-label" })
+                                        @Html.Hidden("EmpName",(string)@ViewBag.Name)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Job Type :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.DropDownList("JobTypeId", (SelectList)ViewBag.hrJob, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group" id="from" style="display:none">
+                                    @if (ViewBag.from != null)
+                                    {
+                                         from = ViewBag.from;
+                                    }
+                                    else
+                                    {
+                                        from = "-";
+                                    }
+                                    @Html.Label("From :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label(from, new { @class = "col-md-10 control-label" })
+                                        @Html.Hidden("pivchfrom",from)
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none" id="to">
+                                    @Html.Label("To :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label("-", new { @class = "col-md-10 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none" id="depart">
+                                    @Html.Label("Departement :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.DropDownList("departementCode", (SelectList)ViewBag.dpt, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group" id="partialPlaceHolder" style="display:none;">
+                                 </div>
+                                <div class="form-group">
+                                    @Html.Label("Start / End :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("pivchStartDate", null, new { @class = "form-control" })
+                                    </div>
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("pivchEndDate", null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <input type="Submit" value="Edit Header" class="btn btn-default" id="buttonSearch" name="command" />
+                                        <input type="button" value="Back" class="btn btn-default" id="buttonBack" onclick="window.location.href='@Url.Action("Employee", "Master", new { id = @ViewBag.menuId })'" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $("#JobTypeId").change(function () {
+        var targID = $("#JobTypeId").val();
+        if (targID != "1" && targID !="2") {
+            $("#from").show();
+            $("#to").show();
+        }
+        else
+        {
+            $("#from").hide();
+            $("#to").hide();
+        }
+    })
+    $('#BranchId').change(function () {
+
+        /* Get the selected value of dropdownlist */
+        var selectedID = $(this).val();
+        if (selectedID != 8675) {
+            $("#depart").hide();
+            $.get('@Url.Action("PopulateDdl", "Master")' + "/" + selectedID, function (data) {
+
+                /* data is the pure html returned from action method, load it to your page */
+                $('#partialPlaceHolder').html(data);
+                /* little fade in effect */
+                $('#partialPlaceHolder').fadeIn('fast');
+            });
+        }
+        else {
+            $("#depart").show();
+        }
+        /* Request the partial view with .get request. */
+    });
+
+        $("#departementCode").change(function () {
+            var departCode = $("#departementCode").val();
+            $.get('@Url.Action("PopulateDdl", "Master")' + "/" + 8675 + "?value=" + departCode ,function (data) {
+
+        
+                $('#partialPlaceHolder').html(data);
+     
+                $('#partialPlaceHolder').fadeIn('fast');
+            });
+
+        });
+
+</script>

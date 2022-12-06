@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace USOFT.Models
+{
+    public class User
+    {
+
+        public string pivchUserId { get; set; }
+        public string pivchUserName { get; set; }
+        public string pivchNIK { get; set; }
+        public int piintBranchId { get; set; }
+        public string pivchEmail { get; set; }
+        public string pivchEmailB2B { get; set; }
+        public string pivchPass { get; set; }
+        public string pivchCanSendEmail { get; set; }
+        public string pivchCanChangePass { get; set; }
+        public bool isActive { get; set; }
+        public string pivchInputID { get; set; }
+    }
+}

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<USOFT.Models.Currency>
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">CURRENCY</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Edit Currency
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Currency Code", new { @class = "col-md-4 control-label" })
+
+                                    <div class="col-lg-5">
+                                        @*@Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })*@
+                                        @Html.TextBox("SearchValue", (String)ViewBag.curCode, new { @class = "form-control" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Currency Name", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("currencyCode", (String)ViewBag.curName, new { @class = "form-control" })
+                                        @* @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Currency Symbol", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("currencySymbol", (String)ViewBag.curSym, new { @class = "form-control" })
+                                        @*@Html.DropDownList("DepartementCode", (SelectList)ViewBag.dpt, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Active State", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("activeState", (SelectList)ViewBag.active, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href('@Url.Action("Users","Users")')" />*@
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                            <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href('@Url.Action("AddCurrency","Currency")')" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@*@using (@Html.BeginForm(FormMethod.Post))
+{
+    <h2 id="header-tag">Edit Currency</h2>
+    <div id="Container">
+        <div id="div_common">
+            @Html.Label("Currency Code", new { @class = "label-main" })
+        </div>
+        <div id="div_common">
+            @Html.TextBox("SearchValue", (String)ViewBag.curCode, new { @class = "input", @readonly = "readonly" })
+        </div>
+        <div id="div_common">
+            @Html.Label("Currency Name", new { @class = "label-main" })
+        </div>
+        <div id="div_common">
+            @Html.TextBox("currencyCode", (String)ViewBag.curName, new { @class = "input" })
+        </div>
+        <div id="div_common">
+            @Html.Label("Currency Symbol", new { @class = "label-main" })
+        </div>
+        <div id="div_common">
+            @Html.TextBox("currencySymbol", (String)ViewBag.curSym, new { @class = "input" })
+        </div>
+        <div id="div_common">
+            @Html.Label("Active State", new { @class = "label-main" })
+        </div>
+        <div id="div_common">
+            @Html.DropDownList("IsActive", (SelectList)ViewBag.active, new { @class = "combobox" })
+        </div>
+        <div id="div_common">
+            <input type="submit" value="Proses" class="buttonSub" id="buttonSearch"/>
+        </div>
+   </div>
+}*@

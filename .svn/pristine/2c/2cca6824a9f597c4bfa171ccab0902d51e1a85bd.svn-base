@@ -1,0 +1,153 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity.Core.Objects;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+using Usoft.Common.CommonFunction;
+using Usoft.Common.Security;
+using USOFT.DataAccess;
+using USOFT.DataAccess.General;
+namespace USOFT.DataAccess.Users
+{
+    public class UserLogOn : USOFTEntities
+    {
+        public Boolean doLogon(string UserId, string Password)
+        {
+            List<spGetUserLogon_Result> rows = spGetUserLogon(UserId).ToList();
+
+            if (rows.Count > 0)
+            {
+                if (Password == EncryptionMD5.Decrypt(rows[0].Pass.ToString()))
+                {
+                    HttpContext.Current.Session["UserId"] = rows[0].UserId.ToString();
+                    HttpContext.Current.Session["UserName"] = rows[0].UserName.ToString();
+                    HttpContext.Current.Session["BranchId"] = rows[0].BranchId.ToString();
+                    HttpContext.Current.Session["BranchName"] = rows[0].BranchName.ToString();
+                    HttpContext.Current.Session["Email"] = rows[0].Email.ToString();
+                    HttpContext.Current.Session["EmailB2B"] = rows[0].EmailB2B.ToString();
+                    HttpContext.Current.Session["ChangePass"] = rows[0].ChangePass.ToString();
+                    //HttpContext.Current.Session["PriviledgeCode"] = sDr["PriviledgeCode"].ToString(); //
+                    HttpContext.Current.Session["PrivilegeCode"] = rows[0].PrivilegeCode.ToString();
+                    HttpContext.Current.Session["PrivilegeName"] = rows[0].PrivilegeName.ToString();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        public List<Object> GetLogon(string SearchValue, string searchBy,int br,string dpt, string prev,int? page,int pageSize)
+        {
+
+
+            //GetBranchToCombo br = new GetBranchToCombo();
+            //GetDepartmentToCombo_Result dpt = new GetDepartmentToCombo_Result();
+            //GetPrevilegeToCombo prev = new GetPrevilegeToCombo();
+            string WhereBy = SearchText(searchBy, SearchValue);
+            if ( br > 0)
+            {
+                WhereBy += SqlAndOr(WhereBy, true) + " a.BranchId = " + br ;
+
+            }
+
+            if (dpt != null)
+            {
+                WhereBy += SqlAndOr(WhereBy, true) + " c.DepartementCode = '" + dpt + "'";
+            }
+
+            if (prev != null)
+            {
+                WhereBy += SqlAndOr(WhereBy, true) + " a.PrivilegeCode = '" + prev + "'";
+            }
+
+            ObjectParameter pointTotalPage = new ObjectParameter("pointTotalPage", typeof(int));
+            ObjectParameter pointTotalData = new ObjectParameter("pointTotalData", typeof(int));
+
+
+
+
+
+            List<spUsersList_Result> rows = spUsersList(WhereBy, page, pageSize, pointTotalPage, pointTotalData).ToList();
+            List<Object> obj = new List<object>();
+            obj.Add(rows);
+            obj.Add(pointTotalPage.Value);
+            obj.Add(pointTotalData.Value);
+            return obj;
+        }
+        public string SearchText(string SearchBy, string SearchValue)
+        {
+            string SearchSQL = "";
+
+            if (SearchBy != null)
+            {
+                string[] StrSearch = SearchBy.Split('|');
+                SearchSQL = StrSearch[1];
+                switch (StrSearch[0])
+                {
+                    case "chr":
+                    case "vch":
+                    case "dtm": SearchSQL += " LIKE '" + SearchValue + "'";
+                        break;
+                    case "int":
+                    case "dcm":
+                    case "mon": SearchSQL += " = " + SearchValue;
+                        break;
+                }
+            }
+
+            return SearchSQL;
+        }
+        public string SqlAndOr(string sqlText, bool state)
+        {
+            if ((sqlText != "") && (sqlText != null)) { sqlText = (state) ? " AND" : " OR"; }
+
+            return sqlText;
+        }
+
+        //public List<spUsersList_Result> GetLogon(string p, string searchvalue)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public List<spUsersList_Result> getl 
+        //{
+        //    throw new NotImplementedException();
+        //}
+        public List<Object> getPrev(string searchvalue, string ddl, string dpt, int page,int pageSize)
+        {
+            
+           string WhereBy = SearchText(ddl, searchvalue);
+            if (dpt != null)
+            {
+                WhereBy += SqlAndOr(WhereBy, true) + " b.DepartementCode = '" + dpt + "'";
+            }
+      
+            
+            ObjectParameter pointTotalPage = new ObjectParameter("pointTotalPage", typeof(int));
+            ObjectParameter pointTotalData = new ObjectParameter("pointTotalData", typeof(int));
+            List<getPrevList_Result> rows = spPrivilegeList(WhereBy, page, pageSize, pointTotalPage, pointTotalData).ToList();
+            List<Object> obj = new List<object>();
+            obj.Add(rows);
+            obj.Add(pointTotalPage.Value);
+            obj.Add(pointTotalData.Value);
+            return obj;
+        }
+
+        public List<spPrivilegeMenuList_Result> getPrivMenu()
+        {
+            List<spPrivilegeMenuList_Result> result = spPrivilegeMenuList("", "").ToList();
+            return result;
+        }
+    }
+    
+}

@@ -1,0 +1,9 @@
+F:\2014\USOFT\USOFT.Globaliztion\bin\Debug\USOFT.Globaliztion.dll
+F:\2014\USOFT\USOFT.Globaliztion\bin\Debug\USOFT.Globaliztion.pdb
+F:\2014\USOFT\USOFT.Globaliztion\obj\Debug\USOFT.Globaliztion.dll
+F:\2014\USOFT\USOFT.Globaliztion\obj\Debug\USOFT.Globaliztion.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.Globaliztion\bin\Debug\USOFT.Globaliztion.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.Globaliztion\bin\Debug\USOFT.Globaliztion.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.Globaliztion\obj\Debug\USOFT.Globaliztion.csprojResolveAssemblyReference.cache
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.Globaliztion\obj\Debug\USOFT.Globaliztion.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.Globaliztion\obj\Debug\USOFT.Globaliztion.pdb

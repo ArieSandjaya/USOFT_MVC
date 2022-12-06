@@ -1,0 +1,311 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using USOFT.DataAccess.General;
+using USOFT.DataAccess.Departement;
+using USOFT.DataAccess.Currency;
+using USOFT.DataAccess.Branch;
+using USOFT.DataAccess.Measurement;
+using USOFT.DataAccess.Upload;
+using USOFT.DataAccess.IT;
+using USOFT.Models;
+using USOFT.DataAccess;
+using USOFT.Controllers;
+
+
+namespace USOFT.Areas.HR.Controllers
+{
+    public class MasterController : BaseController
+    {   
+        PopulatedDdl pop = new PopulatedDdl();
+        HRMainModel hr = new HRMainModel();
+        BranchModel brm = new BranchModel();
+        DeptMeodel dptm = new DeptMeodel();
+
+        //
+        // GET: /HR/Master/
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public void populatedDdl(string id)
+        {
+            ViewBag.menuEmployee = new SelectList(pop.getMenu(id, "").AsEnumerable(), "ParamField", "ParamName");
+            ViewBag.br = new SelectList(pop.brCombo().AsEnumerable(), "BranchId", "BranchName");
+            ViewBag.dpt = new SelectList(pop.deptCombo().AsEnumerable(), "DepartementCode", "DepartementName");
+            ViewBag.pos = new SelectList(pop.populatedPrivilege().AsEnumerable(), "PrivilegeCode", "PrivilegeName");
+            ViewBag.stat = new SelectList(pop.hrStatus()).AsEnumerable();
+            ViewBag.HrJob = new SelectList(pop.hrJobType().AsEnumerable(), "JobTypeId", "JobTypeName");
+        }
+        public ActionResult Employee(string id)
+        {
+            Usoft.Common.CommonFunction.CekSession.validate();
+            if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                List<spGetUserInfo_Result> result = new List<spGetUserInfo_Result>();
+                CekPriv cekpriv = new CekPriv();
+                result = cekpriv.privilege(id);
+                ViewData["Privilege"] = result;
+                ViewBag.menuId = id;
+                populatedDdl(id);
+                return View();
+            }
+            else
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        public JsonResult GetEmployeeList(string SearchValue, GetMenuResult ddl, int? piintBranchId, string pivchDepartementCode, string pivchPositionCode, string pivchStatus, int? page, int rows, string sidx, string sord)
+        {
+            bool resignStatus = false;
+            if (pivchStatus == "Active")
+            {
+                resignStatus = false;
+            }
+            else
+                if (pivchStatus == "Resign")
+                {
+                     resignStatus = true;
+                }
+
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+            List<Object> obj = hr.GetHREmployeeList(SearchValue, ddl.ParamField, piintBranchId, pivchDepartementCode, pivchPositionCode, resignStatus, page, pageSize);
+            var result = (List<spHREmployeeList_Result>)obj[0];
+            int totalRecord = Convert.ToInt32(obj[2]);
+            var totalPages = (int)Math.Ceiling((float)totalRecord / (float)pageSize);
+            var jsonData = new
+            {
+
+                total = totalPages,
+                page,
+                records = totalRecord,
+                rows = result
+            };
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Position(string id)
+        {
+            Usoft.Common.CommonFunction.CekSession.validate();
+            if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                List<spGetUserInfo_Result> result = new List<spGetUserInfo_Result>();
+                CekPriv cekpriv = new CekPriv();
+                result = cekpriv.privilege(id);
+                ViewData["Privilege"] = result;
+                ViewBag.menuId = id;
+                populatedDdl(id);
+                return View();
+            }
+            else
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        public JsonResult GetPrivilegeList(string SearchValue, GetMenuResult ddl, int? piintBranchId, string pivchDepartementCode, int? page, int rows, string sidx, string sord)
+        {
+           
+
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+            List<Object> obj = hr.GetHRPrivilegeList(SearchValue, ddl.ParamField, piintBranchId, pivchDepartementCode, page, pageSize);
+            var result = (List<spHRPrivilegeList_Result>)obj[0];
+            int totalRecord = Convert.ToInt32(obj[2]);
+            var totalPages = (int)Math.Ceiling((float)totalRecord / (float)pageSize);
+            var jsonData = new
+            {
+
+                total = totalPages,
+                page,
+                records = totalRecord,
+                rows = result
+            };
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetHRPendingEmployee(string SearchValue, GetMenuResult ddl, int? piintBranchId, int? page, int rows, string sidx, string sord)
+        {
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+            List<Object> obj = hr.GetHRPendingEmployeeList(SearchValue, ddl.ParamField, piintBranchId, page, pageSize);
+            var result = (List<spHRPendingEmployeeRegistList_Result>)obj[0];
+            int totalRecord = Convert.ToInt32(obj[2]);
+            var totalPages = (int)Math.Ceiling((float)totalRecord / (float)pageSize);
+            var jsonData = new
+            {
+
+                total = totalPages,
+                page,
+                records = totalRecord,
+                rows = result
+            };
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetJobHistory(string NIK, int? piintBranchId, int? page, int rows, string sidx, string sord)
+        {
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+            var result = hr.getJobHistory(NIK);
+            var jsonData = new
+            {
+                page,
+                
+                rows = result
+            };
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetAccountNumber(string NIK, int? piintBranchId, int? page, int rows, string sidx, string sord)
+        {
+            int pageIndex = Convert.ToInt32(page) - 1;
+            int pageSize = rows;
+            var result = hr.getAccountNumber(NIK);
+            var jsonData = new
+            {
+                page,
+
+                rows = result
+            };
+            return Json(jsonData, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult PendingEmployee(string id)
+        {
+            Usoft.Common.CommonFunction.CekSession.validate();
+            if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                List<spGetUserInfo_Result> result = new List<spGetUserInfo_Result>();
+                CekPriv cekpriv = new CekPriv();
+                result = cekpriv.privilege(id);
+                ViewData["Privilege"] = result;
+                ViewBag.menuId = id;
+                populatedDdl(id);
+                return View();
+            }
+            else
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        public ActionResult AddHREmployee(string id)
+        {
+            if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                CekPriv cekpriv = new CekPriv();
+                var result = cekpriv.privilege(id);
+
+                if (result[0].CanInsert == true)
+                {
+                    ViewBag.menuId = id;
+                    return View();
+                }
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+            }
+            return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        [HttpPost]
+        public ActionResult AddHREmployee(string pivchNIK,string pivchEmployeeName,string IdMenu)
+        {
+            hr.HREmployeeInsert(pivchNIK, pivchEmployeeName);
+            return RedirectToAction("EmployeeDetail", "Master", new { value = pivchNIK ,id = IdMenu});
+        }
+        public ActionResult EmployeeDetail(string value,string id)
+        {
+            if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                CekPriv cekpriv = new CekPriv();
+                var result = cekpriv.privilege(id);
+
+                if (result[0].CanInsert == true)
+                {
+                    List<spHREmployeeView_Result> row = hr.GetEmployeeView(value);
+                    ViewBag.NIK = row[0].NIK;
+                    ViewBag.Name = row[0].EmployeeName;
+                    ViewBag.branch = row[0].BranchName;
+                    ViewBag.dpt = row[0].DepartementName;
+                    ViewBag.stat = row[0].IsActive;
+                    ViewBag.menuId = id;
+                    return View();
+                }
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+            }
+            return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        public ActionResult AddJobDetail(string value,string id)
+        {
+            if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                CekPriv cekpriv = new CekPriv();
+                var result = cekpriv.privilege(id);
+
+                if (result[0].CanInsert == true)
+                {
+                    List<spHREmployeeView_Result> row = hr.GetEmployeeView(value);
+                    ViewBag.NIK = row[0].NIK;
+                    ViewBag.Name = row[0].EmployeeName;
+                    ViewBag.menuId = id;
+                    ViewBag.from = row[0].BranchName + "-" + row[0].DepartementName + "-" + row[0].PrivilegeName;
+                    populatedDdl(id);
+                    return View();
+                }
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+            }
+            return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        [HttpPost]
+        public ActionResult AddJobDetail(string menuId,string NIK, string EmpName,string pivchPriority, int JobTypeId, string pivchfrom, int BranchId, string departementCode, DateTime pivchStartDate, DateTime pivchEndDate)
+        {
+             if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                CekPriv cekpriv = new CekPriv();
+                var result = cekpriv.privilege(menuId);
+
+                if (result[0].CanInsert == true)
+                {
+                    int? pivchBranchIdFrom = null;
+                    string pivchDepartementFrom = null;
+                    string pivchPrivilegeCodeFrom = null;
+                    string povchNo;
+                    if (pivchfrom != null)
+                    {
+                        List<spHREmployeeView_Result> row = hr.GetEmployeeView(NIK);
+                        pivchBranchIdFrom = row[0].BranchId;
+                        pivchDepartementFrom = row[0].DepartementCode;
+                       pivchPrivilegeCodeFrom = row[0].PrivilegeCode;
+                    }
+                    povchNo = hr.insertHRJobDetail(NIK, JobTypeId, BranchId, departementCode, pivchPriority, pivchStartDate, pivchEndDate, pivchBranchIdFrom, pivchDepartementFrom, pivchPrivilegeCodeFrom);
+                    return RedirectToAction("EmployeeJobDetailDraft", "Master", new { id = menuId, value = povchNo });
+                }
+                return RedirectToAction("LogOut", "Account", new { area = "" });
+            }
+             return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+        public ActionResult PopulateDdl(int id,string value)
+        {
+            if (value != null)
+            {
+                ViewBag.result = new SelectList(pop.privDept(id.ToString(), value).AsEnumerable(), "PrivilegeCode", "PrivilegeName");
+            }
+            else
+            {
+                ViewBag.result = new SelectList(pop.privCombo(id.ToString()).AsEnumerable(), "PrivilegeCode","PrivilegeName");
+            }
+            
+            return PartialView("_PartialDdlPrivilegeBranch", ViewBag.result);
+        }
+        public ActionResult EmployeeJobDetailDraft(string value,string id)
+        {
+            if (Usoft.Common.CommonFunction.CekSession.validate() == true)
+            {
+                List<spHREmployeeDetailView_Result> row = new List<spHREmployeeDetailView_Result>();
+                row = hr.GetEmployeeJobDetail(value);
+                ViewBag.NIK = row[0].NIK;
+                ViewBag.Name = row[0].EmployeeName;
+                ViewBag.jobtype = row[0].JobTypeName;
+                ViewBag.branch = row[0].BranchName;
+                ViewBag.departement = row[0].DepartementName;
+                ViewBag.position = row[0].PrivilegeName;
+                ViewBag.Date = row[0].EffectiveDateFrom.ToShortDateString() + " To " + row[0].EffectiveDateTo.Value.ToShortDateString();
+                ViewBag.jobstatus = row[0].JobStatus;
+                ViewBag.approval = row[0].ApprovalStatus;
+                return View();
+            }
+            return RedirectToAction("LogOut", "Account", new { area = "" });
+        }
+
+	}
+}

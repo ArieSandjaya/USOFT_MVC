@@ -1,0 +1,161 @@
+﻿
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">MAIL REMINDER</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Search
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <form role="form">
+                            <div class="form-group">
+                                @Html.Label("Search By", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-4">
+                                    @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.TextBox("SearchValue", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Active State", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-10">
+                                    @Html.DropDownList("IsActive", (IEnumerable<SelectListItem>)ViewBag.isactive, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <input type="Submit" value="Search" class="btn btn-default" id="buttonSearch" />
+                @if ((ViewData["Privilege"] as List<USOFT.DataAccess.spGetUserInfo_Result>)[0].CanInsert != false)
+                {
+                <input type="button" id="buttonCreate" value="Create" class="btn btn-default" onclick="window.location.href='@Url.Action("AddMailReminder", "MailReminder", new { id= ViewBag.menuId })'" />
+                }
+            </div>
+            <div class="panel-body">
+                <div id="divTable">
+                    <table id="grid"></table>
+                    <div id="pager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<h2>MailReminder</h2>
+
+    <div id="Container">
+        <div class="div_common">
+            @Html.Label("Search By", new { @class = "label-main" })
+
+
+            @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "combobox" })
+
+            @Html.TextBox("SearchValue", null, new { @class = "input", @id = "inputText" })
+            @Html.Label("ActiveState :", new { @class = "label-main" })
+            @Html.DropDownList("IsActive", (IEnumerable<SelectListItem>)ViewBag.isactive, "All", new { @class = "combobox" })
+            <p><input type="Submit" value="Proses" class="buttonSub" id="buttonSearch" /></p>
+        </div>
+    </div>
+
+<table id="grid"></table>
+<div id="pager"></div>*@
+
+<script type="text/javascript">
+    $('#buttonSearch').click(function () {
+        $("#grid").jqGrid({
+            url: '@Url.Action("GetMailData","MailReminder")',
+            datatype: 'JSON',
+            mtype: "POST",
+
+            postData: {
+
+                ParamField: (function () {
+                    return $("#ParamField option:selected").val();
+                }),
+                inputText: (function () {
+                    return $("#inputText").val();
+                }),
+                IsActive: (function () {
+                    return $("#IsActive option:selected").val();
+                }),
+
+
+            },
+            colNames: ['Id', 'Subject', 'IsActive', 'Action'],
+            colModel: [
+                { key: true, Name: true, name: 'ReminderId', editable: true, width: 100 },
+                { key: false, name: 'Subject', editable: true, width: 500 },
+               { key: false, name: 'IsActive', editable: true },
+               //{ name: 'change', index: 'change', sortable: false, formatter: displayButtons }
+               //{ name: 'Action', index: 'ID', label: 'Action', width: 80, fixed: true, sortable: false, align: 'center', formatter: 'actionFormatter' },
+               //{
+               //    name: 'Detail', title: false,
+               //    formatter: function (cellvalue, options, rowObject) {
+               //        return '<a href="/ITMail/MainReminderDetail?value=' + rowObject.ReminderId + '">' +
+               //        "Detail" + "</a>";
+               //    }
+               //}
+               {
+                   name: 'Delete',
+                   formatter: function (cellvalue, options, rowObject) {
+                       var x = '@Html.ActionLink("Delete", "MailReminderDelete", "MailReminder", new { value = "myId" }, new { @style = "color:Blue;font-weight:bold;" })';
+                       var y = '@Html.ActionLink("Detail", "MainReminderDetail", "MailReminder", new { value = "myId" }, new { @style = "color:R;font-weight:bold;" })';
+                       return x.replace("myId", rowObject.ReminderId) + " " + y.replace("myId",rowObject.ReminderId)
+                   }
+               }
+            ],
+            pager: '#pager',
+            rowNum: 10,
+            rowList: [10, 20, 30, 40],
+            height: '80%',
+            width: '70%',
+            viewrecords: true,
+            caption: 'E-Mail Reminder',
+            emptyrecords: 'No records to display',
+
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                cell: "cell",
+                id: "id",
+                userdata: "userdata",
+            },
+            multiselect: false
+        })
+    
+    
+        //function displayButtons(cellvalue, options, rowObject) {
+        //    var Delete = ",
+           
+        //    restore = "<input style='...' type='button' value='Restore' onclick=\"jQuery('#grid').restoreRow('" + options.rowId + "');\" />";
+        //    return edit + restore;
+        //}
+        
+
+        $("#grid").trigger("reloadGrid", [{ page: 1 }]);
+    });
+
+</script>

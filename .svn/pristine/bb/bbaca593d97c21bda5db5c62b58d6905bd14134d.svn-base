@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "AddPosition";
+}
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">ADD POSITION</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add New Position
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Position Code", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @*@Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })*@
+                                       
+                                        @Html.TextBox("pivchPositionCode",null, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Position Name", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                       @Html.TextBox("pivchPositionName", null, new { @class = "form-control" })
+                                        @* @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("piintBranchId", (SelectList)@ViewBag.br, new { @class = "form-control" })
+                                        @* @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group" id="dept" style="display:none">
+                                    @Html.Label("Departement", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("pivchDepartementCode", (SelectList)@ViewBag.dpt, new { @class = "form-control" })
+                                        @* @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Org Id", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("pivchOrgId", null, new { @class = "form-control" })
+                                        @* @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })*@
+                                    </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href('@Url.Action("Users","Users")')" />*@
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                            <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href='@Url.Action("Employee", "Master", new {id = ViewBag.menuId })'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $("#piintBranchId").change(function () {
+
+
+        $("#dept").show();
+
+    });
+</script>
+
+

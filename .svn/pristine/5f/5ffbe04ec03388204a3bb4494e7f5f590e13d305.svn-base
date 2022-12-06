@@ -1,0 +1,124 @@
+﻿@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Privilege</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add New Privilege
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Privilege Code", new { @class = "col-md-4 control-label" })
+
+                                    <div class="col-lg-5">
+                                        @*@Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })*@
+                                        @Html.TextBox("PrivilegeCode", null, new { @class = "form-control" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Privilege Name", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("PrivilegeName", null, new { @class = "form-control" })
+                                        @* @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Privilege Short Name", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("PrivilegeShortName", null, new { @class = "form-control" })
+                                        @*@Html.DropDownList("DepartementCode", (SelectList)ViewBag.dpt, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Departement", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("DepartementCode", (SelectList)ViewBag.dpt, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Old Code", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("OldCode", null, new { @class = "form-control" })
+                                        @*@Html.DropDownList("DepartementCode", (SelectList)ViewBag.dpt, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Active State", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("activeState", (SelectList)ViewBag.active, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href('@Url.Action("Users","Users")')" />*@
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                            <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href='@Url.Action("Privilege", "Privilege", new { id = ViewBag.menuId })'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@*@using (@Html.BeginForm(FormMethod.Post))
+{
+    <div id="Container">
+        <div id="div_common">
+            @Html.Label("Privilege Code", new{@class="label-main" })
+        </div>
+        <div id="div_common">
+            @Html.TextBox("PrivilegeCode", null, new { @class = "input" })
+        </div>
+        <div id="div_common">
+            @Html.Label("Privilege Name", new { @class = "label-main" })
+        </div>
+        <div id="div_common">
+            @Html.TextBox("PrivilegeName", null, new { @class = "input" })
+        </div>
+        <div id="div_common">
+            @Html.Label("Privilege Short Name", new { @class = "label-main" })
+        </div>
+        <div id="div_common">
+            @Html.TextBox("PrivilegeShortName", null, new { @class = "input" })
+        </div>
+        <div id="div_common">
+            @Html.Label("Departement", null, new { @class = "label-main" })
+        </div>
+        <div id="div_common">
+            @Html.DropDownList("DepartementCode", (SelectList)ViewBag.dpt, new { @class = "combobox" })
+        </div>
+        <div id="div_common">
+            @Html.Label("Old Code", new { @class = "label-main" })
+        </div>
+        <div id="div_common">
+            @Html.TextBox("OldCode", null, new { @class = "input" })
+        </div>
+        <div id="div_common">
+            @Html.Label("Active State", new { @class = "label-main" })
+        </div>
+        <div id="div_common">
+            @Html.DropDownList("isActive", (SelectList)ViewBag.active, new { @class = "combobox" })
+        </div>
+        <p>
+            <input type="submit" value="Create" id="buttonCreate" class="buttonSub" />
+        </p>
+    </div>
+}*@

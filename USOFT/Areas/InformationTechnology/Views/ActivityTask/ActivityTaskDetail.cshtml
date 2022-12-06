@@ -1,0 +1,324 @@
+﻿@{
+    ViewBag.Title = "ActivityTaskDetail";
+    string value = @ViewBag.No;
+
+}
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<link href="~/Content/tabs.css" rel="stylesheet" />
+@{
+    string dept;
+    string item;
+    string prio;
+}
+
+@using (@Html.BeginForm(FormMethod.Post))
+{
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Activity Task Detail</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Activity Task Detail
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Activity Number :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.Label((String)@ViewBag.No, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Date :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.Label((String)@ViewBag.Date, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Request By :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.Label((String)@ViewBag.Request, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.Label((String)@ViewBag.Branch, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                @if (ViewBag.departement != null)
+                                {
+                                    dept = (String)@ViewBag.departement;
+                                }
+                               else
+                                {
+                                    dept = "";
+                                }
+                             
+                                <div class="form-group" style="display:none" id="Dept">
+                                    @Html.Label("Departement :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.Label(dept, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Problem Type :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.Label((String)@ViewBag.Problem, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                @if (ViewBag.it != null)
+                                {
+                                    item = (String)@ViewBag.It;
+                                }
+                                else
+                                {
+                                    item = "";
+                                }
+                                <div class="form-group" style="display:none" id="Item">
+                                    @Html.Label("Item Type :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.Label(item, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Description :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.Label((String)@ViewBag.Description, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Priority :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @if (ViewBag.Prio != null)
+                                        {
+                                            prio = (String)ViewBag.Prio;
+                                        }
+                                        else
+                                        {
+                                            prio="-";
+                                        }
+                                        @Html.Label(prio, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Status :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-md-10">
+                                        @Html.Label((String)@ViewBag.stat, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                @Html.Hidden("stat", (string)ViewBag.stat)
+                                @Html.Hidden("val", (string)ViewBag.No)
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    @if (ViewBag.stat != "Closed" && ViewBag.stat != "Solved")
+                                    {
+                                         <input type="Submit" value="Edit Header" class="btn btn-default" id="buttonSearch" name="command" />
+                                    }
+                                    <input type="button" value="Back" class="btn btn-default" id="buttonBack" onclick="window.location.href='@Url.Action("ActivityTask", "ActivityTask", new {id = "116001" })'" />
+                                </div>
+
+
+
+                                @if (ViewBag.stat != "Closed" && ViewBag.stat != "Solved")
+                                {
+                                    <div id="divTable">
+                                        <div class="form-group" id="Item">
+                                            @Html.Label("Action", new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("pivchStatus", (SelectList)ViewBag.action, "All", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="display:none" id="Assign">
+                                            @Html.Label("Assign To", new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("pivchAssignTo", (SelectList)ViewBag.us, "All", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="display:none" id="Desc">
+                                            @Html.Label("Description", new { @class = "col-md-2 control-label" })
+                                            <div class="col-md-10">
+                                                @Html.TextArea("pivchAssignDescription", null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class=" panel-heading">
+                                            <input type="Submit" value="process" class="btn btn-default" id="buttonSearch" name="command" />
+                                        </div>
+                                    </div>
+                                }
+
+
+
+
+
+                                <div id="divTable">
+                                    <div class="panel-body">
+                                        <table id="grid"></table>
+                                        <div id="pager"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@*@using (@Html.BeginForm(FormMethod.Post))
+{
+<div id="divLabel">
+    <div>
+        @Html.Label("Activity No :")
+        @ViewBag.No
+        </div>
+    <div>
+        @Html.Label("Date :")
+        @ViewBag.Date
+    </div>
+        <div>
+            @Html.Label("Request By :")
+            @ViewBag.Request
+            </div>
+            <div>
+                @Html.Label("Branch :")
+
+                @ViewBag.Branch
+            </div>
+            <div>
+                @Html.Label("Departement :")
+                @ViewBag.Departement
+            </div>
+        </div>
+        <div id="divValue">
+    <div>
+        @Html.Label("Problem Type :")
+        @ViewBag.Problem
+    </div>
+    <div>
+        @Html.Label("Item Type :")
+        @ViewBag.It
+    </div>
+    @Html.Label("Description :")
+    @ViewBag.Description
+    <div>
+        @Html.Label("Priority :")
+        @ViewBag.Prio
+    </div>
+    <div>
+        @Html.Label("Status :")
+        @ViewBag.stat
+    </div>
+            <input type="Submit" value="Edit Header" class="buttonSub" id="buttonSearch" />
+</div>
+
+        <div id="divBot">
+
+            <div>
+                @Html.Label("Action :")
+                @Html.DropDownList("pivchStatus", (IEnumerable<SelectListItem>)ViewBag.action, "- Select One -", new { @class = "combobox", @id = "event" })
+            </div>
+            <div id="Assign" class="style-sub-1" style="display:none;" onchange="ChangeDropdowns(this.value)">
+                @Html.Label("PIC :")
+                @Html.DropDownList("pivchAssignTo", (IEnumerable<SelectListItem>)ViewBag.us, new { @class = "combobox" })
+            </div>
+            <div id="Desc" class="style-sub-2" style="display:none;" onchange="ChangeDropdowns(this.value)">
+                @Html.Label("Description :")
+                @Html.TextArea("pivchAssignDescription")
+            </div>
+            <p><input type="Submit" value="Proccess" class="buttonSub" id="buttonSearch" /></p>
+        </div>
+
+    @Html.Hidden("val",(string)ViewBag.No)
+    @Html.Hidden("Condition",(string)ViewBag.stat)
+
+}
+<div style="margin-bottom:200px;" id="margin"></div>
+<table id="grid"></table>
+<div id="pager"></div>*@
+
+<script type="text/javascript">
+  
+    $("#grid").jqGrid({
+        url: '@Url.Action("GetAssignList","ActivityTask")',
+        datatype: 'JSON',
+        mtype: "GET",
+        postData:{
+            value: (function () {
+                return $("#val").val();
+            }),
+        },
+
+       
+        colNames: ['Date', 'Status', 'Description'],
+        colModel: [
+            { key: true, Name: true, name: 'DateAssign', editable: true, formatter: "date", formatoptions: { srcformat: "Y-m-d", newformat: "d-M-Y" }, width: 90 },
+            { key: false, Name: true,name: 'StatusActivity', editable: true, width: 300 },
+            { key: false, name: 'Description', editable: true,width : 500 },
+
+
+        ],
+
+        rowNum: 10,
+        height: '80%',
+        width: '70%',
+        viewrecords: true,
+
+
+        jsonReader: {
+            root: "rows",
+            page: "page",
+            total: "total",
+            records: "records",
+            repeatitems: false,
+            cell: "cell",
+            id: "id",
+            userdata: "userdata",
+        },
+
+        multiselect: false
+    });
+    $("#pivchStatus").change(function () {
+        var targID = $("#pivchStatus").val();
+        if (targID == "Assign") {
+            $("#Assign").show();
+            $("#Desc").show();
+    
+        }
+        else
+            if (targID == "Closed") {
+                $("#Desc").show();
+                $("#Assign").hide();
+            }
+            else
+                if (targID == "Solved") {
+                    $("#Desc").show();
+                    $("#Assign").hide();
+                }
+
+    });
+</script>

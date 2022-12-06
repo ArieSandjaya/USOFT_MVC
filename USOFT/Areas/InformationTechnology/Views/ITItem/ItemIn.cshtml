@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "ItemIn";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">IT Item Receive</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Search
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <form role="form">
+                            <div class="form-group">
+                                @Html.Label("Search By", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-4">
+                                    @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.TextBox("SearchValue", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Date", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBox("datepicker", null, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Receive From", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Receive", (SelectList)ViewBag.Receive, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Branch", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Vendor", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Vendor", (SelectList)ViewBag.sup, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("PIC", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("pic", (SelectList)ViewBag.pic, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("DocStatus", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("DocStatus", (SelectList)ViewBag.DocStatus, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <input type="Submit" value="Search" class="btn btn-default" id="buttonSearch" />
+                <input type="button" id="buttonCreate" value="Create" class="btn btn-default" onclick="window.location.href('@Url.Action("AddActivityTask","ActivityTask")')" />
+            </div>
+            <div class="panel-body">
+                <div id="divTable">
+                    <table id="grid"></table>
+                    <div id="pager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<h2 id="header-tag">IT Item In</h2>
+
+<div id="container">
+    <div class="div_common">
+        @Html.Label("Search By", new { @class = "label-main" })
+        @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "combobox" })
+        @Html.TextBox("SearchValue", null, new { @class = "input" })
+        @Html.Label("Date", new { @class = "label-main" })
+        @Html.TextBox("datepicker", null, new { @class = "input" })
+        @Html.Label("ReceiveFrom", new { @class = "label-main"})
+        @Html.DropDownList("Receive", (SelectList)ViewBag.Receive, "All", new { @class = "combobox" })
+        @Html.Label("Branch", new { @class = "label-main" })
+        @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "combobox" })
+        @Html.Label("Vendor", new { @class = "label-main" })
+        @Html.DropDownList("Vendor", (SelectList)ViewBag.sup, "All", new { @class = "combobox" })
+        @Html.Label("PIC", new { @class = "label-main"})
+        @Html.DropDownList("pic", (SelectList)ViewBag.pic, "All", new { @class = "combobox" })
+        @Html.Label("Doc Status", new { @class = "label-main"})
+        @Html.DropDownList("DocStatus", (SelectList)ViewBag.DocStatus, "All", new { @class = "combobox" })
+    </div>
+ </div> 
+<p><input type="Submit" value="Search" class="buttonSub" id="buttonSearch" /></p>
+
+<table id="grid"></table>
+<div id="pager"></div>*@
+<script type="text/javascript">
+    $('#buttonSearch').click(function () {
+        $("#grid").jqGrid({
+            url: "GetItemReceiveData",
+            datatype: 'JSON',
+            mtype: "POST",
+
+            postData: {
+
+                ParamField:( function () {
+                    return $("#ParamField option:selected").val();
+                }),
+                SearchValue: (function () {
+                    return $("#SearchValue").val();
+                }),
+                datepicker: (function () {
+                    return $("#datepicker").val();
+                }),
+                Receive: (function () {
+                    return $("#Receive option:selected").val();
+                }),
+                BranchId: (function () {
+                    return $("#BranchId option:selected").val();
+                }),
+                Vendor: (function () {
+                    return $("#Vendor option:selected").val();
+                }),
+                pic: (function () {
+                    return $("#pic option:selected").val();
+                }),
+                DocStatus: (function () {
+                    return $("#DocStatus option:selected").val();
+                }),
+
+
+            },
+            colNames: ['Item-In_Code', 'Date In', 'Receive From', 'Branch', 'Vendor','PIC','Status'],
+            colModel: [
+                { key: true, Name: true, name: 'ITItemInCode', editable: true, width:100},
+                { key: false, name: 'Date', editable: true,formatter: "date", formatoptions: { srcformat: "Y-m-d", newformat: "d-M-Y" }, width: 90 },
+                { key: false, name: 'ReceiveType', editable: true, width: 100 },
+                { key: false, name: 'BranchName', editable: true,width:300},
+                { key: false, name: 'SupplierName', editable: true },
+                { key: false, name: 'createdName', editable: true },
+                { key: false, name: 'Status', editable: true },        
+            ],
+
+            pager: '#pager',
+            rowNum: 10,
+            rowList: [10, 20, 30, 40],
+            height: '80%',
+            width: '70%',
+            viewrecords: true,
+            caption: 'IT item In',
+            emptyrecords: 'No records to display',
+
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                cell: "cell",
+                id: "id",
+                userdata: "userdata",
+            },
+
+            multiselect: false
+        })
+        $("#grid").trigger("reloadGrid", [{ page: 1 }]);
+
+    });
+
+</script>

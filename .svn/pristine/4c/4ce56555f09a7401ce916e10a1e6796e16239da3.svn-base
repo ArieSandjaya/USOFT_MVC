@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Position";
+}
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">MASTER POSITION</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Search
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <form role="form">
+                            <div class="form-group">
+                                @Html.Label("Search By", new { @class = "col-md-2 control-label" })
+                                <div class="col-lg-4">
+                                    @Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menuEmployee, "All", new { @class = "form-control" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.TextBox("SearchValue", null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Branch", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("piintBranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Departement", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("pivchDepartementCode", (SelectList)ViewBag.dpt, "All", new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <input type="Submit" value="Search" class="btn btn-default" id="buttonSearch" />
+                <input type="button" id="buttonCreate" value="Create" class="btn btn-default" onclick="window.location.href='@Url.Action("AddPosition", "Master", new {id = "117903" })'" />
+            </div>
+            <div class="panel-body">
+                <div id="divTable">
+                    <table id="grid"></table>
+                    <div id="pager"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#buttonSearch').click(function () {
+        $("#grid").jqGrid({
+            url: '@Url.Action("GetPrivilegeList", "Master")',
+            datatype: "JSON",
+            mtype: "POST",
+
+            postData: {
+
+                ParamField: (function () {
+                    return $("#ParamField option:selected").val();
+                }),
+                SearchValue: (function () {
+                    return $("#SearchValue").val();
+                }),
+                piintBranchId: (function () {
+                    return $("#piintBranchId option:selected").val();
+                }),
+                pivchDepartementCode: (function () {
+                    return $("#pivchDepartementCode option:selected").val();
+                }),
+            
+            },
+            colNames: ['Code', 'Position Name', 'Branch Name', 'Departement Name', 'Status', 'Action'],
+            colModel: [
+                { key: true, Name: true, name: 'PrivilegeCode', editable: true, width: 100 },
+                { key: false, name: 'PrivilegeName', editable: true, width: 400 },
+                { key: false, name: 'BranchName', editable: true, width: 110 },
+                { key: false, name: 'DepartementName', editable: true, width: 150 },
+                { key: false, name: 'IsActive', editable: true, width: 40 },
+                {
+                    name: 'Detail', title: false, width: 100,
+                    formatter: function (cellvalue, options, rowObject) {
+                        return '<a href="/InformationTechnology/ActivityTask/ActivityTaskDetail?value=' + rowObject.ActivityNo + '">' +
+                        "Detail" + "</a>";
+                    }
+                }
+
+            ],
+
+            pager: '#pager',
+            rowNum: 10,
+            rowList: [10, 20, 30, 40],
+            height: '80%',
+            width: '50%',
+
+            caption: 'Activity List',
+            emptyrecords: 'No records to display',
+
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                cell: "cell",
+                id: "id",
+                userdata: "userdata",
+            },
+
+            multiselect: false,
+        });
+        $("#grid").trigger("reloadGrid", [{ page: 1 }]);
+
+    });
+</script>
+

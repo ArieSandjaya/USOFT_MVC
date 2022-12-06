@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GeneralModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="USOFTConnection" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="spGetApprovalState" ReturnType="Collection(GeneralModel.spGetApprovalState_Result)">
+      <Parameter Name="piintMenuId" Mode="In" Type="Int32" />
+      <Parameter Name="piintState" Mode="In" Type="Int32" />
+      <Parameter Name="pivchUserId" Mode="In" Type="String" />
+      <Parameter Name="piintDataBranchId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetLookupDetailInfo" ReturnType="Collection(GeneralModel.spGetLookupDetailInfo_Result)">
+      <Parameter Name="pivchLookupId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetLookupInfo" ReturnType="Collection(GeneralModel.spGetLookupInfo_Result)">
+      <Parameter Name="pivchLookupId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetMappingApprovalEmailCC" ReturnType="Collection(GeneralModel.spGetMappingApprovalEmailCC_Result)">
+      <Parameter Name="piintMenuId" Mode="In" Type="Int32" />
+      <Parameter Name="piintState" Mode="In" Type="Int32" />
+      <Parameter Name="pivchDepartementCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetMappingApprovalEmailTo" ReturnType="Collection(GeneralModel.spGetMappingApprovalEmailTo_Result)">
+      <Parameter Name="piintMenuId" Mode="In" Type="Int32" />
+      <Parameter Name="piintState" Mode="In" Type="Int32" />
+      <Parameter Name="pivchDepartementCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetParamValue" ReturnType="Collection(GeneralModel.spGetParamValue_Result)">
+      <Parameter Name="pivchPrmCode" Mode="In" Type="String" />
+      <Parameter Name="pivchPrmCondition" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetUserEmail" ReturnType="Collection(GeneralModel.spGetUserEmail_Result)">
+      <Parameter Name="pivchUserId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetUserLogon" ReturnType="Collection(GeneralModel.spGetUserLogon_Result)">
+      <Parameter Name="UserId" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="spGetApprovalState_Result">
+    <Property Type="Boolean" Name="ApprovalState" Nullable="false" />
+    <Property Type="Int32" Name="ToState" Nullable="false" />
+    <Property Type="Int32" Name="MaxState" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spGetLookupDetailInfo_Result">
+    <Property Type="String" Name="LookupId" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="Sequence" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Field" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FieldType" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="Width" Nullable="false" />
+    <Property Type="String" Name="Align" Nullable="false" MaxLength="1" />
+    <Property Type="Boolean" Name="IsShow" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="spGetLookupInfo_Result">
+    <Property Type="String" Name="LookupId" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="SP" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spGetMappingApprovalEmailCC_Result">
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spGetMappingApprovalEmailTo_Result">
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spGetParamValue_Result">
+    <Property Type="String" Name="Parameter_Code" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Parameter_Code_Cond" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Parameter_Group_Code" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Parameter_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="Value" Nullable="true" MaxLength="200" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="Boolean" Name="IsDelete" Nullable="false" />
+    <Property Type="DateTime" Name="created_date" Nullable="false" Precision="23" />
+    <Property Type="String" Name="created_by" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="update_date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="update_by" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="spGetUserEmail_Result">
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="spGetUserLogon_Result">
+    <Property Type="String" Name="UserId" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Pass" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="BranchId" Nullable="false" />
+    <Property Type="String" Name="BranchName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PrivilegeCode" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="PrivilegeName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="DepartementName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EmailB2B" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ChangePass" Nullable="false" MaxLength="1" />
+  </ComplexType>
+</Schema>

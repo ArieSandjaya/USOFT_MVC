@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "AddMailFile";
+}
+
+@using (@Html.BeginForm("AddMailFile", "MailReminder", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">ADD FILE</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add new File
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Reminder Id", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label(((int)ViewBag.Id).ToString(), new { @class = "col-lg-10 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Subject", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                       @Html.Label((String)ViewBag.Subject, new { @class = "col-lg-10 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Sequence no", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.TextBox("piintSequence", null, new { @class = "form-control" })
+                                       
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Description", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.TextArea("pivchDescription", "", new { @class = "form-control", @style = "height : 100px" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Upload", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.TextBox("pivchFileName", null, new { type = "File", @class = "form-control", @name = "pivchFileName" })
+                                        @Html.Hidden("piintReminderId", (int)ViewBag.Id)
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <input type="Submit" value="Proses" class="btn btn-default" id="buttonSearch" />
+                            <input type="button" id="buttonCreate" value="Back" class="btn btn-default" onclick="window.location.href='@Url.Action("MailReminder", "MailReminder", new { id = ViewBag.menuId })'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@*<h2>AddMailFile</h2>
+
+<div id="container">
+    <div class="div_common" style="width:1000px">
+@using (@Html.BeginForm("AddMailFile","ITMail",FormMethod.Post, new {enctype = "multipart/form-data" }))
+{
+        @Html.Label("Reminder Id :")
+        @ViewBag.Id
+        <p>
+            @Html.Label("Subject :")
+        @ViewBag.Subject
+    </p>
+    <p>
+        @Html.Label("Sequence No:")
+        @Html.TextBox("piintSequence", null, new { @class = "input" })</p>
+        @Html.Label("Description:")
+        @Html.TextArea("pivchDescription", null, new { @class = "input", @style = "height:50px;width:200px;" })
+        <p style="width:1000px">
+            @Html.Label("File :")
+            @Html.TextBox("pivchFileName", null, new { type = "file", @class = "input", @style = "width:200px;height:30px", @name = "pivchFileName" })
+        </p>
+            @Html.Hidden("piintReminderId", (int)ViewBag.Id)
+      <p><input type="Submit" value="Add File" class="buttonSub" id="buttonSearch" name="command" /></p>
+}
+    </div>
+</div>*@
+
+

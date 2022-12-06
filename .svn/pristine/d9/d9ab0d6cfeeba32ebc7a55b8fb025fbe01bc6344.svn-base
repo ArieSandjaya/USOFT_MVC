@@ -1,0 +1,79 @@
+﻿@model  IEnumerable<USOFT.DataAccess.spGetMenuUsers_Result>
+@{
+    USOFT.DataAccess.spGetMenuUsers_Result result = new USOFT.DataAccess.spGetMenuUsers_Result();
+}
+@foreach (var items in Model)
+{
+    <li>
+        @if (@items.MenuId == @items.MenuParent)
+        {
+            <a href="#"><i class="fa fa-files-o fa-fw"></i>@items.MenuName<span class="fa arrow"></span></a>
+        }
+        @TreeDetail(items)
+
+    </li>
+}
+@helper TreeDetail(USOFT.DataAccess.spGetMenuUsers_Result item)
+{
+    
+    foreach (var itemDetail in @item.getMenuChild)
+    {
+
+        
+        
+        <ul class="nav nav-second-level">
+            <li>
+                @if (@itemDetail.getMenuChild.Count > 0)
+                {
+                   <a href="#">@itemDetail.MenuName</a>
+                }
+                else
+                {
+                    //var Spliter = @itemDetail.MenuLink.Split(';');
+                    //if(Spliter.Length > 0)
+                    //{ 
+                    
+                    <a href="@Url.Action(@itemDetail.url, @itemDetail.controller, new { @id = @itemDetail.MenuId })">@itemDetail.MenuName</a>
+                    @*}*@
+                //else
+                //{
+                //<a href="@Url.Action(@itemDetail.MenuLink,@itemDetail.MenuLink)">@itemDetail.MenuName</a>
+                //}
+                }
+                @TreeDetail(itemDetail)
+                
+            </li>
+        </ul>
+        }
+    }
+
+    @*<script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+
+            $('#cssmenu > ul > li:has(ul)').addClass("has-sub");
+            $('#cssmenu > ul > li > a').click(function () {
+
+                var checkElement = $(this).next();
+
+                $('#cssmenu li').removeClass('active');
+                $(this).closest('li').addClass('active');
+
+                if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                    $(this).closest('li').removeClass('active');
+                    checkElement.slideUp('normal');
+                }
+
+                if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+                    $('#cssmenu ul ul:visible').slideUp('normal');
+                    checkElement.slideDown('normal');
+                }
+
+                if (checkElement.is('ul')) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+
+        });
+    </script>*@

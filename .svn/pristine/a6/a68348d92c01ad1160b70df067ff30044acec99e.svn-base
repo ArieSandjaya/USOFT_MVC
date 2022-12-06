@@ -1,0 +1,58 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.UI;
+using USOFT.DataAccess;
+
+namespace USOFT.Controllers
+{
+    public class MenuController : Controller
+    {
+        //
+        // GET: /Menu/
+        USOFTEntities db = new USOFTEntities();
+        public ActionResult Index()
+        {
+            string id = Session["UserId"].ToString();
+            return PartialView("PartialMenu", getMenu(id));
+        }
+
+        private IList<spGetMenuUsers_Result> getMenu(string id)
+        {
+            IList<spGetMenuUsers_Result> treeMenu = new List<spGetMenuUsers_Result>();
+            spGetMenuUsers_Result detailMenu = new spGetMenuUsers_Result();
+            var menu = db.spGetMenuUsers(id).ToList();
+            var treeHeader = menu.Where(x => x.MenuId == x.MenuParent).ToList();
+            foreach (var items in treeHeader)
+            {
+                detailMenu = items;
+                treeMenu.Add(GetMenuClient(menu, detailMenu));
+            }
+            return treeMenu;
+        }
+
+        private static spGetMenuUsers_Result GetMenuClient(List<spGetMenuUsers_Result> childMenu, spGetMenuUsers_Result detailMenu)
+        {
+            var child = childMenu.Where(x => x.MenuParent == detailMenu.MenuId).ToList();
+            child = child.Where(x => x.MenuId > detailMenu.MenuId).ToList();
+            spGetMenuUsers_Result GetMenuClient1 = new spGetMenuUsers_Result();
+
+            foreach (var item in child)
+            {
+                if (item.MenuLink != null)
+                {
+                    var con = item.MenuLink.Split(';');
+                    item.controller = con[1];
+                    item.url= con[0];
+                }
+                detailMenu.getMenuChild.Add(item);
+                GetMenuClient(childMenu, item);
+            }
+
+            return detailMenu;
+        }
+      
+	}
+}

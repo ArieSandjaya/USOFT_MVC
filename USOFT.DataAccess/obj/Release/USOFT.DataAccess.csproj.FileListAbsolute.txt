@@ -1,0 +1,13 @@
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Release\USOFT.DataAccess.dll.config
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Release\USOFT.DataAccess.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Release\USOFT.DataAccess.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Release\EntityFramework.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Release\GridMvc.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Release\Usoft.Common.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Release\Usoft.Common.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Release\EntityFramework.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\obj\Release\USOFT.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\obj\Release\USOFT.DataAccess.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\USOFT.DataAccess\obj\Release\USOFT.DataAccess.pdb

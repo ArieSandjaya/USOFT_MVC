@@ -1,0 +1,165 @@
+﻿@model IEnumerable<USOFT.Models.Branch>
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">BRANCH</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Edit Branch
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Branch ID", new { @class = "col-md-4 control-label" })
+
+                                    <div class="col-lg-5">
+                                        @*@Html.DropDownList("ParamField", (IEnumerable<SelectListItem>)ViewBag.menu, "All", new { @class = "form-control" })*@
+                                        @Html.TextBox("SearchValue", (int?)ViewBag.brId, new { @class = "form-control" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch Code", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("branchCode", (String)ViewBag.brCode, new { @class = "form-control" })
+                                        @* @Html.DropDownList("BranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch Name", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("branchName", (String)ViewBag.brName, new { @class = "form-control" })
+                                        @*@Html.DropDownList("DepartementCode", (SelectList)ViewBag.dpt, "All", new { @class = "form-control" })*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch Type", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("branchType", (SelectList)ViewBag.brType, "All", new { @class = "form-control" })
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="divParent" style="display:none">
+                                    @Html.Label("Branch Parent", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("branchParent", (SelectList)ViewBag.brParent, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    @Html.Label("Branch Address", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextArea("BranchAddress", (String)ViewBag.brAdd, new { @class = "form-control", @style = "heigth:80px" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch Phone", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.TextBox("BranchPhone", (String)ViewBag.brPhone, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Active State", new { @class = "col-md-4 control-label" })
+                                    <div class="col-lg-5">
+                                        @Html.DropDownList("activeState", (SelectList)ViewBag.active, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href('@Url.Action("Users","Users")')" />*@
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <input type="submit" value="Proses" id="buttonSearch" class="btn btn-default" />
+                            <input type="button" id="buttonCreate" value="Back" name="buttonAdd" class="btn btn-default" onclick="window.location.href('@Url.Action("Users","Users")')" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $("#branchType").change(function () {
+        var targID = $(this).val();
+        if (targID == "STANDBY POINT") {
+            $("#divParent").show();
+        } else
+            $("#divParent").hide();
+    })
+
+
+</script>
+
+
+@*@using (@Html.BeginForm(FormMethod.Post))
+{
+    <div id="Container">
+        <div id="div_common">
+            @Html.Label("Branch Id", new { @class = "label-main" })
+         </div>
+            @Html.TextBox("SearchValue", (int?)ViewBag.brId, new {@class = "input" , @readonly="readonly"  })
+        <div id="div_common">
+            @Html.Label("Branch Code", new { @class = "label-main" })
+        </div>
+            <div id="div_common">
+                @Html.TextBox("branchCode", (String)ViewBag.brCode, new { @class = "input" })
+            </div>
+            <div id="div_common">
+                @Html.Label("Branch Name", new { @class = "label-main" })
+            </div>
+            <div id="div_common">
+                @Html.TextBox("branchName", (String)ViewBag.brName, new { @class = "input" })
+            </div>
+            <div id="div_common">
+                @Html.Label("Branch Type", new { @class = "label-main" })
+            </div>
+            <div id="div_common">
+                @Html.DropDownList("branchType", (SelectList)ViewBag.brType, new { @class = "combobox" })
+            </div>
+            <div id="div_common">
+                @Html.Label("Branch Parent", new { @class = "label-main" })
+            </div>
+            <div id="div_common">
+                @Html.DropDownList("branchParent", (SelectList)ViewBag.brParent, new { @class = "combobox"})
+            </div>
+            <div id="div_common">
+                @Html.Label("Branch Address", new { @class = "label-main" })
+            </div>
+            <div id="div_common">
+                @Html.TextArea("BranchAddress", (String)ViewBag.brAdd, new { @class = "input" })
+            </div>
+            <div id="div_common">
+                @Html.Label("Branch Phone", new { @class = "label-main" })
+            </div>
+            <div id="div_common">
+                @Html.TextBox("BranchPhone", (String)ViewBag.brPhone, new { @class = "input" })
+            </div>
+            <div id="div_common">
+                @Html.Label("Active State", new { @class = "label-main" })
+            </div>
+            <div id="div_common">
+                @Html.DropDownList("IsActive", (SelectList)ViewBag.active, new { @class = "combobox" })
+            </div>
+        <div id="div_common">
+            <input type="submit" value="Proses" id="buttonSearch" class="buttonSub"/>
+        </div>
+            
+        </div>        
+    
+}*@

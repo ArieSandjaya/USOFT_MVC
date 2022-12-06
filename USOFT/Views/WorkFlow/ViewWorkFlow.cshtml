@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "ViewWorkFlow";
+
+}
+
+@Html.Action("PartialWorkFlowView","WorkFlow", new { value = ViewBag.value })
+<input type="button" id="buttonCreate" value="View" class="btn btn-default" onclick="window.location.href='@Url.Action("WorkFlowCommand", "WorkFlow", new {id = @ViewBag.NIK ,name = "Approve" })'" />
+<input type="button" class="btn-text-input-submit" id="btnPopup" />
+<input type="button" id="buttonCreate" value="Approve" class="btn btn-default" onclick="window.location.href='@Url.Action("WorkFlowCommand", "WorkFlow", new {})'" />

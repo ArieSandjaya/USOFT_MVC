@@ -1,0 +1,32 @@
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\Usoft.Common\bin\Debug\Usoft.Common.dll
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\Usoft.Common\bin\Debug\Usoft.Common.pdb
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\Usoft.Common\obj\Debug\Usoft.Common.dll
+c:\Users\a.sandjaya.ufinance\documents\visual studio 2013\Projects\USOFT\Usoft.Common\obj\Debug\Usoft.Common.pdb
+C:\Users\a.sandjaya.UFINANCE\documents\visual studio 2013\Projects\USOFT\Usoft.Common\obj\Debug\USOFT.Common.csprojResolveAssemblyReference.cache
+D:\Project2014\USOFT\Usoft.Common\bin\Debug\Usoft.Common.dll
+D:\Project2014\USOFT\Usoft.Common\bin\Debug\Usoft.Common.pdb
+D:\Project2014\USOFT\Usoft.Common\obj\Debug\Usoft.Common.dll
+D:\Project2014\USOFT\Usoft.Common\obj\Debug\Usoft.Common.pdb
+D:\Project2014\USOFT\Usoft.Common\obj\Debug\USOFT.Common.csprojResolveAssemblyReference.cache
+D:\2014\USOFT\Usoft.Common\bin\Debug\Usoft.Common.dll
+D:\2014\USOFT\Usoft.Common\bin\Debug\Usoft.Common.pdb
+D:\2014\USOFT\Usoft.Common\obj\Debug\USOFT.Common.csprojResolveAssemblyReference.cache
+D:\2014\USOFT\Usoft.Common\obj\Debug\Usoft.Common.dll
+D:\2014\USOFT\Usoft.Common\obj\Debug\Usoft.Common.pdb
+F:\2014\USOFT\Usoft.Common\bin\Debug\Usoft.Common.dll
+F:\2014\USOFT\Usoft.Common\bin\Debug\Usoft.Common.pdb
+F:\2014\USOFT\Usoft.Common\bin\Debug\GridMvc.dll
+F:\2014\USOFT\Usoft.Common\obj\Debug\Usoft.Common.dll
+F:\2014\USOFT\Usoft.Common\obj\Debug\Usoft.Common.pdb
+F:\2014\USOFT\Usoft.Common\obj\Debug\USOFT.Common.csprojResolveAssemblyReference.cache
+D:\USOFT2014\Usoft.Common\bin\Debug\Usoft.Common.dll
+D:\USOFT2014\Usoft.Common\bin\Debug\Usoft.Common.pdb
+D:\USOFT2014\Usoft.Common\bin\Debug\GridMvc.dll
+D:\USOFT2014\Usoft.Common\obj\Debug\USOFT.Common.csprojResolveAssemblyReference.cache
+D:\USOFT2014\Usoft.Common\obj\Debug\Usoft.Common.dll
+D:\USOFT2014\Usoft.Common\obj\Debug\Usoft.Common.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\bin\Debug\Usoft.Common.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\bin\Debug\Usoft.Common.pdb
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\bin\Debug\GridMvc.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\obj\Debug\Usoft.Common.dll
+C:\Users\a.sandjaya\Documents\Visual Studio 2013\Projects\USOFT2014\Usoft.Common\obj\Debug\Usoft.Common.pdb

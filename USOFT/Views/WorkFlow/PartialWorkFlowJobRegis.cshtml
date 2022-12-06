@@ -1,0 +1,99 @@
+﻿@model IEnumerable<USOFT.DataAccess.spHREmployeeDetailView_Result>
+@{
+    int? jobstat;
+}
+@using (@Html.BeginForm(FormMethod.Post))
+{
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Employee Register</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Employee Register
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Hidden("menuId", (String)ViewBag.menuId)
+                                    @Html.Label("NIK :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.NIK, new { @class = "col-md-2 control-label" })
+                                        @Html.Hidden("NIK", (string)@ViewBag.NIK)
+                                        @Html.Hidden("JobId",(string)@ViewBag.value)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Name :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.Name, new { @class = "col-md-2 control-label" })
+                                        @Html.Hidden("Name",(string)@ViewBag.Name)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("JobType :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.jobtype, new { @class = "col-md-2 control-label" })
+                                        @Html.Hidden("JobType",(String)@ViewBag.jobtype)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.branch, new { @class = "col-md-2 control-label"})
+                                        @Html.Hidden("branch",(String)@ViewBag.branch)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Departement :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.departement, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Position :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.position, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Date :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.Date, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                @if (ViewBag.jobstatus != null)
+                                {
+                                    jobstat = ViewBag.jobstatus;
+                                }
+                                else
+                                {
+                                    jobstat = null;
+                                }
+                                <div class="form-group">
+                                    @Html.Label("Job Status :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label(jobstat.ToString(), new { @class = "col-md-2 control-label" })
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Approval Status :", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.approval, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

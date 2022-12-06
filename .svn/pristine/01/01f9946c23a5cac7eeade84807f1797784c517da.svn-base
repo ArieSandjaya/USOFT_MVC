@@ -1,0 +1,227 @@
+﻿@{
+    ViewBag.Title = "MainReminderDetail";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+
+@{
+    string no = ((int)@ViewBag.Id).ToString();
+    string bod;
+    if (ViewBag.Body != null)
+    {
+        bod = (String)ViewBag.Body;
+    }
+    else
+    {
+        bod = "";
+    }
+}
+@using (@Html.BeginForm(FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">MAIL REMINDER DETAIL</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Detail Mail
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Mail Id", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label(no, new { @class = "col-md-2 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Subject", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label((String)@ViewBag.Subject, new { @class = "col-lg-12 control-label" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Body", new { @class = "col-md-2 control-label" })
+                                    <div class="col-lg-10">
+                                        @Html.Label(bod, new { @class = "col-md-2 control-label" })
+                                        @Html.Hidden("Val", (int)ViewBag.Id)
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <input type="Submit" value="Search" class="btn btn-default" id="buttonSearch" />
+                            <input type="button" id="buttonCreate" value="Create" class="btn btn-default" onclick="window.location.href('@Url.Action("MailReminder","MailReminder")')" />
+                        </div>
+                        <div class="panel-body">
+                            <div id="divTable">
+                                <table id="grid"></table>
+                                <div id="pager"></div>
+                            </div>
+                            <input type="Submit" value="Add Detail" class="btn btn-default" id="buttonSearch" name="command" />
+                        </div>
+                        <div class="panel-body">
+                            <div id="divTable">
+                                <table id="grid2"></table>
+                                <div id="pager2"></div>
+                                <input type="Submit" value="Add File" class="btn btn-default" id="buttonSearch" name="command" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@*@using (@Html.BeginForm(FormMethod.Post))
+    {
+    <h2>MailReminderDetail</h2>
+
+
+            @Html.Label("Mail Id :", new { @class = "label-main" })
+            @ViewBag.Id
+            @Html.Label("Subject :", new { @class = "label-main" })
+            @ViewBag.Subject
+            @Html.Label("Body :", new { @class = "label-main" })
+            @ViewBag.Body
+            @Html.Hidden("Val",(int)ViewBag.Id)
+
+
+
+
+            <table id="grid"></table>
+            <div id="pager"></div>
+            <p><input type="Submit" value="Add Detail" class="buttonSub" id="buttonSearch" name="command" /></p>
+
+
+            <table id="grid2"></table>
+            <div id="pager2"></div>
+            <p><input type="Submit" value="Add File" class="buttonSub" id="buttonSearch" name="command" /></p>
+
+
+
+    }*@
+<script type="text/javascript">
+
+    $("#grid").jqGrid({
+        url: '@Url.Action("GetSchedulerList","MailReminder")',
+        datatype: 'JSON',
+        mtype: "GET",
+        postData: {
+            value: (function () {
+                return $("#Val").val();
+            })
+        },
+
+
+        colNames: ['No', 'Start', 'Mail To', 'IntervalTime', 'Action'],
+        colModel: [
+            { key: true, Name: true, name: 'No', editable: true },
+            { key: false, Name: true, name: 'StartDate', editable: true, formatter: "date", formatoptions: { srcformat: "Y-m-d", newformat: "d-M-Y" }, width: 90 },
+            { key: false, Name: true, name: 'MailTo', editable: true, width: 500 },
+            { key: false, Name: true, name: 'IntervalTime' },
+            //{ name: 'Action', index: 'ID', label: 'Action', width: 80, fixed: true, sortable: false, align: 'center', formatter: 'actionFormatter' },
+            {
+
+                formatter: function (cellvalue, options, rowObject) {
+                    var x = '@Html.ActionLink("Delete", "MailSchedulerDelete", "MailReminder", new { value = "myId", Id = @ViewBag.Id }, new { @style = "color:Blue;font-weight:bold;" })';
+                    var y = '@Html.ActionLink("Edit", "EditMailReminderSchedule", "MailReminder", new { value = "myId", Id = @ViewBag.Id }, new { @style = "color:Red;font-weight:bold;" })';
+                    var z = '@Html.ActionLink("Send", "MailSchedulerSend", "MailReminder", new { value = "myId", Id = @ViewBag.Id }, new { @style = "color:Green;font-weight:bold;" })';
+                    return x.replace("myId", rowObject.No) + " " + y.replace("myId", rowObject.No) + " " + z.replace("myId", rowObject.No)
+                }
+            }
+            //{
+            //    name: 'Detail', title: false,
+            //    formatter: function (cellvalue, options, rowObject) {
+            //        return '<a href="/ITMail/MainReminderDetail?value=' + rowObject.ReminderId + '">' +
+            //        "Detail" + "</a>";
+            //    }
+            //}
+
+        ],
+
+
+
+        height: '80%',
+        width: '70%',
+        viewrecords: true,
+        caption: 'Schedule Detail',
+
+        jsonReader: {
+            root: "rows",
+            page: "page",
+            total: "total",
+            records: "records",
+            repeatitems: false,
+            cell: "cell",
+            id: "id",
+            userdata: "userdata",
+        },
+
+        multiselect: false
+    });
+    $("#grid2").jqGrid({
+        url: "GetMailFile",
+        datatype: 'JSON',
+        mtype: "GET",
+        postData: {
+            value: (function () {
+                return $("#Val").val();
+            })
+        },
+
+
+        colNames: ['No', 'FileName', 'File', 'Action'],
+        colModel: [
+            { key: true, Name: true, name: 'No', editable: true },
+            { key: false, Name: true, name: 'FileName', editable: true },
+            { key: false, Name: true, name: 'File', editable: true },
+
+            {
+
+                formatter: function (cellvalue, options, rowObject) {
+                    var x = '@Html.ActionLink("Delete", "MailFileDelete", "MailReminder", new { value = "myId", Id = @ViewBag.Id }, new { @style = "color:Blue;font-weight:bold;" })';
+                    var y = '@Html.ActionLink("Edit", "EditMailFile", "MailReminder", new { value = "myId", Id = @ViewBag.Id }, new { @style = "color:Red;font-weight:bold;" })';
+
+                    return x.replace("myId", rowObject.No) + " " + y.replace("myId", rowObject.No)
+                }
+            }
+
+        ],
+
+
+        height: '80%',
+        width: '70%',
+        viewrecords: true,
+        caption: 'File Detail',
+
+        jsonReader: {
+            root: "rows",
+            page: "page",
+            total: "total",
+            records: "records",
+            repeatitems: false,
+            cell: "cell",
+            id: "id",
+            userdata: "userdata",
+        },
+
+        multiselect: false
+    });
+</script>

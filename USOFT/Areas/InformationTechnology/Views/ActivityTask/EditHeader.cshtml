@@ -1,0 +1,156 @@
+﻿
+@{
+    ViewBag.Title = "EditHeader";
+}
+
+@using (@Html.BeginForm(FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">EDIT ACTIVITY TASK</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                   Edit Activity Task
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Activity Number", new { @class = "col-md-3 control-label" })
+                                    <div class="col-lg-9">
+                                        @Html.Label((String)ViewBag.No, new { @class = "form-control" })
+                                        @Html.Hidden("val",(String)ViewBag.No)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Date", new { @class = "col-md-3 control-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBox("pidtmActivityDate", (DateTime)ViewBag.date, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Request By", new { @class = "col-md-3 control-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBox("pivchRequestBy", (String)ViewBag.req, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Branch", new { @class = "col-md-3 control-label" })
+                                    <div class="col-lg-9">
+                                        @Html.DropDownList("piintBranchId", (SelectList)ViewBag.br, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none" id="Dept">
+                                    @Html.Label("Departement", new { @class = "col-md-3 control-label" })
+                                    <div class="col-lg-9">
+                                        @Html.DropDownList("pivchDepartementCode", (SelectList)ViewBag.dpt, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Problem Type", new { @class = "col-md-3 control-label" })
+                                    <div class="col-lg-9">
+                                        @Html.DropDownList("piintProblemTypeCode", (SelectList)ViewBag.prob, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display:none" id="Item">
+                                    @Html.Label("Item Type", new { @class = "col-md-3 control-label" })
+                                    <div class="col-lg-9">
+                                        @Html.DropDownList("pivchItemTypeCode", (SelectList)ViewBag.item, "All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Description", new { @class = "col-md-3 control-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextArea("pivchDescription", (string)ViewBag.desc, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Priority", new { @class = "col-md-3 control-label" })
+                                    <div class="col-lg-9">
+                                        @Html.DropDownList("pivchPriority", (SelectList)ViewBag.priority,"All", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <input type="Submit" value="Search" class="btn btn-default" id="buttonSearch" />
+                            <input type="button" id="buttonCreate" value="Create" class="btn btn-default" onclick="window.location.href='@Url.Action("AddActivityTask", "ActivityTask", new { id = ViewBag.menuId })'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@*@using (@Html.BeginForm(FormMethod.Post))
+    {
+    <div id="container">
+        <div class="div_common">
+
+            @Html.Label("Activity No", new { @class = "label-main" })
+            <p>@Html.Label("[Generated By System]", (string)@ViewBag.No)</p>
+            @Html.Label("Date", new { @class = "label-main" })
+            @Html.TextBox("pidtmActivityDate",(string)@ViewBag.date,new { @class = "input", @readonly = "readonly" })
+            @Html.Label("Request By", new { @class = "label-main" })
+            @Html.TextBox("pivchRequestBy", null, new { @class = "input" })
+            @Html.Label("Branch", new { @class = "label-main" })
+            @Html.DropDownList("piintBranchId", (IEnumerable<SelectListItem>)ViewBag.br, "- Select One -", new { @class = "combobox" ,@id = "event" })
+            <div id="8675" class="style-sub-1" style="display:none;" onchange="ChangeDropdowns(this.value)">
+                @Html.Label("Departement", new { @class = "label-main" })
+                @Html.DropDownList("pivchDepartementCode", (IEnumerable<SelectListItem>)ViewBag.dpt, "All", new { @class = "combobox" })
+            </div>
+            @Html.Label("ProblemType", new { @class = "label-main" })
+            @Html.DropDownList("piintProblemTypeCode", (IEnumerable<SelectListItem>)ViewBag.prob, "- Select One -", new { @class = "combobox" ,@id = "event2"})
+            <div id="1" class="style-sub-2" style="display:none;" onchange="ChangeDropdowns(this.value)">
+                @Html.Label("Departement", new { @class = "label-main" })
+                @Html.DropDownList("pivchItemTypeCode", (IEnumerable<SelectListItem>)ViewBag.item, "All", new { @class = "combobox" })
+            </div>
+            @Html.Label("Description", new { @class = "label-main" })
+            @Html.TextArea("pivchDescription")
+            @Html.Label("Priority", new { @class = "label-main" })
+            @Html.DropDownList("pivchPriority", (IEnumerable<SelectListItem>)ViewBag.priority, "- Select One -", new { @class = "combobox" })
+
+        </div>
+    </div>
+
+    <p><input type="Submit" value="Proccess" class="buttonSub" id="buttonSearch" /></p>
+    }*@
+
+<script type="text/javascript">
+    $("#piintBranchId").change(function () {
+        var targID = $("#piintBranchId").val();
+        if (targID == "8675") {
+            $("#Dept").show();
+        }
+        else {
+            $("#Dept").hide();
+        }
+    })
+    $("#piintProblemTypeCode").change(function () {
+        var targID = $("#piintProblemTypeCode").val();
+        if (targID == "1") {
+            $("#Item").show();
+        }
+        else {
+            $("#Item").hide();
+        }
+    })
+    //$("#event2").change(function () {
+    //    var targID = $(this).val();
+    //    $("div.style-sub-2").hide();
+    //    $('#' + targID).show();
+
+    //})
+</script>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GeneralModelStoreContainer" CdmEntityContainer="USOFTConnection">
+    <FunctionImportMapping FunctionImportName="spGetApprovalState" FunctionName="GeneralModel.Store.spGetApprovalState">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralModel.spGetApprovalState_Result">
+          <ScalarProperty Name="ApprovalState" ColumnName="ApprovalState" />
+          <ScalarProperty Name="ToState" ColumnName="ToState" />
+          <ScalarProperty Name="MaxState" ColumnName="MaxState" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetLookupDetailInfo" FunctionName="GeneralModel.Store.spGetLookupDetailInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralModel.spGetLookupDetailInfo_Result">
+          <ScalarProperty Name="LookupId" ColumnName="LookupId" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Field" ColumnName="Field" />
+          <ScalarProperty Name="FieldType" ColumnName="FieldType" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Align" ColumnName="Align" />
+          <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetLookupInfo" FunctionName="GeneralModel.Store.spGetLookupInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralModel.spGetLookupInfo_Result">
+          <ScalarProperty Name="LookupId" ColumnName="LookupId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="SP" ColumnName="SP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetMappingApprovalEmailCC" FunctionName="GeneralModel.Store.spGetMappingApprovalEmailCC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralModel.spGetMappingApprovalEmailCC_Result">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetMappingApprovalEmailTo" FunctionName="GeneralModel.Store.spGetMappingApprovalEmailTo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralModel.spGetMappingApprovalEmailTo_Result">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetParamValue" FunctionName="GeneralModel.Store.spGetParamValue">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralModel.spGetParamValue_Result">
+          <ScalarProperty Name="Parameter_Code" ColumnName="Parameter_Code" />
+          <ScalarProperty Name="Parameter_Code_Cond" ColumnName="Parameter_Code_Cond" />
+          <ScalarProperty Name="Parameter_Group_Code" ColumnName="Parameter_Group_Code" />
+          <ScalarProperty Name="Parameter_Name" ColumnName="Parameter_Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="created_by" ColumnName="created_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetUserEmail" FunctionName="GeneralModel.Store.spGetUserEmail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralModel.spGetUserEmail_Result">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetUserLogon" FunctionName="GeneralModel.Store.spGetUserLogon">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GeneralModel.spGetUserLogon_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="PrivilegeCode" ColumnName="PrivilegeCode" />
+          <ScalarProperty Name="PrivilegeName" ColumnName="PrivilegeName" />
+          <ScalarProperty Name="DepartementName" ColumnName="DepartementName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailB2B" ColumnName="EmailB2B" />
+          <ScalarProperty Name="ChangePass" ColumnName="ChangePass" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

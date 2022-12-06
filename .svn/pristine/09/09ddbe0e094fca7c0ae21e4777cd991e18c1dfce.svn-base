@@ -1,0 +1,696 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.UI.WebControls;
+
+namespace Usoft.Common.CommonFunction
+{
+    public class CommonFunction
+    {
+        
+        public string SearchText(string SearchBy, string SearchValue)
+        {
+            string SearchSQL = "";
+
+            if (SearchBy != "")
+            {
+                string[] StrSearch = SearchBy.Split('|');
+
+                SearchSQL = StrSearch[1];
+
+                switch (StrSearch[0])
+                {
+                    case "chr":
+                    case "vch":
+                    case "dtm": SearchSQL += " LIKE '" + SearchValue + "'";
+                        break;
+                    case "int":
+                    case "dcm":
+                    case "mon": SearchSQL += " = " + SearchValue;
+                        break;
+                }
+            }
+
+            return SearchSQL;
+        }
+        public string SearchList(string SearchBy, string SearchValue)
+        {
+            string sBy;
+            if (SearchBy != "")
+            {
+                string[] strArray = SearchBy.Split(new char[1] { '|' });
+                sBy = strArray[1].ToString();
+            }
+            else
+            {
+                sBy = SearchBy;
+            }
+            return sBy + "~" + SearchValue;
+        }
+        public string SearchValue(string SearchBy, string SearchValue)
+        {
+            return SearchBy + "~" + SearchValue;
+        }
+        public string SqlAndOr(string sqlText, bool state)
+        {
+            if ((sqlText != "") && (sqlText != null)) { sqlText = (state) ? " AND" : " OR"; }
+
+            return sqlText;
+        }
+        public string RemoveSpecialChar(string MyString)
+        {
+            MyString = MyString.Replace("\"", "");
+            MyString = MyString.Replace("@", "");
+            MyString = MyString.Replace("?", "");
+            MyString = MyString.Replace(":", "");
+            MyString = MyString.Replace(";", "");
+            MyString = MyString.Replace("_", "");
+            MyString = MyString.Replace("=", "");
+            MyString = MyString.Replace("<", "");
+            MyString = MyString.Replace(">", "");
+            MyString = MyString.Replace("[", "");
+            MyString = MyString.Replace("]", "");
+            MyString = MyString.Replace("{", "");
+            MyString = MyString.Replace("}", "");
+            MyString = MyString.Replace("!", "");
+            MyString = MyString.Replace("#", "");
+            MyString = MyString.Replace(",", "");
+            MyString = MyString.Replace("-", "");
+            MyString = MyString.Replace(".", "");
+            MyString = MyString.Replace("^", "");
+            MyString = MyString.Replace("(", "");
+            MyString = MyString.Replace(")", "");
+            MyString = MyString.Replace("/", "");
+            MyString = MyString.Replace("~", "");
+            MyString = MyString.Replace("|", "");
+            MyString = MyString.Replace("$", "");
+            MyString = MyString.Replace("%", "");
+            MyString = MyString.Replace("&", "");
+            MyString = MyString.Replace("*", "");
+            MyString = MyString.Replace("and", "");
+            return MyString;
+        }
+        public string ZeroToEmpty(string value)
+        {
+            try
+            {
+                if (Convert.ToInt32(value) == 0)
+                {
+                    return "";
+                }
+                else
+                {
+                    return value;
+                }
+            }
+            catch
+            {
+                return value;
+            }
+        }
+        public string RemoveZeroAfterComma(string value)
+        {
+            string strValue = "";
+            string[] arr = value.Split('.');
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (Convert.ToDouble(arr[i].ToString()) > 0)
+                {
+                    if (i == 0)
+                    {
+                        strValue = strValue + arr[i].ToString();
+                    }
+                    else
+                    {
+                        strValue = strValue + "." + arr[i].ToString();
+                    }
+                }
+            }
+            return strValue;
+        }
+        public string RemoveZeroToEmpty(string value)
+        {
+            return ZeroToEmpty(RemoveZeroAfterComma(value));
+        }
+        public string DateNormalize(DateTime dt)
+        {
+            string year = Convert.ToString(dt.Year);
+            string month = (Convert.ToString(dt.Month).Length > 1 ? "0" : "00") + Convert.ToString(dt.Month);
+            string day = (Convert.ToString(dt.Day).Length > 1 ? "0" : "00") + Convert.ToString(dt.Day);
+
+            return year + month.Substring(1, 2) + day.Substring(1, 2);
+        }
+        public void ExportDataTableToCsv(DataTable datatable, string filename)
+        {
+            DataTable toExcel = datatable.Copy();
+            HttpContext context = HttpContext.Current;
+            context.Response.Clear();
+            foreach (DataColumn column in toExcel.Columns)
+            {
+                context.Response.Write(column.ColumnName + ",");
+            }
+            context.Response.Write(Environment.NewLine);
+            foreach (DataRow row in toExcel.Rows)
+            {
+                for (int i = 0; i < toExcel.Columns.Count; i++)
+                {
+                    context.Response.Write(row[i].ToString().Replace(",", string.Empty) + ",");
+                }
+                context.Response.Write(Environment.NewLine);
+            }
+            context.Response.ContentType = "text/csv";
+            context.Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + ".csv");
+            context.Response.End();
+        }
+        public void ExportDataTableToXLS(DataTable datatable, string filename)
+        {
+            DataTable toExcel = datatable.Copy();
+            HttpContext context = HttpContext.Current;
+            context.Response.Clear();
+            foreach (DataColumn column in toExcel.Columns)
+            {
+                context.Response.Write(column.ColumnName + "\t");//+ ","
+            }
+            context.Response.Write(Environment.NewLine);
+            foreach (DataRow row in toExcel.Rows)
+            {
+                for (int i = 0; i < toExcel.Columns.Count; i++)
+                {
+                    context.Response.Write(row[i].ToString().Replace(",", string.Empty) + "\t");//
+                }
+                context.Response.Write(Environment.NewLine);
+            }
+            context.Response.ContentType = "application/xls";
+            context.Response.AppendHeader("Content-Disposition", "attachment; filename=" + filename + ".xls");
+            context.Response.End();
+        }
+        public void ExportToText(string dataString, string FileName)
+        {
+            HttpContext.Current.Response.AddHeader("Content-disposition", "attachment;filename=" + FileName + ".txt");
+            HttpContext.Current.Response.ContentType = "application/octet-stream";
+            HttpContext.Current.Response.Write(dataString);
+            HttpContext.Current.Response.End();
+        }
+        public DataTable ExcelToDb(string exts, string dir, string filePath, string ExcelSource, string condition)
+        {
+            string strExcelConn;
+            if (exts == ".xls")
+            {
+                strExcelConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=YES;'";
+            }
+            else
+            {
+                strExcelConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+            }
+            ExcelHelper excellHelper = new ExcelHelper();
+            DataTable dtExcel = excellHelper.RetrieveData(strExcelConn, dir, filePath, ExcelSource, condition);
+            //int iStartCount = excellHelper.GetRowCounts(dtExcel);
+            //SqlBulkCopyImport(dtExcel);
+            //int iEndCount = GetRowCounts();
+            //File.Delete(filePath);
+            return dtExcel;
+        }
+
+        public string ToUpperFirstLetter(string source)
+        {
+            if (string.IsNullOrEmpty(source))
+                return string.Empty;
+
+            // convert to char array of the string
+            char[] letters = source.ToCharArray();
+
+            // upper case the first char
+            letters[0] = char.ToUpper(letters[0]);
+            // return the array made of the new char array
+            return new string(letters);
+        }
+        public string DateFormatDDMMYYYY(String str)
+        {
+            if ((str.Length > 0) && (str != "&nbsp;"))
+            {
+                DateTime dtm;
+
+                dtm = Convert.ToDateTime(str);
+                return dtm.ToString("dd-MM-yyyy");
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public string DateFormatDDMMYYYYTime(String str)
+        {
+            if ((str.Length > 0) && (str != "&nbsp;"))
+            {
+                DateTime dtm;
+
+                dtm = Convert.ToDateTime(str);
+                return dtm.ToString("dd-MM-yyyy hh:mm tt"); //ex. 17-08-2013 17:08 PM
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public string DateFormatDDMMYYYYTime(DateTime dtm)
+        {
+            return dtm.ToString("dd-MM-yyyy hh:mm tt"); //ex. 17-08-2013 17:08 PM
+        }
+        public string DateFormatDDMMYYYYTime24(String str)
+        {
+            if ((str.Length > 0) && (str != "&nbsp;"))
+            {
+                DateTime dtm;
+
+                dtm = Convert.ToDateTime(str);
+                return dtm.ToString("dd-MM-yyyy HH:mm"); //ex. 17-08-2013 17:08 PM
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public string DateFormatDDMMYYYYTime24(DateTime dtm)
+        {
+            return dtm.ToString("dd-MM-yyyy HH:mm"); //ex. 17-08-2013 17:08 PM
+        }
+        public string DateFormatDDMMMMYYYY(DateTime dtm)
+        {
+            return dtm.ToString("MMMM d, yyyy"); //ex. August 09,2013
+        }
+        public string DateFormatDDMMYYYY(DateTime dtm)
+        {
+            return dtm.ToString("dd-MM-yyyy");
+        }
+        public string DateFormatDDMMMYYYY(DateTime dtm)
+        {
+            return dtm.ToString("dd-MMM-yyyy"); //ex. 27-Des-2013
+        }
+        public string DateFormatYYYYMMDD(String str)
+        {
+            if (str.Length > 0)
+            {
+                DateTime dtm;
+
+                dtm = Convert.ToDateTime(str);
+                return dtm.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public string DateFormatYYYYMMDD(DateTime dtm)
+        {
+            return dtm.ToString("yyyy-MM-dd");
+        }
+        public string NumberFormat(String dcm)
+        {
+            double Num;
+
+            bool isNum = double.TryParse(dcm.Trim(), out Num);
+
+            if (isNum)
+            {
+                return Num.ToString("#,##0");
+            }
+            return dcm;
+        }
+        public string NumberFormat(Double dcm)
+        {
+            return dcm.ToString("#,##0");
+        }
+        public string NumberFormatDecimal(String dcm)
+        {
+            double Num;
+
+            bool isNum = double.TryParse(dcm.Trim(), out Num);
+
+            if (isNum)
+            {
+                return Num.ToString("#,##0.00");
+            }
+            return dcm;
+        }
+        public string NumberFormatDecimal(Double dcm)
+        {
+            return dcm.ToString("#,##0.00");
+        }
+
+        public string GetIPAddress()
+        {
+            string IPAddress = String.Empty;
+
+            foreach (IPAddress IPA in Dns.GetHostAddresses(HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString()))
+            {
+                if (IPA.AddressFamily.ToString() == "InterNetwork")
+                {
+                    IPAddress = IPA.ToString();
+                    break;
+                }
+            }
+
+            if (IPAddress != String.Empty)
+            {
+                return IPAddress;
+            }
+
+            foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
+            {
+                if (IPA.AddressFamily.ToString() == "InterNetwork")
+                {
+                    IPAddress = IPA.ToString();
+                    break;
+                }
+            }
+
+            return IPAddress;
+        }
+
+
+        //public string GetIPAddress()
+        //{
+        //    string srUserIp = "";
+        //    try
+        //    {
+        //        srUserIp = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();
+        //        if (string.IsNullOrEmpty(srUserIp))
+        //        {
+        //            srUserIp = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
+        //        }
+        //        else
+        //        {
+        //            return srUserIp.Split(',')[0];
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        srUserIp = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
+        //    }
+        //    return srUserIp;
+        //}
+
+        public HyperLink TextToEmailLink(string title, string email, string subject)
+        {
+            // reference the Hyperlink
+            HyperLink hypEmail = new HyperLink();
+            hypEmail.Text = title;
+            hypEmail.ToolTip = "Click to email";
+            hypEmail.NavigateUrl = "mailto:" + email + "?subject=" + subject;
+            hypEmail.CssClass = "NameLink";
+            return hypEmail;
+        }
+
+        // Custom Type
+        public string DocStatus(string str)
+        {
+            string val = null;
+
+            switch (str)
+            {
+                case "D": val = "Draft";
+                    break;
+                case "A": val = "Approve";
+                    break;
+                case "X": val = "Reject";
+                    break;
+                case "R": val = "RFA";
+                    break;
+                default: val = str;
+                    break;
+            }
+
+            return val;
+        }
+
+        public string YesNo(String str)
+        {
+            String val = null;
+            switch (str)
+            {
+                case "True": val = "Yes";
+                    break;
+                case "False": val = "No";
+                    break;
+            }
+            return val;
+        }
+
+        public bool CheckStringContain(string str, string[] ArrStr)
+        {
+            bool IsContain = false;
+
+            foreach (string x in ArrStr)
+            {
+                if (str.Contains(x))
+                {
+                    IsContain = true;
+                    break;
+                }
+            }
+
+            return IsContain;
+        }
+
+        public string[] ConvertStrToArrStr(string str, string strSplit)
+        {
+            string[] arrStr = str.Split(new string[] { strSplit }, StringSplitOptions.None);
+
+            return arrStr;
+        }
+
+        // Modules Type
+        public string ActivityStatus(string str)
+        {
+            string val = null;
+
+            switch (str)
+            {
+                case "0": val = "Open";
+                    break;
+                case "1": val = "Assign";
+                    break;
+                case "2": val = "Solved";
+                    break;
+                case "3": val = "Closed";
+                    break;
+                case "4": val = "Done";
+                    break;
+                default: val = str;
+                    break;
+            }
+
+            return val;
+        }
+        public string ActivityPriority(string str)
+        {
+            string val = null;
+
+            switch (str)
+            {
+                case "0": val = "Low";
+                    break;
+                case "1": val = "Medium";
+                    break;
+                case "2": val = "High";
+                    break;
+                default: val = str;
+                    break;
+            }
+
+            return val;
+        }
+        public string ScheduleType(string str)
+        {
+            string val = null;
+
+            switch (str)
+            {
+                case "0": val = "Permanent";
+                    break;
+                case "1": val = "Temporer";
+                    break;
+                case "2": val = "Reporting";
+                    break;
+                case "3": val = "Monitoring";
+                    break;
+                case "4": val = "Service";
+                    break;
+                case "5": val = "Maintenance User";
+                    break;
+                case "6": val = "Backup Data";
+                    break;
+                default: val = str;
+                    break;
+            }
+
+            return val;
+        }
+        public string ScheduleStatus(string str)
+        {
+            string val = null;
+
+            switch (str)
+            {
+                case "1": val = "Open";
+                    break;
+                case "2": val = "Finish";
+                    break;
+                default: val = str;
+                    break;
+            }
+
+            return val;
+        }
+        public string ItemStatusIn(string str)
+        {
+            string val = null;
+            switch (str)
+            {
+                case "1": val = "New";
+                    break;
+                case "2": val = "Return";
+                    break;
+                case "3": val = "Replace";
+                    break;
+                default: val = str;
+                    break;
+            }
+            return val;
+        }
+        public string ItemStatusOut(string str)
+        {
+            string val = null;
+
+            switch (str)
+            {
+                case "1": val = "Repair";
+                    break;
+                case "2": val = "Dispose";
+                    break;
+                default: val = str;
+                    break;
+            }
+
+            return val;
+        }
+        public static string ReplaceQuoteWithSafeQuote(string strScript)
+        {
+            if (strScript == null || strScript == "") return strScript;
+            else return strScript.Replace("\'", "\\\'").Replace("\"", "\\\"").Replace("\\\\\'", "\\\\\\\'").Replace("\\\\\"", "\\\\\\\"");
+        }
+        public string HR_EmployeeStatus(string str)
+        {
+            string val = null;
+            switch (str)
+            {
+                case "1": val = "Permanent";
+                    break;
+                case "2": val = "Temporary";
+                    break;
+                case "3": val = "Contract";
+                    break;
+                case "4": val = "Probation";
+                    break;
+                case "5": val = "Others - Someone with special task";
+                    break;
+                default: val = str;
+                    break;
+            }
+            return val;
+        }
+
+        public string HRAccessCode(string Value)
+        {
+            string acCode;
+            int num = 0;
+            string tipe, month, year;
+
+            if (Value != "")
+            {
+                string[] strArray = Value.Split('/');
+
+                switch (strArray[0])
+                {
+                    case "NUM": num++;
+                        break;
+                    case "TYPE": tipe = "DEL";
+                        break;
+                    case "MM": String.Format("{0:MM MMM MMMM}", DateTime.Now.Month);
+                        break;
+                    case "YYYY": String.Format("{0:yyyy}", DateTime.Now.Year);
+                        break;
+                }
+                switch (strArray[1])
+                {
+                    case "NUM": num++;
+                        break;
+                    case "TYPE": tipe = "DEL";
+                        break;
+                    case "MM": String.Format("{0:MM MMM MMMM}", DateTime.Now.Month);
+                        break;
+                    case "YYYY": String.Format("{0:yyyy}", DateTime.Now.Year);
+                        break;
+                }
+                switch (strArray[2])
+                {
+                    case "NUM": num++;
+                        break;
+                    case "TYPE": tipe = "DEL";
+                        break;
+                    case "MM": String.Format("{0:MM MMM MMMM}", DateTime.Now.Month);
+                        break;
+                    case "YYYY": String.Format("{0:yyyy}", DateTime.Now.Year);
+                        break;
+                }
+                switch (strArray[3])
+                {
+                    case "NUM": num++;
+                        break;
+                    case "TYPE": tipe = "DEL";
+                        break;
+                    case "MM": String.Format("{0:MM MMM MMMM}", DateTime.Now.Month);
+                        break;
+                    case "YYYY": String.Format("{0:yyyy}", DateTime.Now.Year);
+                        break;
+                }
+                acCode = strArray[0] + "/" + strArray[1] + "/" + strArray[2] + "/" + strArray[3];
+            }
+            else
+            {
+                acCode = Value;
+            }
+            return acCode;
+        }
+
+        public string DeleteUserReason(string str)
+        {
+            string val = null;
+            switch (str)
+            {
+                case "1": val = "Resign";
+                    break;
+                case "2": val = "Mutation";
+                    break;
+                case "3": val = "Rotation";
+                    break;
+                case "4": val = "Back from Dual job";
+                    break;
+                case "10": val = "Cancel join";
+                    break;
+                case "9": val = "Other";
+                    break;
+                default: val = str;
+                    break;
+            }
+            return val;
+        }
+   
+    }
+}

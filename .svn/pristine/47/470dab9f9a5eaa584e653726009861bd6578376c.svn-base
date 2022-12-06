@@ -1,0 +1,385 @@
+﻿
+@{
+    var Row = ViewData["AccessData"] as List<USOFT.DataAccess.spHRDeleteUserRequestView_Result>;
+    ViewBag.Title = "DeleteUserRequestDetail";
+    string reqID = Row.FirstOrDefault().DeleteRequestId;
+    string nik = Row.FirstOrDefault().NIK;
+}
+<script src="~/Scripts/i18n/grid.locale-en.js"></script>
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+<script src="~/Scripts/jquery.jqGrid.min.js"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">DELETE USER REQUEST DETAIL</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Detail Access & User ID Request
+            </div>
+            <div class="panel-body">
+                <div class="row" style="margin-bottom:20px">
+                    <div class="col-lg-5">
+                        <form role="form">
+                            <div class="form-group">
+                                @Html.Label("Form Number :", new { @class = "col-md-5 control-label" })
+
+                                @Html.Label(@Row.FirstOrDefault().DeleteRequestId, new { @class = "col-md-5 control-label" })
+                                @Html.Hidden("RequestID", @Row.FirstOrDefault().DeleteRequestId)
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Request Date :", new { @class = "col-md-5 control-label" })
+
+                                @Html.Label(@Row.FirstOrDefault().DeleteRequestDate.ToShortDateString(), new { @class = "col-md-5 control-label" })
+
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Reason :", new { @class = "col-md-5 control-label" })
+                                @if (@Row.FirstOrDefault().ReasonText != "" && @Row.FirstOrDefault().ReasonText != null)
+                                {
+                                    @Html.Label(@Row.FirstOrDefault().ReasonText, new { @class = "col-md-5 control-label" })
+                                }
+                                else
+                                {
+                                    @Html.Label("-", new { @class = "col-md-5 control-label" })
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Document Status :", new { @class = "col-md-5 control-label" })
+
+                                @Html.Label(@Row.FirstOrDefault().Status, new { @class = "col-md-5 control-label" })
+
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Process Status :", new { @class = "col-md-5 control-label" })
+                                @if (@Row.FirstOrDefault().ProcessStatus != "")
+                                {
+                                    @Html.Label(@Row.FirstOrDefault().ProcessStatus, new { @class = "col-md-5 control-label" })
+                                    if (@Row.FirstOrDefault().CancelReason != "")
+                                    {
+                                        @Html.Label(@Row.FirstOrDefault().CancelReason, new { @class = "col-md-5 control-label" })
+                                    }
+                                }
+                                else
+                                {
+                                    @Html.Label("-", new { @class = "col-md-5 control-label" })
+                                }
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            @Html.Label("NIK :", new { @class = "col-md-5 control-label" })
+
+                            @Html.Label(@Row.FirstOrDefault().NIK, new { @class = "col-md-5 control-label" })
+
+
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Employee Name :", new { @class = "col-md-5 control-label" })
+
+                            @Html.Label(@Row.FirstOrDefault().EmployeeName, new { @class = "col-md-5 control-label" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Branch :", new { @class = "col-md-5 control-label" })
+
+                            @Html.Label(@Row.FirstOrDefault().BranchName, new { @class = "col-md-5 control-label" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Departement :", new { @class = "col-md-5 control-label" })
+                            @if (@Row.FirstOrDefault().DepartementName != null)
+                            {
+                                @Html.Label(@Row.FirstOrDefault().DepartementName, new { @class = "col-md-5 control-label" })
+                            }
+                            else
+                            {
+                                @Html.Label("-", new { @class = "col-md-5 control-label" })
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Position :", new { @class = "col-md-5 control-label" })
+
+                            @Html.Label(@Row.FirstOrDefault().PrivilegeName, new { @class = "col-md-5 control-label" })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Start/End Date :", new { @class = "col-md-5 control-label" })
+
+                            @Html.Label(@Row.FirstOrDefault().EffectiveDateFrom.ToShortDateString(), new { @class = "col-md-5 control-label" })
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                @if (@Row.FirstOrDefault().Status == "APPROVED")
+                                {
+                                    <input type="Submit" value="Print" class="btn btn-default" id="buttonSubmit" name="command" />
+                                }
+
+                                @if ((@Row.FirstOrDefault().Status == "DRAFT" && @Row.FirstOrDefault().ProcessStatus != "Cancel") || @Row.FirstOrDefault().Status == "REJECTED")  
+                                {
+                                    if (@Row.FirstOrDefault().CreatedBy == Session["UserId"].ToString())
+                                    {
+                                        if (Session["DepartementName"].ToString() == "HRD")
+                                        {
+                                            <input type="button" value="Request Approval" class="btn btn-default" id="buttonReqWorkFlow" onclick="window.location.href='@Url.Action("WorkFlowDel", "AccessAndUserIDRequest", new { empNIK = nik ,reqID = reqID})'" />
+                                    <input type="Submit" value="Cancel Request" class="btn btn-default" id="buttonSubmit" onclick="window.location.href = '@Url.Action("CancelAccessUserIDRequest", "AccessAndUserIDRequest", new {state = "Cancel",updateID = reqID, value = @Row.FirstOrDefault().NIK,JobId = @Row.FirstOrDefault().JobEmployeeId})'" />
+                                    <input type="Submit" value="Edit Header" class="btn btn-default" id="buttonEditHeader" onclick="window.location.href = '@Url.Action("EditDeleteUserIDRequest", "AccessAndUserIDRequest", new {state = "Edit",updateID = reqID, value = @Row.FirstOrDefault().NIK,JobId = @Row.FirstOrDefault().JobEmployeeId,Reason = @Row.FirstOrDefault().ReasonText})'" />
+                                        }
+                                    }
+                                }
+                                <input type="button" value="Back" class="btn btn-default" id="buttonBack" onclick="window.location.href='@Url.Action("AddUserRequest", "AccessAndUserIDRequest")'" />
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Access And User ID Role
+                    </div>
+                    <div class="panel-body">
+                        <div class="row" style="margin-bottom:20px">
+                            <div class="col-lg-5">
+                            </div>
+                        </div>
+                        <div id="divTable">
+                            <table id="grid"></table>
+                        </div>
+
+                        @*@if (@Row.FirstOrDefault().Status == "DRAFT")
+                        {
+
+                            <div class="panel panel-default" style="margin-top:10px">
+                                <div class="panel-heading">
+                                    <input type="button" value="+" class="btn btn-default" id="buttonAddRole" />
+                                    <div id="dropDownRole" style="display:none;margin-top:10px">
+                                        @Html.DropDownList("pivchAppCode", (SelectList)ViewBag.AppCombo, "All", new { @class = "form-control" })
+
+                                        <div id="Location" style="display:none;margin-top:10px">
+                                            @Html.DropDownList("pivchLocationCode", (SelectList)ViewBag.Loc, "All", new { @class = "form-control" })
+
+                                        </div>
+                                        <input type="button" value="Save" class="btn btn-default" id="buttonSaveRole" style="margin-top:10px" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        }*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (@Row.FirstOrDefault().Status != "DRAFT")
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Work Flow Path
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin-bottom:20px">
+                                <div class="col-lg-5">
+                                </div>
+                            </div>
+                            <div id="divTable2">
+                                <table id="gridWFPath"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (@Row.FirstOrDefault().Status != "DRAFT")
+        {
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Work Flow History
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" style="margin-bottom:20px">
+                                <div class="col-lg-5">
+                                </div>
+                            </div>
+                            <div id="divTable3">
+                                <table id="gridWFHistory"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+                            $(window).bind('resize', function () {
+                                jQuery("#grid").setGridWidth($('#divTable').width(), true);
+                            }).trigger('resize');
+
+
+                                $("#grid").jqGrid({
+                                    url: '@Url.Action("GetHRAccessRole", "AccessAndUserIDRequest")',
+                                    datatype: "JSON",
+                                    mtype: "GET",
+                                    postData: {
+
+                                        RequestID: (function () {
+                                            return $("#RequestID").val();
+                                        }),
+                                    },
+                                    colNames: ['Access For', 'Location', 'Access & User ID'],
+                                    colModel: [
+                                        { key: true, Name: true, name: 'AppName', editable: true },
+                                        { key: false, name: 'LocationName', editable: true },
+                                        { key: false, name: 'AccessId', editable: true,width:400}
+                                    ],
+
+                                    rowNum: 10,
+                                    height: '80%',
+                                    width: '50%',
+
+                                    caption: 'App and Role ID',
+                                    jsonReader: {
+                                        root: "rows",
+                                        page: "page",
+                                        total: "total",
+                                        records: "records",
+                                        repeatitems: false,
+                                        cell: "cell",
+                                        id: "id",
+                                        userdata: "userdata",
+                                    },
+
+                                    multiselect: false,
+                                });
+
+    $("#buttonAddRole").click(function () {
+        $("#dropDownRole").show();
+    });
+    $("#pivchAppCode").change(function () {
+        var ddlVal = $(this).val();
+        if (ddlVal == "00007") {
+            $("#Location").show();
+        }
+        else {
+            $("#Location").hide();
+        }
+    });
+        $("#buttonSaveRole").click(function () {
+            var url = '@Url.Action("GetWFPath", "AccessAndUserIDRequest")'
+            var data = { pivchAppCode: $("#pivchAppCode").val(), pivchAddRequestID: $("#RequestID").val(), pivchLocationCode: $("#pivchLocationCode").val() };
+            $.post(url, data, function () {
+            });
+
+        });
+        $("#grid").trigger("reloadGrid", [{ page: 1 }]);
+
+        $(window).bind('resize', function () {
+            jQuery("#grid").setGridWidth($('#divTable').width(), true);
+        }).trigger('resize');
+
+        $(window).bind('resize', function () {
+            jQuery("#gridWFPath").setGridWidth($('#divTable2').width(), true);
+        }).trigger('resize');
+        $("#gridWFPath").jqGrid({
+            url: '@Url.Action("GetWFPath", "AccessAndUserIDRequest")',
+            datatype: "JSON",
+            mtype: "GET",
+            postData: {
+
+                RequestID: (function () {
+                    return $("#RequestID").val();
+                }),
+            },
+            colNames: ['No', 'Approver', 'WorkFlow Status'],
+            colModel: [
+                { key: true, Name: true, name: 'WorkFlowIdx', editable: true },
+                { key: false, name: 'Approver', editable: true, width: 400 },
+                { key: false, name: 'WorkFlowStatus', editable: true}
+            ],
+
+            rowNum: 10,
+            height: '80%',
+            width: '50%',
+
+            caption: 'WorkFlow Path',
+            jsonReader: {
+                root: "rows",
+                page: "page",
+                total: "total",
+                records: "records",
+                repeatitems: false,
+                cell: "cell",
+                id: "id",
+                userdata: "userdata",
+            },
+
+            multiselect: false,
+        });
+    $(window).bind('resize', function () {
+        jQuery("#gridWFHistory").setGridWidth($('#divTable3').width(), true);
+    }).trigger('resize');
+    $("#gridWFHistory").jqGrid({
+        url: '@Url.Action("GetWFHistory", "AccessAndUserIDRequest")',
+        datatype: "JSON",
+        mtype: "GET",
+        postData: {
+
+            RequestID: (function () {
+                return $("#RequestID").val();
+            }),
+        },
+        colNames: ['No', 'Approver', 'WorkFlow Status'],
+        colModel: [
+            { key: true, Name: true, name: 'WorkFlowIdx', editable: true },
+            { key: false, name: 'Approver', editable: true, width: 400 },
+            { key: false, name: 'WorkFlowStatus', editable: true }
+        ],
+
+        rowNum: 10,
+        height: '80%',
+        width: '50%',
+
+        caption: 'WorkFlow History',
+        jsonReader: {
+            root: "rows",
+            page: "page",
+            total: "total",
+            records: "records",
+            repeatitems: false,
+            cell: "cell",
+            id: "id",
+            userdata: "userdata",
+        },
+
+        multiselect: false,
+    });
+</script>
